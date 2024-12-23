@@ -1,6 +1,8 @@
 
 import { Component, Inject, OnInit,  PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { DashboardService } from '../dashboard.service';
+import {MessageService} from 'primeng/api';
 
 
 @Component({
@@ -19,17 +21,18 @@ export class DashboardComponent implements OnInit {
   
 
   addDate:any;
+  
 
 
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private dashboardService: DashboardService,) {}
 
   ngOnInit(): void {
     // Check if the platform is the browser (not SSR)
     this.isBrowser = isPlatformBrowser(this.platformId);
 
 
-
+this.dashboardCountList();
 
     this.currentDate = new Date();
 
@@ -159,7 +162,44 @@ this.currentDate = new Date().toISOString().split('T')[0];
   };
 
 
-  
+
+
+
+
+  // ---------------------------------------------------------------------
+  // backend code
+
+
+ public dashboardCountList: any = [];
+ public isProgressBarLoading!: boolean;
+ public isLoading!: boolean;
+ public totalRecords: number = 0;
+
+
+ private getDashboardCountList() {
+  this.dashboardService.getDashboardCount().subscribe(res => {
+          if (res.status === 200) {
+              this.dashboardCountList = res.body
+              // this.temp3 = this.totalRecords
+          }
+      },
+      err => {
+          this.isProgressBarLoading = false;
+          this.isLoading = false;
+          if (err.status === 404) {
+              this.totalRecords = 0;
+          }
+
+          if (err.error && err.error.message) {
+              // this.messageService.add({severity: 'error', summary: err.error.message, detail: ''});
+          }
+      },
+      () => {
+          this.isProgressBarLoading = false;
+          this.isLoading = false;
+      });
+}
+
 
 
 }

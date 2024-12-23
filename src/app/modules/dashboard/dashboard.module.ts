@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgChartsModule } from 'ng2-charts';
 
 
+
 @NgModule({
   declarations: [
     DashboardComponent
@@ -17,6 +18,8 @@ import { NgChartsModule } from 'ng2-charts';
     CommonModule,
     DashboardRoutingModule,
     NgChartsModule,
+  
+    
     // BsDatepickerModule.forRoot()
 
     
