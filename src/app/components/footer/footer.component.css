@@ -1,0 +1,91 @@
+/*  */
+
+
+
+.left-section{
+background-color: #F6F6F6F6;
+border-top-right-radius: 35px;
+position: relative; /* Required for the pseudo-element positioning */
+}
+
+.left-section ::before{
+  content: ""; /* Required to display the pseudo-element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #FFFFFF;
+
+  z-index: -1; /* Ensure it appears behind the content */
+}
+
+
+
+@media (max-width: 768px) {
+  #responsive-container {
+    height: 60px; /* Adjust to a smaller height on mobile devices */
+  }
+}
+
+@media (min-width: 769px) {
+  #responsive-container {
+    height: 10vh; /* Adjust for larger screens */
+  }
+}
+
+
+
+
+/* Default background color */
+.list-group-item {
+  background-color: #f6f6f6;
+  border: none;
+
+  height: 50px;
+ 
+}
+
+/* Background color when active */
+.active-item {
+  background-color: #004d40 !important;  /* Change this to your desired active background color */
+}
+
+.list-group-item.active-item a{
+  color: white; /* Text color for active link */
+}
+.list-group-item.active-item img{
+  color: white; /* Text color for active link */
+}
+
+.list-group-item a {
+  color: inherit;  /* Inherit the color from the parent */
+  text-decoration: none;  /* Remove underline */
+}
+
+
+
+.list-group-item.active-item img {
+  filter: brightness(0) invert(1); /* Makes the image appear white */
+  transform: scale(1.1); /* Slight zoom for emphasis */
+}
+
+
+
+.right-section{
+  background-color: #F6F6F6F6;
+  border-top-left-radius: 35px;
+  position: relative; /* Required for the pseudo-element positioning */
+  }
+  
+  .right-section ::before{
+    content: ""; /* Required to display the pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFFFFF;
+  
+    z-index: -1; /* Ensure it appears behind the content */
+  }

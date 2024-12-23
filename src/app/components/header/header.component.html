@@ -1,0 +1,166 @@
+<!-- 
+
+
+
+<div class="container-fluid">
+
+
+  <div class="row align-items-center" style="">
+
+
+    <div class="col-xl-3" style="background-color: #805d5d;" >
+      <img src="assets/images/vatSystem.png" width="36px" height="36px" style="">
+      <span style="font-size: 24px;">VAT Intelligence System</span>
+    </div>
+
+
+
+
+
+
+    <div class="col"
+    style="background-color: rgb(108, 138, 84); padding-top: 10px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+
+    <ul class="d-flex list-unstyled align-items-center justify-content-around">
+
+      <li class="col-xl-2">
+        <a class="d-flex align-items-center justify-content-center"
+          style="padding: 5px; text-align: center; gap: 5px;" routerLink="dashboard" routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"> <img src="assets/images/dashboard.png" width="15px"
+            height="15px"> <span>Dashboard</span></a>
+      </li>
+      <li class="col-xl-2">
+        <a routerLink="monitoring" routerLinkActive="active-link"
+          class="d-flex align-items-center justify-content-center"
+          style="padding: 5px; text-align: center; gap: 5px;"> <img src="assets/images/monitoring.png" width="15px"
+            height="15px"> <span> Monitoring</span></a>
+      </li>
+      <li class="col-xl-2">
+        <a class="d-flex align-items-center justify-content-center"
+          style="padding: 5px; text-align: center; gap: 5px;" routerLink="analysis" routerLinkActive="active-link">
+          <img src="assets/images/analysis.png" width="15px" height="15px">
+          <span>Analysis</span>
+        </a>
+      </li>
+
+      <li class="col-xl-2">
+        <a class="d-flex align-items-center justify-content-center"
+          style="padding: 5px; text-align: center; gap: 5px;" routerLink="mushaks" routerLinkActive="active-link">
+          <img src="assets/images/mushak.png" width="15px" height="15px">
+          <span> Mushak</span></a>
+      </li>
+      <li class="col-xl-2">
+        <a class="d-flex align-items-center justify-content-center"
+          style="padding: 5px; text-align: center; gap: 5px;" routerLink="vat-office" routerLinkActive="active-link">
+          <img src="assets/images/vatOffice.png" width="15px" height="15px">
+          <span> VAT Office</span></a>
+      </li>
+    </ul>
+
+  </div>
+
+
+
+
+
+
+
+  <div class="col-xl-3" style="text-align: end; padding-top: 10px; border-top-left-radius: 20px;">
+    <img src="assets/images/profile.png" width="25px" height="25px">
+    <span style="padding-left: 10px;">Sarah Noor</span>
+    <i class="bi bi-chevron-down" style="padding-left: 5px; cursor: pointer;"></i>
+
+    <div *ngIf="" class="dropdown-custom"
+      style="position: absolute; right: 0; background: white; border: 1px solid #ccc; padding: 10px; width: 150px;">
+      <a href="#" class="dropdown-item">Profile</a><br>
+      <a href="#" class="dropdown-item">Settings</a><br>
+      <a href="#" class="dropdown-item">Logout</a>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  </div>
+</div>
+
+
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+  <div class="row " >
+
+    <!-- Left Section -->
+    <div class="col-md-3 left-section">
+      <img src="assets/images/vatSystem.png" alt="VAT System Logo">
+      <span>VAT Intelligence System</span>
+    </div>
+
+    <!-- Center Section -->
+    <div class="col-md-6 center-section">
+      <ul>
+        <li>
+          <a routerLink="dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+            <img src="assets/images/dashboard.png" alt="Dashboard">
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="monitoring" routerLinkActive="active-link">
+            <img src="assets/images/monitoring.png" alt="Monitoring">
+            <span>Monitoring</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="analysis" routerLinkActive="active-link">
+            <img src="assets/images/analysis.png" alt="Analysis">
+            <span>Analysis</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="mushaks" routerLinkActive="active-link">
+            <img src="assets/images/mushak.png" alt="Mushak">
+            <span>Mushak</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="vat-office" routerLinkActive="active-link">
+            <img src="assets/images/vatOffice.png" alt="VAT Office">
+            <span>VAT Office</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right Section -->
+    <div class="col-md-3 right-section">
+      <div class="profile-section">
+        <img src="assets/images/profile.png" alt="Profile">
+        <span>Sarah Noor</span>
+        <i class="bi bi-chevron-down dropdown-icon"></i>
+      </div>
+    
+      <!-- Dropdown Menu -->
+      <ul class="dropdown-menu">
+        <li><a href="/profile">View Profile</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+    
+  </div>
+
+

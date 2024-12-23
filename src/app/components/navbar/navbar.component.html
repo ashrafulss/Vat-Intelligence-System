@@ -1,0 +1,169 @@
+<header>
+
+
+            <div class="row align-items-stretch align-items-center">
+
+
+                <!-- left-section -->
+                <div class="col-lg-3 col-sm-3 d-flex gap-3 pt-3 pb-3 left-section">
+                    <img src="assets/images/vatSystem.svg" alt="VAT System Logo" class="img-fluid">
+                    <h3 class="m-0">VAT Intelligence System</h3>
+                </div>
+
+                <!-- middle section -->
+                <div class="col-12 col-md-4 gap-3 col-lg pt-3 pb-3 px-3 middle-section">
+
+                    <ul class="col list-group list-group-horizontal gap-2 d-flex align-items-center">
+
+                        <!-- Dashboard -->
+                        <li class="col list-group-item d-flex justify-content-center align-items-center"
+                            routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
+                            style="border-radius: 18px; padding: 0;">
+
+                            <a routerLink="dashboard"
+                                style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
+                                class="d-flex align-items-center justify-content-center" routerLinkActive
+                                #rld="routerLinkActive">
+
+                                <!-- Conditional Icons -->
+                                <!-- Unfilled Icon -->
+                                <img *ngIf="!rld.isActive" src="assets/images/dashboard.svg" alt="Dashboard"
+                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+
+                                <!-- Filled Icon -->
+                                <img *ngIf="rld.isActive" src="assets/images/dashboardF.svg" alt="Dashboard Active"
+                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+
+                                <span >&nbsp;&nbsp;Dashboard</span>
+                            </a>
+                        </li>
+
+                        <!-- Monitoring -->
+                        <li class="col list-group-item d-flex justify-content-center align-items-center"
+                            routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
+                            style="border-radius: 18px; padding: 0;">
+
+                            <a routerLink="monitoring"
+                                style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
+                                class="d-flex align-items-center justify-content-center" routerLinkActive
+                                #rlam="routerLinkActive">
+
+                                <!-- Conditional Icons -->
+                                <!-- Unfilled Icon -->
+                                <img *ngIf="!rlam.isActive" src="assets/images/monitoring.svg" alt="Monitoring"
+                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+
+                                <!-- Filled Icon -->
+                                <img *ngIf="rlam.isActive" src="assets/images/monitoringF.svg" alt="Monitoring Active"
+                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+
+                                <span >&nbsp;&nbsp;Monitoring</span>
+                            </a>
+                        </li>
+
+                        <!-- Analysis -->
+                        <li class="col list-group-item d-flex justify-content-center align-items-center"
+                            routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
+                            style="border-radius: 18px; padding: 0;">
+
+                            <a routerLink="analysis"
+                                style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
+                                class="d-flex align-items-center justify-content-center" routerLinkActive
+                                #rla="routerLinkActive">
+
+                                <!-- Conditional Icons -->
+                                <!-- Unfilled Icon -->
+                                <img *ngIf="!rla.isActive" src="assets/images/analysis.svg" alt="Analysis"
+                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+
+                                <!-- Filled Icon -->
+                                <img *ngIf="rla.isActive" src="assets/images/analysisF.svg" alt="Analysis Active"
+                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+
+                                <span >&nbsp;&nbsp;Analysis</span>
+                            </a>
+                        </li>
+
+                        <!-- Mushak -->
+                        <li class="col list-group-item d-flex justify-content-center align-items-center"
+                            routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
+                            style="border-radius: 18px; padding: 0;">
+
+                            <a routerLink="mushaks"
+                                style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
+                                class="d-flex align-items-center justify-content-center" routerLinkActive
+                                #rlmu="routerLinkActive">
+
+                                <!-- Conditional Icons -->
+                                <!-- Unfilled Icon -->
+                                <img *ngIf="!rlmu.isActive" src="assets/images/mushak.svg" alt="Mushak"
+                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+
+                                <!-- Filled Icon -->
+                                <img *ngIf="rlmu.isActive" src="assets/images/mushakF.svg" alt="Mushak Active"
+                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+
+                                <span>&nbsp;&nbsp;Mushak</span>
+                            </a>
+                        </li>
+
+                        <!-- VAT Office -->
+                        <li class="col list-group-item d-flex justify-content-center align-items-center"
+                            routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
+                            style="border-radius: 18px; padding: 0;">
+
+                            <a routerLink="vat-office"
+                                style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
+                                class="d-flex align-items-center justify-content-center" routerLinkActive
+                                #rlvo="routerLinkActive">
+
+                                <!-- Conditional Icons -->
+                                <!-- Unfilled Icon -->
+                                <img *ngIf="!rlvo.isActive" src="assets/images/vatOffice.svg" alt="VAT Office"
+                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+
+                                <!-- Filled Icon -->
+                                <img *ngIf="rlvo.isActive" src="assets/images/vatOfficeF.svg" alt="VAT Office Active"
+                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+
+                                <span >&nbsp;&nbsp;VAT Office</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+
+                <!-- rgith section -->
+                <div
+                    class="dropdown col-lg-2 pt-3 pb-3 gap-3 d-flex align-items-center right-section text-lg-center text-center">
+                    <img src="assets/images/profile.svg" alt="VAT System Logo" class="img-fluid">
+                    <h3 class="m-0">Sara Noor</h3>
+                  
+                    <button style="border: none; background-color:#f6f6f6; padding-right: 0px;" class="dropdown-toggle no-arrow" type="button" 
+                    data-bs-toggle="dropdown">
+                    <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center "
+                    style=""></i>
+           
+                   </button> 
+                   
+                   <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style="border: none;background-color: #0A3B40; border-radius: 15px; font-size: 25px; font-weight: bold; color: white; ">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Setting</a></li>
+                  </ul>
+                
+                
+                </div>
+
+                
+                  
+
+
+            </div>
+
+
+   
+</header>

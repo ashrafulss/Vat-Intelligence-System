@@ -1,0 +1,178 @@
+
+@media (min-width: 700px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width:3000px;
+    }
+  
+ 
+  }
+
+/* Left Section */
+.left-section {
+    background-color: #F6F6F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-top-right-radius: 35px;
+}
+
+.left-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: -1;
+}
+
+.left-section h3{
+   font-weight: 600;
+   font-size: 24px;
+   color:#000000;
+}
+
+
+
+/* Right Section */
+.right-section {
+    background-color: #F6F6F6;
+    position: relative;
+    border-top-left-radius: 35px;
+    justify-content: end;
+}
+
+.right-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFFFFF;
+    z-index: -1;
+}
+
+.right-section h3 {
+    font-weight: 500;
+    font-size: 24px;
+    color:#000000;
+}
+
+.right-section img {
+    width: 45px;
+}
+
+.right-section .dropdown-icon {
+    height: 34px;
+    width: 34px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    border: 1px solid #00000033 
+}
+
+/* Middle Section */
+.middle-section {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    border-bottom-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    box-shadow: 0 4px 0px -10px rgb(14, 0, 0);
+}
+
+.middle-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f6f6f6;
+    z-index: -1;
+}
+
+
+/* List Group Item */
+.list-group-item {
+    background-color: #f6f6f6;
+    border: none;
+    height: 50px;
+}
+
+.list-group-item.active-item {
+    background-color: #0A3B40 !important;
+}
+
+
+.list-group-item a {
+    color: #000000; /* Black color */
+    text-decoration: none; /* Optional: Remove underline */
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  /* Active state */
+  .list-group-item.active-item a {
+    color: #FFFFFF; /* White color */
+  }
+
+.list-group-item.active-item img {
+    color:  #FFFFFF;
+}
+
+
+
+.list-group-item.active-item img {
+    filter: brightness(0) invert(1);
+    transform: scale(1.1);
+}
+
+
+
+
+/* Responsive adjustments */
+@media (min-width: 700px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 3000px;
+    }
+
+
+    .left-section img {
+        width: 35px;
+    }
+
+    .left-section {
+        justify-content: start;
+    }
+
+    .right-section {
+        justify-content: end;
+    }
+    
+}
+
+
+
+
+
+
+
+
+/* Remove dropdown arrow */
+.no-arrow::after {
+    display: none;
+  }
+  
+
+  .costom-li li a{
+    color: white;
+  }
+
+  .costom-li li a:hover{
+    color: black;
+  }

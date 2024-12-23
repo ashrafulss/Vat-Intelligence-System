@@ -1,0 +1,10 @@
+
+
+
+.accordion-button::after {
+    display: none;  /* Remove the dropdown arrow */
+  }
+  
+
+
+

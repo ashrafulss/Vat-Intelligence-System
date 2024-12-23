@@ -1,0 +1,171 @@
+
+
+
+
+
+
+.vertical-line {
+    position: relative;
+    height: 80%; /* Full height of the parent container */
+    width: 1px; /* Thickness of the line */
+    background-color: rgb(197, 194, 194); /* Line color */
+    left: 50%; /* Position the line in the middle of the parent */
+    top: 10%;
+
+
+  
+  }
+  
+
+
+  
+
+  
+
+  
+  
+
+/* Wrapper for the select and icon */
+.custom-select-wrapper {
+    position: relative; /* Allows absolute positioning of the icon */
+    display: inline-flex; /* Align items horizontally */
+    width: 100%;  /* Make sure the wrapper takes full width */
+
+   
+    
+
+  }
+  
+  /* Hide the default dropdown icon and style the select */
+  .no-dropdown-icon {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #ffffff; /* Background color */
+    padding-right: 30px; /* Space for the icon */
+    border-radius: 15px; /* Rounded corners */
+    border: 1px solid #ccc; /* Border styling */
+    /* box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px; */
+    color: gray; /* Text color */
+    font-weight: 400; /* Font weight */
+    height: 60px; /* Height of the dropdown */
+    font-size: 16px; /* Font size for options */
+    width: 100%; /* Full width */
+    cursor: pointer; /* Ensure the dropdown is clickable */
+  }
+  
+  /* Custom dropdown icon */
+  .dropdown-icon {
+    position: absolute;
+    right: 10px; /* Position the icon on the right side */
+    top: 50%; /* Vertically center the icon */
+    transform: translateY(-50%); /* Adjust the icon vertically */
+    font-size: 18px; /* Size of the icon */
+    color: gray; /* Icon color */
+    pointer-events: none; /* Make sure the icon doesn't interfere with dropdown functionality */
+    z-index: 1; /* Ensure the icon is always on top */
+  }
+  
+
+
+
+
+
+
+
+.welcome h2{
+  font-size: 40px;
+  font-weight: 600px;
+  color:#000000;
+} 
+ 
+
+.fontbol p{
+  font-size: 18px;
+  font-weight: 500;
+  color:#000000;
+
+}
+
+.fontbol h2{
+  font-size: 32px;
+  font-weight: 700;
+  color:#000000;
+
+}
+
+
+.dateCustom p, button{
+  font-weight: 500;
+  font-size: 20px;
+  color:#000000;
+}
+
+.dateCustom select{
+  font-size:20px;
+  font-weight: 400;
+  color: #00000099;
+ 
+}
+
+.dateFormat{
+  font-size:20px;
+  font-weight: 400;
+  color: #00000099;
+ 
+}
+
+
+
+
+
+
+
+.custom-select-wrapper.open .form-select option{
+  background-color: #0A3B40; /* Change background when open */
+  color: white;
+  border-radius: 30px;
+}
+
+.custom-select-wrapper .form-select {
+  transition: all 0.5s ease; /* Smooth transition for styling */
+}
+
+.custom-select-wrapper.open {
+  
+ 
+  background-color: #e3f2fd;
+}
+
+
+
+
+
+
+
+.costom-li li a{
+  color: white;
+}
+
+.costom-li li a:hover{
+  color: black;
+}
+
+
+.no-arrow::after {
+  display: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

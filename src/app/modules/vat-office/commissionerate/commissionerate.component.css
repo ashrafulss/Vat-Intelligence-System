@@ -1,0 +1,303 @@
+
+
+
+.border-custom {
+  color: #89354C;
+  border: 2px solid rgba(0, 0, 0, 0.222);
+  border-radius: 10px;
+  margin-right: 15px;
+  font-size: 18px;
+  align-items: center;
+
+
+
+
+  display: flex;          /* Use Flexbox for alignment */
+  align-items: center;    /* Center content vertically */
+  justify-content: center;
+  
+  width: 150px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+ 
+}
+
+
+.border-custom p {
+  margin: 0;              /* Remove the default margin */
+}
+
+.border-cus{
+  display: flex;
+}
+
+.border-cus p{
+  margin: 0;
+}
+
+.border-customs {
+  color: #89354C;
+  border: 2px solid rgba(0, 0, 0, 0.222);
+  border-radius: 10px;
+  margin-left: 1200px;
+
+  font-size: 18px;
+  text-decoration: none;
+
+  
+}
+
+.code{
+ font-size: 22px; color: #B13A5A; font-weight: 600;
+}
+
+
+.code1{
+  font-size: 22px; color:  #B05331; font-weight: 600;
+  
+ }
+
+
+
+ .code2{
+  font-size: 22px; color:  #9C7932; font-weight: 600;
+ }
+
+
+@media (max-width: 1200px) {
+  .border-customs {
+    margin-left: 200px; /* Less margin for smaller screens */
+
+  }
+}
+
+
+/* Responsive adjustments for medium screens */
+@media (max-width: 768px) {
+  .border-customs {
+    margin-left: 200px; /* Less margin for smaller screens */
+
+  }
+}
+
+/* Responsive adjustments for small screens (mobile) */
+@media (max-width: 480px) {
+  .border-customs {
+    margin-left: 100px; /* Even less margin for small screens */
+ 
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.tl-item .avatar {
+  z-index: 2
+}
+
+
+
+
+.timeline {
+  position: relative;
+  border-color: rgba(3, 0, 0, 0.911);
+  padding: 0;
+  margin: 0
+}
+
+
+
+
+.tl-item {
+  border-radius: 3px;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex
+}
+
+.tl-item>* {
+  padding: 10px
+}
+
+.tl-item .avatar {
+  z-index: 2
+}
+
+.tl-item:last-child .tl-dot:after {
+  display: none
+}
+
+.tl-item.active .tl-dot:before {
+  border-color: #448bff;
+  box-shadow: 0 0 0 4px rgba(68, 139, 255, .2)
+}
+
+.tl-item:last-child .tl-dot:after {
+  display: none
+}
+
+.tl-item.active .tl-dot:before {
+  border-color: #448bff;
+  box-shadow: 0 0 0 4px rgba(228, 54, 11, 0.2)
+}
+
+
+.tl-dot {
+position: relative;
+border-color: rgb(2, 0, 0);
+}
+
+
+
+
+
+
+.tl-dot:after,
+.tl-dot:before {
+  content: '';
+  position: absolute;
+  border-color: inherit;
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  top: 30px !important;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+.tl-dot:after {
+  width: 0;
+  height: auto;
+  top: 25px;
+  bottom: -30px !important;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  border-radius: 0
+}
+
+.tl-dot:before {
+ background-color: #C9C9C9ed;
+  /* box-shadow: 0 0 0 4px rgba(4, 0, 240, 0.2); */
+
+}
+
+
+.tl-dot:after,
+.tl-dot:before {
+  content: '';
+  position: absolute;
+  border-color: #C9C9C9;
+  border-width: 1.5px;
+  width: 8px;
+  height: 8px;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+.tl-dot:after {
+  width: 0;
+  height: auto;
+  top: 25px;
+  bottom: -15px;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 0;
+  border-radius: 0
+}
+
+
+
+
+
+.b-warning {
+  border-color: #00000033;
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------ */
+
+
+
+
+#example thead tr{
+border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+#example tbody tr {
+border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+/* Add padding to header cells */
+#example th {
+padding: 10px 15px; /* Adjust padding as needed */
+text-align: left; /* Optional: Align text to the left */
+background-color: #FFFFFF; /* Optional: Add a light background for the header */
+}
+
+/* Add padding to data cells */
+#example td {
+padding: 15px;  /* Adjust padding as needed */
+background-color: #FFFFFF;
+}
+
+#slid{
+padding-left: 30px !important;
+}
+
+
+
+/* Style for rounded corners */
+#example {
+box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+border-bottom-right-radius: 15px;
+border-bottom-left-radius: 15px;
+overflow: hidden; /* Ensure rounded corners are visible */
+width: 100%;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ---------------------------------------------------- */
