@@ -20,6 +20,9 @@ export class CommissionerateComponent {
 
 
 
+
+
+
   getDotPosition(index: number, length: number): string {
     if (length === 1) {
       return '50%'; // Center dot if there's only one item

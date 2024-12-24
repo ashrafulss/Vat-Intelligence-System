@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
 
-this.dashboardCountList();
+
 
     this.currentDate = new Date();
 
