@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { appRouteAnimations } from './app-routing.animations';
-import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,8 @@ export class AppComponent {
 
 
 
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet?.activatedRouteData?.['animation'] || null;
-  }
+
+
+ 
   
 }

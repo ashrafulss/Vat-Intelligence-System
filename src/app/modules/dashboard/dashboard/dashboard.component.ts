@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private dashboardService: DashboardService,) {}
 
   ngOnInit(): void {
+
+    // this.getDashboardCountList();
     // Check if the platform is the browser (not SSR)
     this.isBrowser = isPlatformBrowser(this.platformId);
 

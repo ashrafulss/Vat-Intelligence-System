@@ -91,6 +91,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4200, 
+            "open": true
+          },
           "configurations": {
             "production": {
               "buildTarget": "bas-app:build:production"

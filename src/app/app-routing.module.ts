@@ -1,45 +1,61 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './common/services/auth.guard';
+import { HomeResolver } from './components/home/home.resolver';
 
-// const routes: Routes = [
 
-//   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-//   { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)},
-//   { path: 'analysis', loadChildren: ()=>import('./modules/analysis/analysis.module').then(m=>m.AnalysisModule)},
-//   { path: 'monitoring', loadChildren: ()=>import('./modules/monitoring/monitoring.module').then(m=>m.MonitoringModule)},
-//   { path: 'vat-office', loadChildren: ()=>import('./modules/vat-office/vat-office.module').then(m=>m.VatOfficeModule)},
-//   { path: 'mushaks', loadChildren: ()=> import('./modules/mushak/mushak.module').then(m=>m.MushakModule)},
-//   { path: '**', redirectTo: 'dashboard'}
-// ];
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
-    data: { animation: 'DashboardPage' },
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    resolve: { home: HomeResolver },
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+        data: { animation: 'DashboardPage' },
+      },
+    //   {
+    //     path: '', redirectTo: 'dashboard', pathMatch: 'full',
+    // },
+      {
+        path: 'analysis',
+        loadChildren: () => import('./modules/analysis/analysis.module').then(m => m.AnalysisModule),
+        data: { animation: 'AnalysisPage' },
+      },
+      {
+        path: 'monitoring',
+        loadChildren: () => import('./modules/monitoring/monitoring.module').then(m => m.MonitoringModule),
+        data: { animation: 'MonitoringPage' },
+      },
+      {
+        path: 'vat-office',
+        loadChildren: () => import('./modules/vat-office/vat-office.module').then(m => m.VatOfficeModule),
+        data: { animation: 'VatOfficePage' },
+      },
+      {
+        path: 'mushaks',
+        loadChildren: () => import('./modules/mushak/mushak.module').then(m => m.MushakModule),
+        data: { animation: 'MushakPage' },
+      }
+    ]
   },
-  {
-    path: 'analysis',
-    loadChildren: () => import('./modules/analysis/analysis.module').then(m => m.AnalysisModule),
-    data: { animation: 'AnalysisPage' },
-  },
-  {
-    path: 'monitoring',
-    loadChildren: () => import('./modules/monitoring/monitoring.module').then(m => m.MonitoringModule),
-    data: { animation: 'MonitoringPage' }, // Use a unique name for MonitoringPage
-  },
-  {
-    path: 'vat-office',
-    loadChildren: () => import('./modules/vat-office/vat-office.module').then(m => m.VatOfficeModule),
-    data: { animation: 'VatOfficePage' },
-  },
-  {
-    path: 'mushaks',
-    loadChildren: () => import('./modules/mushak/mushak.module').then(m => m.MushakModule),
-    data: { animation: 'MushakPage' },
-  },
-  { path: '**', redirectTo: 'dashboard' },
+  
+  // {
+  //   path: 'login',
+  //   children: [
+  //     { path: '', component: LoginComponent }
+  //   ]
+  // },
+  
+  { 
+    path: '**', 
+    redirectTo: 'login' 
+  }
 ];
 
 
