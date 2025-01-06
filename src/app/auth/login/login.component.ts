@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OAuth2AuthCodePKCE } from '../../common/custom-lib/oauth2-auth-code-PKCE';
-import { OAuth2Service } from '../../common/services/auth.service';
+
+import { OAuth2Service } from '../../common/services/oauth.service';
 import { Router } from '@angular/router';
 
 
@@ -9,9 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']  // Corrected 'styleUrl' to 'styleUrls'
 })
-export class LoginComponent implements OnInit{
-
-  
+export class LoginComponent implements OnInit {
 
   public isLoading: boolean = false;
   public oAuth2Obj!: OAuth2AuthCodePKCE;
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit{
               this.oAuth2Obj.fetchAuthorizationCode();
           }
 
-          return this.oAuth2Obj.getAccessToken().then((data) => {
+          return this.oAuth2Obj.getAccessToken().then((data) => {        
               this.isLoading = true;
               this.router.navigate(['/']);
           });
@@ -39,6 +38,5 @@ export class LoginComponent implements OnInit{
 
       });
   }
+}
 
-  
-  }

@@ -2,6 +2,9 @@
  * An implementation of rfc6749#section-4.1 and rfc7636.
  */
 
+import { isPlatformBrowser } from "@angular/common";
+import { Inject, PLATFORM_ID } from "@angular/core";
+
 export interface Configuration {
     authorizationUrl: URL;
     clientId: string;
@@ -178,12 +181,27 @@ const PKCE_CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345
  */
 export class OAuth2AuthCodePKCE {
 
-    constructor(config: Configuration) {
+
+    
+
+    private config: Configuration;
+    private platformId: Object;
+
+    constructor(
+        config: Configuration,
+        @Inject(PLATFORM_ID) platformId: Object
+    ) {
         this.config = config;
+        this.platformId = platformId;
         this.recoverState();
-        return this;
+        
+        if (isPlatformBrowser(this.platformId)) {
+            console.log('Running on the browser');
+        } else {
+            console.log('Running on the server');
+        }
     }
-    private config!: Configuration;
+
     private state: State = {};
     private authCodeForAccessTokenRequest?: Promise<AccessContext>;
 
@@ -314,32 +332,39 @@ export class OAuth2AuthCodePKCE {
      * If there is no code, the user should be redirected via
      * [fetchAuthorizationCode].
      */
-    public isReturningFromAuthServer(): Promise<boolean> {
-        const error = OAuth2AuthCodePKCE.extractParamFromUrl(location.href, 'error');
-        if (error) {
-            return Promise.reject(toErrorClass(error));
-        }
-
-        const code = OAuth2AuthCodePKCE.extractParamFromUrl(location.href, 'code');
-        if (!code) {
-            return Promise.resolve(false);
-        }
-
-        const state = JSON.parse(localStorage.getItem(LOCALSTORAGE_STATE) || '{}');
-
-        const stateQueryParam = OAuth2AuthCodePKCE.extractParamFromUrl(location.href, 'state');
-        if (stateQueryParam !== state.stateQueryParam) {
-            console.warn('state query string parameter doesn\'t match the one sent! Possible malicious activity somewhere.');
-            return Promise.reject(new ErrorInvalidReturnedStateParam());
-        }
-
-        state.authorizationCode = code;
-        state.hasAuthCodeBeenExchangedForAccessToken = false;
-        localStorage.setItem(LOCALSTORAGE_STATE, JSON.stringify(state));
-
-        this.setState(state);
-        return Promise.resolve(true);
+ 
+public isReturningFromAuthServer(): Promise<boolean> {
+    if (isPlatformBrowser(this.platformId)) {
+      // Access location and localStorage only in the browser
+      const error = OAuth2AuthCodePKCE.extractParamFromUrl(location.href, 'error');
+      if (error) {
+        return Promise.reject(toErrorClass(error));
+      }
+  
+      const code = OAuth2AuthCodePKCE.extractParamFromUrl(location.href, 'code');
+      if (!code) {
+        return Promise.resolve(false);
+      }
+  
+      const state = JSON.parse(localStorage.getItem(LOCALSTORAGE_STATE) || '{}');
+  
+      const stateQueryParam = OAuth2AuthCodePKCE.extractParamFromUrl(location.href, 'state');
+      if (stateQueryParam !== state.stateQueryParam) {
+        console.warn('state query string parameter doesn\'t match the one sent! Possible malicious activity somewhere.');
+        return Promise.reject(new ErrorInvalidReturnedStateParam());
+      }
+  
+      state.authorizationCode = code;
+      state.hasAuthCodeBeenExchangedForAccessToken = false;
+      localStorage.setItem(LOCALSTORAGE_STATE, JSON.stringify(state));
+  
+      this.setState(state);
+      return Promise.resolve(true);
+    } else {
+      // Server-side logic: handle cases when running on the server
+      return Promise.resolve(false);
     }
+  }
 
     /**
      * Fetch an authorization grant via redirection. In a sense this function
@@ -416,73 +441,70 @@ export class OAuth2AuthCodePKCE {
         return Promise.resolve({ token: accessToken, scopes });
     }
 
-/**
- * Refresh an access token from the remote service.
- */
-public exchangeRefreshTokenForAccessToken(): Promise<AccessContext> {
-    this.assertStateAndConfigArePresent();
-
-    const { onInvalidGrant, tokenUrl } = this.config;
-    const { refreshToken } = this.state;
-
-    if (!refreshToken) {
-        console.warn('No refresh token is present.');
-        return Promise.reject('No refresh token is present.');
+    /**
+     * Refresh an access token from the remote service.
+     */
+    public exchangeRefreshTokenForAccessToken(): Promise<AccessContext> {
+        this.assertStateAndConfigArePresent();
+    
+        const { onInvalidGrant, tokenUrl } = this.config;
+        const { refreshToken } = this.state;
+    
+        if (!refreshToken) {
+            console.warn('No refresh token is present.');
+            return Promise.reject('No refresh token is present.');
+        }
+    
+        const url = `${tokenUrl}?grant_type=refresh_token&refresh_token=${refreshToken.value}`;
+    
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Authorization: `Basic ${btoa(this.config.clientId + ':')}`,
+            },
+        })
+            .then((res) => (res.status === 400 ? Promise.reject(res.json()) : res.json()))
+            .then(({ access_token, expires_in, refresh_token, scope }) => {
+                let scopes = [];
+    
+                const accessToken: AccessToken = {
+                    value: access_token,
+                    expiry: new Date(Date.now() + parseInt(expires_in) * 1000).toString(),
+                };
+                this.state.accessToken = accessToken;
+    
+                if (refresh_token) {
+                    const refreshToken: RefreshToken = {
+                        value: refresh_token,
+                    };
+                    this.state.refreshToken = refreshToken;
+                }
+    
+                if (scope) {
+                    // Multiple scopes are passed and delimited by spaces,
+                    // despite using the singular name "scope".
+                    scopes = scope.split(' ');
+                    this.state.scopes = scopes;
+                }
+    
+                localStorage.setItem(LOCALSTORAGE_STATE, JSON.stringify(this.state));
+                return { token: accessToken, scopes };
+            })
+            .catch((jsonPromise) => Promise.reject(jsonPromise))
+            .catch((data) => {
+                const error = data.error || 'There was a network error.';
+                switch (error) {
+                    case 'invalid_grant':
+                        onInvalidGrant(() => this.fetchAuthorizationCode());
+                        break;
+                    default:
+                        break;
+                }
+                return Promise.reject(error);
+            });
     }
-
-    const url = tokenUrl + `?grant_type=refresh_token&`
-        + `refresh_token=${refreshToken.value}`;
-
-    return fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            Authorization: `Basic ${btoa(this.config.clientId + ':')}`
-        }
-    })
-    .then(res => res.status === 400 ? Promise.reject(res.json()) : res.json())
-    .then(({ access_token, expires_in, refresh_token, scope }) => {
-        let scopes = [];
-
-        const accessToken: AccessToken = {
-            value: access_token,
-            expiry: (new Date(Date.now() + (parseInt(expires_in) * 1000))).toString()
-        };
-        this.state.accessToken = accessToken;
-
-        // Check if refresh_token is present before assigning
-        if (refresh_token) {
-            const newRefreshToken: RefreshToken = {
-                value: refresh_token
-            };
-            this.state.refreshToken = newRefreshToken;
-        }
-
-        if (scope) {
-            // Multiple scopes are passed and delimited by spaces,
-            // despite using the singular name "scope".
-            scopes = scope.split(' ');
-            this.state.scopes = scopes;
-        }
-
-        localStorage.setItem(LOCALSTORAGE_STATE, JSON.stringify(this.state));
-        return { token: accessToken, scopes };
-    })
-    .catch(jsonPromise => Promise.reject(jsonPromise))
-    .catch(data => {
-        const error = data.error || 'There was a network error.';
-        switch (error) {
-            case 'invalid_grant':
-                onInvalidGrant(() => this.fetchAuthorizationCode());
-                break;
-            default:
-                break;
-        }
-        return Promise.reject(error);
-    });
-}
-
-
+    
     /**
      * Get the scopes that were granted by the authorization server.
      */
@@ -507,42 +529,36 @@ public exchangeRefreshTokenForAccessToken(): Promise<AccessContext> {
         return !!this.state.accessToken;
     }
 
-/**
- * Checks to see if the access token has expired.
- */
-public isAccessTokenExpired(): boolean {
-    // Fetch authInfo from localStorage
-    const authInfoString = localStorage.getItem(LOCALSTORAGE_STATE);
-    
-    // Check if authInfoString is null or undefined
-    if (!authInfoString) {
-        return true; // Return true if there's no auth info (i.e., token expired or not found)
-    }
-
-    // Parse the JSON string safely
-    const authInfo = JSON.parse(authInfoString);
-
-    // Ensure that authInfo and the accessToken exist
-    if (authInfo && authInfo.accessToken && authInfo.accessToken.value && authInfo.accessToken.expiry) {
-        const expiryDate = new Date(authInfo.accessToken.expiry);
-        const currentDate = new Date();
-
-        // Return true if the access token has expired
-        return currentDate >= expiryDate;
-    }
-
-    // If there's no access token or expiry date, consider it expired
-    return true;   
-}
-
-
     /**
-     * Resets the state of the client. Equivalent to "logging out" the user.
+     * Checks to see if the access token has expired.
      */
-    public reset() {
-        this.setState({});
-        this.authCodeForAccessTokenRequest = undefined;
+    public isAccessTokenExpired(): boolean {
+        // Safely retrieve and parse the stored authInfo
+        const authInfoString = localStorage.getItem(LOCALSTORAGE_STATE);
+        if (!authInfoString) {
+            return true; // Return true if there's no auth info in localStorage
+        }
+    
+        const authInfo = JSON.parse(authInfoString);
+    
+        // Check if the access token and its expiry are present
+        if (authInfo && authInfo.accessToken && authInfo.accessToken.value && authInfo.accessToken.expiry) {
+            const { accessToken } = authInfo; // Access token from parsed data
+    
+            // Ensure expiry is a valid date before comparing
+            const expiryDate = new Date(accessToken.expiry);
+            if (isNaN(expiryDate.getTime())) {
+                return true; // Return true if expiry is invalid
+            }
+    
+            return new Date() >= expiryDate; // Compare current date with expiry
+        }
+    
+        return true; // Return true if any of the required data is missing
     }
+    
+
+  
 
     /**
      * If the state or config are missing, it means the client is in a bad state.
@@ -638,29 +654,51 @@ public isAccessTokenExpired(): boolean {
             });
         });
     }
+  
 
 
-    private recoverState(): void {
-        // Check if we are in the browser environment
-        if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-            const savedState = localStorage.getItem(LOCALSTORAGE_STATE);
-            if (savedState) {
-                this.state = JSON.parse(savedState);
-            }
+
+
+    recoverState() {
+        if (isPlatformBrowser(this.platformId)) {
+          // Safe to use localStorage here
+          const state = localStorage.getItem(LOCALSTORAGE_STATE);
+          // Handle the state recovery logic
         } else {
-            // If running on the server (SSR), initialize an empty state
-            this.state = {};
+          // Handle SSR case or skip localStorage usage
         }
-    }
+      }
+ 
 
-    
-
-    private setState(state: State): void {
+      private setState(state: State): this {
         this.state = state;
-        // Only set state in localStorage if it's available (i.e., in the browser)
-        if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+    
+        if (isPlatformBrowser(this.platformId)) {
             localStorage.setItem(LOCALSTORAGE_STATE, JSON.stringify(state));
+        } else {
+            console.warn('localStorage is not available on the server.');
         }
+    
+        return this;
     }
+
+
+
+
+      /**
+     * Resets the state of the client. Equivalent to "logging out" the user.
+     */
+      public reset() {
+        this.setState({}); // Clear the state object
+    
+        if (isPlatformBrowser(this.platformId)) {
+            localStorage.removeItem(LOCALSTORAGE_STATE);
+        } else {
+            console.warn('localStorage is not available on the server.');
+        }
+    
+        this.authCodeForAccessTokenRequest = undefined;
+    }
+
 
 }

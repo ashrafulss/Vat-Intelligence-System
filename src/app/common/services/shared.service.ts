@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
@@ -7,7 +7,6 @@ import { from } from 'rxjs';
 import { OAuth2Service } from './oauth.service';
 import { resourceServerUrl } from '../constants/server-settings';
 import { getHttpHeaders } from '../constants/constants';
-import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class SessionService {
@@ -15,7 +14,7 @@ export class SessionService {
     public logoutMessage!: string;
     public hasSessionExpired: boolean = false;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router, private oAuth2Service: OAuth2Service, private http: HttpClient) { }
+    constructor(private router: Router, private oAuth2Service: OAuth2Service, private http: HttpClient) { }
 
     renewToken(): Observable<any> {
 
@@ -40,17 +39,11 @@ export class SessionService {
             });
     }
 
-
-logoutV2() {
-  this.oAuth2Service.oAuth2.reset();
-
-  if (isPlatformBrowser(this.platformId)) {
-    // Access localStorage only in the browser
-    localStorage.clear();
-  }
-
-  this.logoutNavigate();
-}
+    logoutV2() {
+        this.oAuth2Service.oAuth2.reset();
+        localStorage.clear();
+        this.logoutNavigate();
+    }
 
     logoutNavigate() {
         if (this.hasSessionExpired) {

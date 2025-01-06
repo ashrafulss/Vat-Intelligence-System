@@ -5,8 +5,9 @@ import {forkJoin, Observable, of} from 'rxjs';
 
 import {HomeComponent} from './home.component';
 
+
+import { NavbarService } from '../../common/components/navbar/navbar.service';
 import { SessionService } from '../../common/services/session.service';
-import { NavbarService } from '../navbar/navbar.service';
 
 
 @Injectable({providedIn: 'root'})

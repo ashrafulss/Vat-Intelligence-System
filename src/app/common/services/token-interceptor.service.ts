@@ -1,38 +1,103 @@
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Injectable, Injector } from '@angular/core';
+import {
+    HttpRequest,
+    HttpHandler,
+    HttpEvent,
+    HttpInterceptor,
+    HttpErrorResponse,
+    HttpResponse
+} from '@angular/common/http';
 import { Router } from '@angular/router';
-import { OAuth2Service } from './auth.service'; // Assuming you have an AuthService for token management
+import { Observable, throwError } from 'rxjs';
+import { SessionService } from './session.service';
+import { LOCALSTORAGE_STATE } from '../custom-lib/oauth2-auth-code-PKCE';
+import { tap, catchError, switchMap } from 'rxjs/operators';
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class TokenInterceptorService implements HttpInterceptor {
+    constructor(private injector: Injector) { }
 
-  constructor(private authService: OAuth2Service, private router: Router) {}
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const sessionService = this.injector.get(SessionService);
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Get the access token from the AuthService or wherever it's stored
-    const token = this.authService.getAccessToken();
+        let accessToken: string | null = null;
 
-    // Clone the request to add the Authorization header if a token is available
-    if (token) {
-      req = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`
+        try {
+            const authState = localStorage.getItem(LOCALSTORAGE_STATE);
+            if (authState) {
+                const authInfo = JSON.parse(authState);
+                accessToken = authInfo?.accessToken?.value || null;
+            }
+        } catch (error) {
+            console.warn('Failed to parse auth state from localStorage:', error);
         }
-      });
+
+        if (this.isInvalidToken(accessToken)) {
+            this.logoutV2(sessionService, 'You are not logged in');
+            return throwError(() => new Error('Access token not found'));
+        }
+
+        return next.handle(this.customRequest(request, accessToken!)).pipe(
+            tap((event: HttpEvent<any>) => {
+                if (event instanceof HttpResponse) {
+                    console.log('Successful response:', event);
+                }
+            }),
+            catchError((error: any) => {
+                if (error instanceof HttpErrorResponse && error.status === 401) {
+                    return this.handleUnauthorizedError(request, next, sessionService);
+                }
+                return throwError(() => error);
+            })
+        );
     }
 
-    // Pass the modified request to the next interceptor or HTTP handler
-    return next.handle(req).pipe(
-      catchError((error) => {
-        if (error.status === 401) {
-          // Handle unauthorized error globally (e.g., redirect to login page)
-          this.router.navigate(['/login']);
-        }
-        // If there's another error, just throw it
-        throw error;
-      })
-    );
-  }
+    private handleUnauthorizedError(request: HttpRequest<any>, next: HttpHandler, sessionService: SessionService): Observable<HttpEvent<any>> {
+        return sessionService.renewToken().pipe(
+            switchMap(() => {
+                let newAccessToken: string | null = null;
+                try {
+                    const authState = localStorage.getItem(LOCALSTORAGE_STATE);
+                    if (authState) {
+                        const authInfo = JSON.parse(authState);
+                        newAccessToken = authInfo?.accessToken?.value || null;
+                    }
+                } catch (error) {
+                    console.warn('Failed to parse refreshed auth state:', error);
+                }
+
+                if (this.isInvalidToken(newAccessToken)) {
+                    this.logoutV2(sessionService, 'You are not logged in');
+                    return throwError(() => new Error('Access token not found after refresh'));
+                }
+
+                return next.handle(this.customRequest(request, newAccessToken!));
+            }),
+            catchError((refreshError: any) => {
+                console.error('Token refresh failed:', refreshError);
+                this.logoutV2(sessionService, 'Your session has expired. Please login again.', true);
+                return throwError(() => refreshError);
+            })
+        );
+    }
+
+    isInvalidToken(token: string | null): boolean {
+        return !token || token.trim().length === 0;
+    }
+
+    customRequest(request: HttpRequest<any>, accessToken: string): HttpRequest<any> {
+        return request.clone({
+            setHeaders: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+    }
+
+    logoutV2(sessionService: SessionService, logoutMessage: string, hasSessionExpired: boolean = false): void {
+        const router = this.injector.get(Router);
+        sessionService.redirectUrl = router.url;
+        sessionService.logoutMessage = logoutMessage;
+        sessionService.hasSessionExpired = hasSessionExpired;
+        sessionService.logoutV2();
+    }
 }

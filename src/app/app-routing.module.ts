@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { AuthGuard } from './common/services/auth.guard';
-import { HomeResolver } from './components/home/home.resolver';
+
+
+import { HomeComponent } from './auth/home/home.component';
+import { HomeResolver } from './auth/home/home.resolver';
+import { AuthGuard } from './auth/auth.guard';
+import { LoginComponent } from './auth/login/login.component';
+
 
 
 
@@ -12,45 +15,40 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     canActivate: [AuthGuard],
-    resolve: { home: HomeResolver },
+    // resolve: { home: HomeResolver },
     children: [
       {
         path: 'dashboard',
-        loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
-        data: { animation: 'DashboardPage' },
+        loadChildren: () => import('./auth/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
-    //   {
-    //     path: '', redirectTo: 'dashboard', pathMatch: 'full',
-    // },
+      {
+        path: '', redirectTo: 'dashboard', pathMatch: 'full',
+    },
       {
         path: 'analysis',
-        loadChildren: () => import('./modules/analysis/analysis.module').then(m => m.AnalysisModule),
-        data: { animation: 'AnalysisPage' },
+        loadChildren: () => import('./auth/analysis/analysis.module').then(m => m.AnalysisModule)
       },
       {
         path: 'monitoring',
-        loadChildren: () => import('./modules/monitoring/monitoring.module').then(m => m.MonitoringModule),
-        data: { animation: 'MonitoringPage' },
+        loadChildren: () => import('./auth/monitoring/monitoring.module').then(m => m.MonitoringModule)
       },
       {
         path: 'vat-office',
-        loadChildren: () => import('./modules/vat-office/vat-office.module').then(m => m.VatOfficeModule),
-        data: { animation: 'VatOfficePage' },
+        loadChildren: () => import('./auth/vat-office/vat-office.module').then(m => m.VatOfficeModule)
       },
       {
         path: 'mushaks',
-        loadChildren: () => import('./modules/mushak/mushak.module').then(m => m.MushakModule),
-        data: { animation: 'MushakPage' },
+        loadChildren: () => import('./auth/mushak/mushak.module').then(m => m.MushakModule)
       }
     ]
   },
   
-  // {
-  //   path: 'login',
-  //   children: [
-  //     { path: '', component: LoginComponent }
-  //   ]
-  // },
+  {
+    path: 'login',
+    children: [
+      { path: '', component: LoginComponent }
+    ]
+  },
   
   { 
     path: '**', 

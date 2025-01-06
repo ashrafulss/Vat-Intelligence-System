@@ -3,23 +3,23 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './common/components/header/header.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './common/components/navbar/navbar.component';
 import { provideHttpClient, withFetch, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoginComponent } from './components/login/login.component';
-import { OAuth2Service } from './common/services/auth.service';
-import { HomeComponent } from './components/home/home.component';
+
+import { LoginComponent } from './auth/login/login.component';
+import { HomeComponent } from './auth/home/home.component';
 import { SessionService } from './common/services/session.service';
-import { AuthInterceptor } from './common/services/token-interceptor.service';
+import { OAuth2Service } from './common/services/oauth.service';
+import { TokenInterceptorService } from './common/services/token-interceptor.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
     NavbarComponent,
     LoginComponent,
     HomeComponent
@@ -35,12 +35,13 @@ import { AuthInterceptor } from './common/services/token-interceptor.service';
     provideHttpClient(withFetch()),
     OAuth2Service, 
     SessionService,
-
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,  // Provide the interceptor
-      multi: true               // Ensures multiple interceptors can be used if needed
-    }
+      useClass: TokenInterceptorService,
+      multi: true
+  }
+
+ 
 
   ],
   bootstrap: [AppComponent]
