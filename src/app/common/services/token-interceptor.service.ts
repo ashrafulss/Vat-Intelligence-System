@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, Inject, PLATFORM_ID } from '@angular/core';
 import {
     HttpRequest,
     HttpHandler,
@@ -12,24 +12,31 @@ import { Observable, throwError } from 'rxjs';
 import { SessionService } from './session.service';
 import { LOCALSTORAGE_STATE } from '../custom-lib/oauth2-auth-code-PKCE';
 import { tap, catchError, switchMap } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
-    constructor(private injector: Injector) { }
+    constructor(
+        private injector: Injector,
+        @Inject(PLATFORM_ID) private platformId: Object
+    ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+     
         const sessionService = this.injector.get(SessionService);
 
         let accessToken: string | null = null;
 
-        try {
-            const authState = localStorage.getItem(LOCALSTORAGE_STATE);
-            if (authState) {
-                const authInfo = JSON.parse(authState);
-                accessToken = authInfo?.accessToken?.value || null;
+        if (isPlatformBrowser(this.platformId)) {
+            try {
+                const authState = localStorage.getItem(LOCALSTORAGE_STATE);
+                if (authState) {
+                    const authInfo = JSON.parse(authState);
+                    accessToken = authInfo?.accessToken?.value || null;
+                }
+            } catch (error) {
+                console.warn('Failed to parse auth state from localStorage:', error);
             }
-        } catch (error) {
-            console.warn('Failed to parse auth state from localStorage:', error);
         }
 
         if (this.isInvalidToken(accessToken)) {
@@ -56,14 +63,16 @@ export class TokenInterceptorService implements HttpInterceptor {
         return sessionService.renewToken().pipe(
             switchMap(() => {
                 let newAccessToken: string | null = null;
-                try {
-                    const authState = localStorage.getItem(LOCALSTORAGE_STATE);
-                    if (authState) {
-                        const authInfo = JSON.parse(authState);
-                        newAccessToken = authInfo?.accessToken?.value || null;
+                if (isPlatformBrowser(this.platformId)) {
+                    try {
+                        const authState = localStorage.getItem(LOCALSTORAGE_STATE);
+                        if (authState) {
+                            const authInfo = JSON.parse(authState);
+                            newAccessToken = authInfo?.accessToken?.value || null;
+                        }
+                    } catch (error) {
+                        console.warn('Failed to parse refreshed auth state:', error);
                     }
-                } catch (error) {
-                    console.warn('Failed to parse refreshed auth state:', error);
                 }
 
                 if (this.isInvalidToken(newAccessToken)) {

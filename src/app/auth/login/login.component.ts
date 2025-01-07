@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    
       this.oAuth2Obj = this.oAuth2Service.oAuth2;
       this.oAuth2Obj.isReturningFromAuthServer().then(hasAuthCode => {
           if (!hasAuthCode) {
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
       }).catch((potentialError) => {
 
           if (potentialError) {
-              // console.error(potentialError);
+              console.error(potentialError);
           }
 
       });

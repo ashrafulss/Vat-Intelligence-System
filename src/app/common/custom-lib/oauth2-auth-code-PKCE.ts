@@ -149,6 +149,7 @@ const HEADER_WWW_AUTHENTICATE = 'WWW-Authenticate';
 export const LOCALSTORAGE_ID = `oauth2authcodepkce`;
 export const LOCALSTORAGE_STATE = `${LOCALSTORAGE_ID}-state`;
 
+
 /**
  * The maximum length for a code verifier for the best security we can offer.
  * Please note the NOTE section of RFC 7636 § 4.1 - the length must be >= 43,
@@ -659,15 +660,20 @@ public isReturningFromAuthServer(): Promise<boolean> {
 
 
 
-    recoverState() {
+
+      recoverState() {
         if (isPlatformBrowser(this.platformId)) {
-          // Safe to use localStorage here
-          const state = localStorage.getItem(LOCALSTORAGE_STATE);
-          // Handle the state recovery logic
+            // Retrieve the state from localStorage if it's available
+            const stateString = localStorage.getItem(LOCALSTORAGE_STATE);
+            if (stateString) {
+                const state = JSON.parse(stateString);
+                this.setState(state); // Restore the state
+            }
         } else {
-          // Handle SSR case or skip localStorage usage
+            // Handle SSR case (if you're using server-side rendering)
         }
-      }
+    }
+    
  
 
       private setState(state: State): this {

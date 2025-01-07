@@ -140,7 +140,7 @@
                 <div
                     class="dropdown col-lg-2 pt-3 pb-3 gap-3 d-flex align-items-center right-section text-lg-center text-center">
                     <img src="assets/images/profile.svg" alt="VAT System Logo" class="img-fluid">
-                    <h3 class="m-0">Sara Noor</h3>
+                    <h3 class="m-0">{{ userName }}</h3>
                   
                     <button style="border: none; background-color:#f6f6f6; padding-right: 0px;" class="dropdown-toggle no-arrow" type="button" 
                     data-bs-toggle="dropdown">
@@ -149,10 +149,10 @@
            
                    </button> 
                    
-                   <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style="border: none;background-color: #0A3B40; border-radius: 15px; font-size: 25px; font-weight: bold; color: white; ">
+                   <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style="border: none;background-color: #0A3B40; border-radius: 15px; font-size: 25px; font-weight: bold; color: white; width: 250px; ">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
                     <li><a class="dropdown-item" href="#">Setting</a></li>
+                    <li><a class="dropdown-item" (click)="onLogoutClick()" style="cursor: pointer;">Logout </a></li>
                   </ul>
                 
                 

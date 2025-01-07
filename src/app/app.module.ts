@@ -7,7 +7,8 @@ import { HeaderComponent } from './common/components/header/header.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './common/components/navbar/navbar.component';
-import { provideHttpClient, withFetch, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { provideHttpClient, withFetch, HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './auth/home/home.component';
@@ -28,11 +29,13 @@ import { TokenInterceptorService } from './common/services/token-interceptor.ser
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    BsDatepickerModule.forRoot()
      
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch()),
+    // provideHttpClient(withFetch()),
     OAuth2Service, 
     SessionService,
     {

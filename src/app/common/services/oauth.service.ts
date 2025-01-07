@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { authorizationServerUrl } from '../constants/server-settings';
 import { OAuth2AuthCodePKCE } from '../custom-lib/oauth2-auth-code-PKCE';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class OAuth2Service {
   private isBrowser: boolean;
   public oAuth2: OAuth2AuthCodePKCE;

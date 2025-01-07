@@ -9,7 +9,9 @@ import { resourceServerUrl } from '../constants/server-settings';
 import { getHttpHeaders } from '../constants/constants';
 import { isPlatformBrowser } from '@angular/common';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class SessionService {
     public redirectUrl!: string;
     public logoutMessage!: string;

@@ -3,6 +3,7 @@ import { Component, Inject, OnInit,  PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { DashboardService } from '../dashboard.service';
 import {MessageService} from 'primeng/api';
+import { ReportService } from '../../analysis/report.service';
 
 
 @Component({
@@ -11,6 +12,9 @@ import {MessageService} from 'primeng/api';
   styleUrls: ['./dashboard.component.css'] // Fixed typo here
 })
 export class DashboardComponent implements OnInit {
+getBarchartData() {
+throw new Error('Method not implemented.');
+}
 
 
 
@@ -18,39 +22,40 @@ export class DashboardComponent implements OnInit {
 
 
   currentDate: any;
-  
-
   addDate:any;
+
+
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, 
+  private dashboardService: DashboardService,
+  private reportService: ReportService
+) {
   
-
-
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private dashboardService: DashboardService,) {}
+}
 
   ngOnInit(): void {
 
-  
+    
     // Check if the platform is the browser (not SSR)
     this.isBrowser = isPlatformBrowser(this.platformId);
 
-
-
+    this.getDashboardCountList();
+    this.getTaxPayerList();
 
     this.currentDate = new Date();
-
   
     const futureDate = new Date(this.currentDate);
 
     futureDate.setDate(this.currentDate.getDate() + 5);
-  
-    
+      
     this.addDate = futureDate.toISOString().split('T')[0];
 
-this.currentDate = new Date().toISOString().split('T')[0];
+    this.currentDate = new Date().toISOString().split('T')[0];
 
 
 
   }
+ 
 
 
 
@@ -77,10 +82,7 @@ this.currentDate = new Date().toISOString().split('T')[0];
     }
   ];
   
- 
-
-
-  chartLabels2: string[] = ['Jul', 'Aug', 'Sep', 'Nov', 'Dec'];
+   chartLabels2: string[] = ['Jul', 'Aug', 'Sep', 'Nov', 'Dec'];
   chartData2 = [
     { 
       data: [18000, 28000, 31000, 8000, 29000, 14000], 
@@ -95,18 +97,6 @@ this.currentDate = new Date().toISOString().split('T')[0];
       
     }
   ];
-
-
-
-
-
-
-
-  
-
-
-
-
 
   
 
@@ -175,7 +165,11 @@ this.currentDate = new Date().toISOString().split('T')[0];
   public isProgressBarLoading!: boolean;
   public isLoading: boolean = false;
 
+  public taxPayerList: any = [];
+  public taxPayerOid: string ='';
+
   private getDashboardCountList() {
+    
     this.dashboardService.getDashboardCount().subscribe(res => {
             if (res.status === 200) {
                 this.dashboardCountList = res.body
@@ -199,6 +193,52 @@ this.currentDate = new Date().toISOString().split('T')[0];
         });
 }
 
+
+
+
+// Select a payer and set its value
+selectTaxPayer(payer: any) {
+  this.taxPayerOid = payer.binNo;
+  console.log('Selected Tax Payer:', this.taxPayerOid);
+}
+
+
+
+
+public getTaxPayerList(){
+  this.reportService.getVatPayerList().subscribe(res => {
+      if (res.status === 200) {
+          let list = res.body
+          for(let i =0; i< list.length; i++){
+              let id = list[i].id;
+              let binNo = list[i].binNo;
+              let taxPayerName = binNo +" - "+ list[i].taxPayerName;
+              this.taxPayerList.push(
+                  {
+                  id: id,
+                  taxPayerName: taxPayerName,
+                  binNo: binNo
+                  }
+              )
+          }
+      }
+  },
+  err => {
+      this.isProgressBarLoading = false;
+      this.isLoading = false;
+      if (err.status === 404) {
+          this.taxPayerList = [];
+      }
+
+      if (err.error && err.error.message) {
+          // this.messageService.add({severity: 'error', summary: err.error.message, detail: ''});
+      }
+  },
+  () => {
+      this.isProgressBarLoading = false;
+      this.isLoading = false;
+  });
+}
 
 
 

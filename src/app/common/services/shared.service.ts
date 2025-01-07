@@ -8,7 +8,9 @@ import { OAuth2Service } from './oauth.service';
 import { resourceServerUrl } from '../constants/server-settings';
 import { getHttpHeaders } from '../constants/constants';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class SessionService {
     public redirectUrl!: string;
     public logoutMessage!: string;

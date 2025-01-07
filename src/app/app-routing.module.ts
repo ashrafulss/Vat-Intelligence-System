@@ -15,7 +15,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     canActivate: [AuthGuard],
-    // resolve: { home: HomeResolver },
+    resolve: { home: HomeResolver },
     children: [
       {
         path: 'dashboard',

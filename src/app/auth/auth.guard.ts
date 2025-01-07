@@ -17,6 +17,8 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
 
+    // console.log(this.oAuth2Service.oAuth2.isAuthorized());
+    
     if (this.oAuth2Service.oAuth2.isAuthorized()) {
       return true;
     }
@@ -26,7 +28,6 @@ export class AuthGuard implements CanActivate {
       this.sessionService.redirectUrl = state.url;
       this.sessionService.logoutMessage = 'You are not logged in';
     }
-
     this.sessionService.logout();
     return false;
   }
