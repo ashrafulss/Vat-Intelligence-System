@@ -15,6 +15,7 @@ import { HomeComponent } from './auth/home/home.component';
 import { SessionService } from './common/services/session.service';
 import { OAuth2Service } from './common/services/oauth.service';
 import { TokenInterceptorService } from './common/services/token-interceptor.service';
+import { LoadingImageModule } from './common/components/loading-image/loading-image.module';
 
 
 @NgModule({
@@ -23,14 +24,16 @@ import { TokenInterceptorService } from './common/services/token-interceptor.ser
     HeaderComponent,
     NavbarComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    LoadingImageModule
      
   ],
   providers: [

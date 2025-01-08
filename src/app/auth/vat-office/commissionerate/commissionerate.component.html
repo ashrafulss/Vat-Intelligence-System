@@ -1,3 +1,6 @@
+
+
+<loading-image [is-loading]="isLoading"></loading-image>
 <div class="row pt-5">
 
   <div class="d-flex">
@@ -21,39 +24,40 @@
 
 
   <div class="accordion" id="commissionerateList" style=" overflow-y: auto;">
-    <div class="accordion-item" *ngFor="let commissioner of commissioners"
+    <div class="accordion-item" *ngFor="let commissioner of commissionerateList"
       style="border-radius: 20px; margin-bottom: 20px;">
 
 
-      <button [id]="'heading' + commissioner.id"
+      <button [id]="'heading' + commissioner.code"
         style="background-color:  #FFFFFF; display: flex; align-items: center; border-radius: 20px; padding-top: 10px; padding-bottom: 10px;"
-        class="accordion-button" type="button" data-bs-toggle="collapse"
-        [attr.data-bs-target]="'#collapseCommissioner' + commissioner.id"
-        [attr.aria-controls]="'collapseCommissioner' + commissioner.id"
-        [attr.aria-expanded]="isCollapsed[commissioner.id] ? 'false' : 'true'"
-        (click)="toggleCollapses(commissioner.id)" [ngStyle]="{
-          'border-radius': isCollapsed[commissioner.id] ? '20px 20px 0 0' : '20px'
+        class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+        [attr.data-bs-target]="'#collapseCommissioner' + commissioner.code"
+        [attr.aria-controls]="'collapseCommissioner' + commissioner.code"
+        [attr.aria-expanded]="isCollapsed[commissioner.code] ? 'false' : 'true'"
+        (click)="getDivisionList(commissioner.id); toggleCollapses(commissioner.code);  " [ngStyle]="{
+          'border-radius': isCollapsed[commissioner.code] ? '20px 20px 0 0' : '20px'
         }">
 
         <div class="border-custom">
-          <p class="code">Code : {{ commissioner.id }} </p>
+          <p class="code">Code : {{ commissioner.code }} </p>
         </div>
 
 
         <div class="border-cus">
-          <p style="font-size: 18px; font-weight: bold;">{{ commissioner.name }} :</p>
-          <p style="padding-left: 20px; font-size: 18px;">{{ commissioner.description }}</p>
+            <p style="font-size: 18px; font-weight: bold;"> Commisionerate {{ commissioner.id }}:</p>
+          <p  style="padding-left: 20px; font-size: 18px;">{{ commissioner.name }} </p>
+        
         </div>
 
+        {{isCollapsed[commissioner.code]}}AAAAA
 
-
-        <div *ngIf="!isCollapsed[commissioner.id]" class="d-flex align-items-center justify-content-center"
+        <div *ngIf="!isCollapsed[commissioner.code]" class="d-flex align-items-center justify-content-center"
           style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px ; width: 54px; border-radius: 20px; background-color: #FFE5EC;">
           <i class="bi bi-search" style="font-size: 22px;"> </i>
 
         </div>
 
-        <div *ngIf="isCollapsed[commissioner.id]" class="d-flex align-items-center justify-content-center"
+        <div *ngIf="isCollapsed[commissioner.code]" class="d-flex align-items-center justify-content-center"
           style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px ; width: 54px; border-radius: 20px; background-color: #FFE5EC;">
 
           <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid">
@@ -65,19 +69,19 @@
 
 
 
-      <div [id]="'collapseCommissioner' + commissioner.id" class="accordion-collapse collapse"
-        [attr.aria-labelledby]="'heading' + commissioner.id" [attr.data-bs-parent]="'#commissionerateList'">
+      <div [id]="'collapseCommissioner' + commissioner.code" class="accordion-collapse collapse"
+        [attr.aria-labelledby]="'heading' + commissioner.code" [attr.data-bs-parent]="'#commissionerateList'">
 
         <div class="accordion-body">
 
-          <div class="accordion " [id]="'divisionList' + commissioner.id">
+          <div class="accordion " [id]="'divisionList' + commissioner.code">
 
             <div class="timeline pr-4">
 
 
 
               <!-- Loop through timeline data dynamically -->
-              <div class="tl-item" *ngFor="let division of commissioner.division">
+              <div class="tl-item" *ngFor="let division of divisionList">
 
                 <!-- Dot -->
                 <div class="tl-dot b-warning"></div>
@@ -87,19 +91,19 @@
 
                   <div class="accordion-item" style="border-radius: 20px;">
 
-                    <button (click)="toggleCollapse(division.id)"
+                    <button (click)="getCircleList(division.id, commissioner.id); toggleCollapse(division.code); toggleCollapses(division.code)"
                       style="background-color:  #FFFFFF; display: flex; align-items: center; border-radius: 20px; padding-top: 10px; padding-bottom: 10px;"
                       class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      [attr.data-bs-target]="'#collapseDivision' + division.id"
-                      [attr.aria-controls]="'collapseDivision' + division.id"
-                      [attr.aria-expanded]="isCollapsed[division.id] ? 'false' : 'true'"
-                      (click)="toggleCollapses(division.id)" [ngStyle]="{
-                        'border-radius': isCollapsed[division.id] ? '20px 20px 0 0' : '20px'
+                      [attr.data-bs-target]="'#collapseDivision' + division.code"
+                      [attr.aria-controls]="'collapseDivision' + division.code"
+                      [attr.aria-expanded]="isCollapsed[division.code] ? 'false' : 'true'"
+                      [ngStyle]="{
+                        'border-radius': isCollapsed[division.code] ? '20px 20px 0 0' : '20px'
                       }">
 
 
                       <div class="border-custom">
-                        <p class="code1">Code : {{ division.id }} </p>
+                        <p class="code1">Code : {{ division.code }} </p>
                       </div>
 
                       <div class="border-cus">
@@ -109,18 +113,18 @@
 
                       
                       <div >
-                    <button  *ngIf="isCollapsed[division.id]" href="https://icons.getbootstrap.com/" class="d-flex align-items-center justify-content-center"
+                    <button  *ngIf="isCollapsed[division.code]" href="https://icons.getbootstrap.com/" class="d-flex align-items-center justify-content-center"
                     style="width: 190px;; position: absolute; right: 10%; top: 50%; transform: translateY(-50%); height: 54px ;  border-radius: 20px; background-color: #F6F6F6; color: #000000;font-size: 20; font-weight: 400; border:1px solid #00000033;"><i class="bi bi-plus-lg" style="font-size: 30px;"></i> &nbsp; Add Circle</button>
 
                     </div>
 
-                      <div *ngIf="!isCollapsed[division.id]" class="d-flex align-items-center justify-content-center"
+                      <div *ngIf="!isCollapsed[division.code]" class="d-flex align-items-center justify-content-center"
                         style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px ; width: 54px; border-radius: 20px; background-color: #FFECE5;">
                         <i class="bi bi-search" style="font-size: 22px;"> </i>
 
                       </div>
 
-                      <div *ngIf="isCollapsed[division.id]" class="d-flex align-items-center justify-content-center"
+                      <div *ngIf="isCollapsed[division.code]" class="d-flex align-items-center justify-content-center"
                         style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px ; width: 54px; border-radius: 20px; background-color: #FFECE5;">
                         <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid">
 
@@ -130,17 +134,17 @@
 
 
 
-                    <div [id]="'collapseDivision' + division.id" class="accordion-collapse collapse"
-                      [attr.aria-labelledby]="'headingDivision' + division.id"
-                      [attr.data-bs-parent]="'#divisionList' + commissioner.id">
+                    <div [id]="'collapseDivision' + division.code" class="accordion-collapse collapse"
+                      [attr.aria-labelledby]="'headingDivision' + division.code"
+                      [attr.data-bs-parent]="'#divisionList' + commissioner.code">
 
                       <div class="accordion-body">
 
-                        <div class="accordion" [id]="'circleList' + division.id">
+                        <div class="accordion" [id]="'circleList' + division.code">
 
                           <div class="timeline p-4">
 
-                            <div class="tl-item" *ngFor="let circle of division.circle">
+                            <div class="tl-item" *ngFor="let circle of circleList">
 
                               <!-- Dot -->
                               <div class="tl-dot b-warning"></div>
@@ -155,15 +159,16 @@
                                   <button
                                     style="background-color:  #FFFFFF; display: flex; align-items: center; border-radius: 20px; padding-top: 10px; padding-bottom: 10px;"
                                     class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    [attr.data-bs-target]="'#collapseCircle' + circle.id"
-                                    [attr.aria-controls]="'collapseCircle' + circle.id"
-                                    [attr.aria-expanded]="isCollapsed[circle.id] ? 'false' : 'true'"
-                                    (click)="toggleCollapses(circle.id)" [ngStyle]="{
-                        'border-radius': isCollapsed[circle.id] ? '20px 20px 0 0' : '20px'
+                                    [attr.data-bs-target]="'#collapseCircle' + circle.code"
+                                    [attr.aria-controls]="'collapseCircle' + circle.code"
+                                    [attr.aria-expanded]="isCollapsed[circle.code] ? 'false' : 'true'"
+                                    (click)="getTaxPayerList(circle.id , division.id, commissioner.id ); toggleCollapses(circle.code)" 
+                                    [ngStyle]="{
+                        'border-radius': isCollapsed[circle.code] ? '20px 20px 0 0' : '20px'
                       }">
 
                                     <div class="border-custom">
-                                      <p class="code2">Code : {{ circle.id }} </p>
+                                      <p class="code2">Code : {{ circle.code }} </p>
                                     </div>
 
                                     <div class="border-cus">
@@ -171,17 +176,17 @@
                                     </div>
 
 
-                                    <div *ngIf="!isCollapsed[circle.id]"
+                                    <div *ngIf="!isCollapsed[circle.code]"
                                       class="d-flex align-items-center justify-content-center"
                                       style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px ; width: 54px; border-radius: 20px; background-color: #FFF4DE;">
                                       <i class="bi bi-search" style="font-size: 22px;"> </i>
 
                                     </div>
 
-                                    <div *ngIf="isCollapsed[circle.id]"
+                                    <div *ngIf="isCollapsed[circle.code]"
                                       class="d-flex align-items-center justify-content-center"
                                       style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px ; width: 54px; border-radius: 20px; background-color: #FFF4DE;">
-                                      <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid">
+                                      <img src="assets/images/droparrow.svg" alt="" class="img-fluid">
 
                                     </div>
 
@@ -189,9 +194,9 @@
 
 
 
-                                  <div [id]="'collapseCircle' + circle.id" class="accordion-collapse collapse"
-                                    [attr.aria-labelledby]="'headingCircle' + circle.id"
-                                    [attr.data-bs-parent]="'#circleList' + division.id">
+                                  <div [id]="'collapseCircle' + circle.code" class="accordion-collapse collapse"
+                                    [attr.aria-labelledby]="'headingCircle' + circle.code"
+                                    [attr.data-bs-parent]="'#circleList' + division.code">
 
 
 
@@ -210,22 +215,15 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr>
-                                          <td id="slid">1</td>
-                                          <td>Gazi Cement Mills Ltd.</td>
-                                          <td>000238279-0306</td>
-                                          <td>336099629895</td>
-                                          <td>01713148614</td>
+                                        <tr *ngFor="let taxpayer of taxPayerList; let i = index">
+                                          <td id="slid">{{ i + 1 }}</td>
+                                          <td>{{taxpayer.taxPayerName}}</td>
+                                          <td>{{taxpayer.binNo}}</td>
+                                          <td>{{taxpayer.etinNo}}</td>
+                                          <td>{{taxpayer.mobileNo}}</td>
                                           <td>Action</td>
                                         </tr>
-                                        <tr>
-                                          <td id="slid">2</td>
-                                          <td>Gemcon Ltd.</td>
-                                          <td>000478874-1008</td>
-                                          <td>380463828849</td>
-                                          <td>01718515354</td>
-                                          <td>Action</td>
-                                        </tr>
+                                      
                                       </tbody>
                                     </table>
 

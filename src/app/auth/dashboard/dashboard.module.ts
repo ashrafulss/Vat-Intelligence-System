@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 // import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { NgChartsModule } from 'ng2-charts';
+import { LoadingImageModule } from '../../common/components/loading-image/loading-image.module';
 
 
 
@@ -18,6 +19,7 @@ import { NgChartsModule } from 'ng2-charts';
     CommonModule,
     DashboardRoutingModule,
     NgChartsModule,
+    LoadingImageModule
   
     
     // BsDatepickerModule.forRoot()

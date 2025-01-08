@@ -19,7 +19,7 @@ throw new Error('Method not implemented.');
 
 
 
-
+  isloading: boolean = false;
 
   currentDate: any;
   addDate:any;
