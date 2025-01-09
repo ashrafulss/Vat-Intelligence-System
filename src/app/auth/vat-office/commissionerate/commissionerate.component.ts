@@ -14,17 +14,30 @@ export class CommissionerateComponent {
 
 
   isCollapsed: { [key: string]: boolean } = {};
-
+  currentlyOpenCommissionerId: string | null = null;
+  currentlyOpenDivisionId: string | null = null;
+  
+  currentlyOpenCircleId: string | null = null;
 
   commisonarate: any = [];
 
   // Method to toggle the collapse state for a specific commissioner
-  toggleCollapses(id: number): void {
-    this.isCollapsed[id] = !this.isCollapsed[id];
-
-    console.log(this.isCollapsed+"hello")
-    
+  toggleCommissionerCollapse(commissionerCode: string) {
+    this.currentlyOpenCommissionerId = 
+      this.currentlyOpenCommissionerId === commissionerCode ? null : commissionerCode;
   }
+  
+  toggleDivisionCollapse(divisionCode: string) {
+    this.currentlyOpenDivisionId = 
+      this.currentlyOpenDivisionId === divisionCode ? null : divisionCode;
+  }
+
+
+  toggleCircleCollapse(circleCode: string) {
+    this.currentlyOpenCircleId = 
+      this.currentlyOpenCircleId === circleCode ? null : circleCode;
+  }
+  
 
 
 
@@ -281,6 +294,11 @@ export class CommissionerateComponent {
   public divisionList: any =[];
   public circleList: any =[];
   public taxPayerList: any =[];
+
+
+  public messages ="Data is not available";
+
+  
 
   
 
