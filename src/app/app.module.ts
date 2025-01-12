@@ -7,7 +7,7 @@ import { HeaderComponent } from './common/components/header/header.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './common/components/navbar/navbar.component';
-import { provideHttpClient, withFetch, HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, HTTP_INTERCEPTORS, withInterceptorsFromDi, withFetch } from '@angular/common/http';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { LoginComponent } from './auth/login/login.component';
@@ -31,14 +31,16 @@ import { LoadingImageModule } from './common/components/loading-image/loading-im
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     BsDatepickerModule.forRoot(),
     LoadingImageModule
      
   ],
   providers: [
     provideClientHydration(),
-    // provideHttpClient(withFetch()),
+    provideHttpClient(withFetch()),
+    provideHttpClient(
+      withInterceptorsFromDi() // Include interceptors from the DI system
+    ),
     OAuth2Service, 
     SessionService,
     {

@@ -11,14 +11,6 @@ export class CommissionerateService {
 
   constructor(private http: HttpClient) { }
 
-
-
-
-
-
-
-
-
   getCommissionerates(): Observable<HttpResponse<any>> {
     const url: string = `${resourceServerUrl}/v1/commissionerate/all`;
     return this.http.get(url, {

@@ -665,6 +665,8 @@ public isReturningFromAuthServer(): Promise<boolean> {
         if (isPlatformBrowser(this.platformId)) {
             // Retrieve the state from localStorage if it's available
             const stateString = localStorage.getItem(LOCALSTORAGE_STATE);
+
+            
             if (stateString) {
                 const state = JSON.parse(stateString);
                 this.setState(state); // Restore the state
@@ -682,7 +684,7 @@ public isReturningFromAuthServer(): Promise<boolean> {
         if (isPlatformBrowser(this.platformId)) {
             localStorage.setItem(LOCALSTORAGE_STATE, JSON.stringify(state));
         } else {
-            console.warn('localStorage is not available on the server.');
+            console.warn('localStorage is not available on the server---------------------------.');
         }
     
         return this;

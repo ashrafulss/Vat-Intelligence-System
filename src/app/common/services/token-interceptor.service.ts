@@ -14,7 +14,9 @@ import { LOCALSTORAGE_STATE } from '../custom-lib/oauth2-auth-code-PKCE';
 import { tap, catchError, switchMap } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+  })
 export class TokenInterceptorService implements HttpInterceptor {
     constructor(
         private injector: Injector,
@@ -110,3 +112,4 @@ export class TokenInterceptorService implements HttpInterceptor {
         sessionService.logoutV2();
     }
 }
+
