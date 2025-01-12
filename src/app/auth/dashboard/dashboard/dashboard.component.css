@@ -4,6 +4,50 @@
 
 
 
+
+
+.welcome h2{
+  font-size: 40px;
+  font-weight: 600px;
+  color:#000000;
+} 
+
+.col-8{
+
+  padding-right: 50px; 
+  padding-left: 20px;
+}
+
+
+
+.fontbol{
+  background-color: red;
+  border-radius: 20px; 
+  box-shadow: 0px 4px 20px #0000000D; 
+
+}
+
+.fontbol p{
+  font-size: 18px;
+  font-weight: 500;
+  color:#000000;
+
+
+
+}
+
+.fontbol h2{
+  font-size: 32px;
+  font-weight: 700;
+  color:#000000;
+
+}
+
+
+
+
+
+
 .vertical-line {
     position: relative;
     height: 80%; /* Full height of the parent container */
@@ -73,26 +117,8 @@
 
 
 
-.welcome h2{
-  font-size: 40px;
-  font-weight: 600px;
-  color:#000000;
-} 
  
 
-.fontbol p{
-  font-size: 18px;
-  font-weight: 500;
-  color:#000000;
-
-}
-
-.fontbol h2{
-  font-size: 32px;
-  font-weight: 700;
-  color:#000000;
-
-}
 
 
 .dateCustom p, button{
@@ -167,6 +193,11 @@
 
 
 
+
+
+
+
+/* -------------------------------------- */
 
 
 

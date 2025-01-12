@@ -11,78 +11,45 @@ import { CommissionerateService } from '../services/commissionerate.service';
 export class CommissionerateComponent {
 
 
-
-
   isCollapsed: { [key: string]: boolean } = {};
   currentlyOpenCommissionerId: string | null = null;
   currentlyOpenDivisionId: string | null = null;
-  
   currentlyOpenCircleId: string | null = null;
+  public commissionerateList: any =[];
+  public divisionList: any =[];
+  public circleList: any =[];
+  public taxPayerList: any =[];
+  public isLoading: boolean = false;
+  public isProgressBarLoading!: boolean;
+  // public commissionerateOid: string='';
+  // public divisionOid: string='';
+  // public circleOid: string='';
+  commissioners: Commissioner[] = [];
 
-  commisonarate: any = [];
 
-  // Method to toggle the collapse state for a specific commissioner
+//  this one is collapsed for commissionerate
   toggleCommissionerCollapse(commissionerCode: string) {
     this.currentlyOpenCommissionerId = 
       this.currentlyOpenCommissionerId === commissionerCode ? null : commissionerCode;
   }
-  
+  // this one is collapased for division
   toggleDivisionCollapse(divisionCode: string) {
     this.currentlyOpenDivisionId = 
       this.currentlyOpenDivisionId === divisionCode ? null : divisionCode;
   }
-
-
+// this one is collpased for circle
   toggleCircleCollapse(circleCode: string) {
+
     this.currentlyOpenCircleId = 
       this.currentlyOpenCircleId === circleCode ? null : circleCode;
+
   }
   
 
-
-
-  expandedDivisionId: number | null = null; // Track the currently expanded division
-
-  // Method to toggle the expanded state
-  toggleCollapse(divisionId: number): void {
-    if (this.expandedDivisionId === divisionId) {
-      this.expandedDivisionId = null;  // Close if the clicked division is already expanded
-    } else {
-      this.expandedDivisionId = divisionId; // Expand the clicked division
-    }
-  }
-
-  // Check if a division is expanded
-  isExpanded(divisionId: number): boolean {
-    return this.expandedDivisionId === divisionId;
-  }
-
-
-
-
-
-
-  getDotPosition(index: number, length: number): string {
-    if (length === 1) {
-      return '50%'; // Center dot if there's only one item
-    } else {
-      return `${(index / (length - 1)) * 100}%`; // Distribute dots evenly
-    }
-  }
-  
-  shouldShowLine(length: number): boolean {
-    return length > 1; // Show line only if there’s more than one item
-  }
-  
-
-
-  commissioners: Commissioner[] = [];
 
   constructor(private commissionerateService: CommissionerateService) { }
 
   ngOnInit(): void {
-
-
 
     this.getCommissionerateList();
 
@@ -271,46 +238,11 @@ export class CommissionerateComponent {
     //   }
     // ];
     
-    
-
-
+   
   }
 
 
- 
-  
-
-
-
-
-
-
-
-  // ---------------------------------------------
-
-
-
-  public commissionerateList: any =[];
-  public divisionList: any =[];
-  public circleList: any =[];
-  public taxPayerList: any =[];
-
-
-  public messages ="Data is not available";
-
-  
-
-  
-
-  public isLoading: boolean = false;
-  public isProgressBarLoading!: boolean;
-  public commissionerateOid: string='';
-  public divisionOid: string='';
-  public circleOid: string='';
-  
-  
-
-
+//  this one is for get all commissionerateList
   public getCommissionerateList(){
    
     this.commissionerateService.getCommissionerates().subscribe(res => {
@@ -335,15 +267,7 @@ export class CommissionerateComponent {
         this.isLoading = false;
     });
   }
-
-  
-
-
-
-
-
-
-
+// this one is for get all divisionList
   public getDivisionList(commisionarateID: string){
     console.log("Calling ");
     
@@ -380,15 +304,7 @@ export class CommissionerateComponent {
         this.isLoading = false;
     });
   }
-
-
-
-
-
-
-
-
-
+// this one is for get all circleList
   public getCircleList( divisionOid: string, commissionerateOid: string){
     this.commissionerateService.getCircles(divisionOid,commissionerateOid).subscribe(res => {
       if (res.status === 200) {
@@ -414,10 +330,7 @@ export class CommissionerateComponent {
         this.isLoading = false;
     });
   }
-
-
-
-
+// this one is for get all taxpayerList
   public getTaxPayerList(circleOid:string, divisionOid:string, commissionerateOid:string){
     this.commissionerateService.getTaxPayers(circleOid, divisionOid, commissionerateOid).subscribe(res => {
        

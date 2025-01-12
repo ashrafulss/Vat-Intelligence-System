@@ -1,3 +1,21 @@
+
+
+
+.accordion-item{
+  border-radius: 20px; 
+}
+
+.accordion-button{
+
+  background-color: #FFFFFF; 
+  display: flex; 
+  align-items: 
+  center; border-radius: 20px;
+
+}
+
+
+
 .border-custom {
   color: #89354C;
   border: 2px solid rgba(0, 0, 0, 0.222);
@@ -19,35 +37,11 @@
 }
 
 
-.border-custom p {
-  margin: 0;
-  /* Remove the default margin */
-}
-
-.border-cus {
-  display: flex;
-}
-
-.border-cus p {
-  margin: 0;
-}
-
-.border-customs {
-  color: #89354C;
-  border: 2px solid rgba(0, 0, 0, 0.222);
-  border-radius: 10px;
-  margin-left: 1200px;
-
-  font-size: 18px;
-  text-decoration: none;
-
-
-}
-
 .code {
   font-size: 22px;
   color: #B13A5A;
   font-weight: 600;
+  margin: 0;
 }
 
 
@@ -55,56 +49,70 @@
   font-size: 22px;
   color: #B05331;
   font-weight: 600;
+  margin: 0;
 
 }
-
-
 
 .code2 {
-  font-size: 22px;
+  font-size: 20px;
   color: #9C7932;
   font-weight: 600;
+  margin: 0;
 }
 
 
-@media (max-width: 1200px) {
+.border-cus {
+  display: flex;
+}
+
+.p1 {
+  margin: 0;
+  font-size: 18px; 
+  font-weight: bold;
+}
+.p2 {
+  margin: 0;
+  padding-left: 20px; 
+  font-size: 18px;
+}
+
+.dropDownCustomIcon{
+  position: absolute; 
+  right: 10px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  height: 54px; 
+  width: 54px; 
+  border-radius: 20px;  
+}
+
+
+/* @media (max-width: 1200px) {
   .border-customs {
     margin-left: 200px;
-    /* Less margin for smaller screens */
+    
+  
 
   }
-}
+
+} 
 
 
-/* Responsive adjustments for medium screens */
 @media (max-width: 768px) {
   .border-customs {
     margin-left: 200px;
-    /* Less margin for smaller screens */
+
 
   }
 }
 
-/* Responsive adjustments for small screens (mobile) */
 @media (max-width: 480px) {
   .border-customs {
     margin-left: 100px;
-    /* Even less margin for small screens */
 
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-/* this for timeline item */
+*/
 
 /* -------------------------------------------------------------------------------- */
 
@@ -113,23 +121,25 @@
 .tl-item {
   position: relative;
   display: -ms-flexbox;
-  display: flex
-}
+  display: flex;
+  
+ }
 
 .tl-item>* {
   padding: 10px;
+
 }
 
-.tl-item:last-child .tl-dot:after {
+/* .tl-item:last-child .tl-dot:after {
   display: none
-}
+} */
 
 
-
+/* 
 .tl-dot {
   position: relative;
   border-color: rgb(2, 0, 0);
-}
+} */
 
 
 .tl-dot:after,
@@ -138,7 +148,7 @@
   position: absolute;
   border-width: 1.5px;
   border-radius: 50%;
-  top: 30px;
+  top: 41px;
   background-color: #C9C9C9ed;
   width: 8px;
   height: 8px;
@@ -146,31 +156,17 @@
 }
 
 
-
-
-
-/* Ensure vertical line extends between dots */
 .tl-item:not(:last-child)::after {
   content: '';
   position: absolute;
   left: 10px;
-  top: 30px;
-  bottom: -30px;
+  top: 41px;
+  bottom: -42px;
   width: 1.5px;
   background: #C9C9C9ed;
   z-index: 0;
 }
 
-/*-------------------------------------------------------------------------------- */
-
-
-
-
-
-
-
-/* this is fot talble and collapse */
-/*-------------------------------------------------------------------------------- */
 
 button[aria-expanded="true"]::after {
   display: none;
@@ -179,8 +175,37 @@ button[aria-expanded="true"]::after {
 
 button[aria-expanded="false"]::after {
   display: none;
-
 }
+
+
+.addbutton{
+
+  width: 190px; 
+  position: absolute; 
+  right: 10%; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  height: 54px; 
+  border-radius: 20px; 
+  background-color: #F6F6F6; 
+  color: #000000; 
+  font-size: 20px; 
+  font-weight: 400; 
+  border: 1px solid #00000033;
+}
+
+.addbutton i{
+  font-size: 30px;
+}
+
+
+
+
+
+
+
+
+/*-------------------------------------------------------------------------------- */
 
 #example thead tr {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -191,20 +216,16 @@ button[aria-expanded="false"]::after {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Add padding to header cells */
+
 #example th {
   padding: 10px 15px;
-  /* Adjust padding as needed */
   text-align: left;
-  /* Optional: Align text to the left */
   background-color: #FFFFFF;
-  /* Optional: Add a light background for the header */
 }
 
-/* Add padding to data cells */
+
 #example td {
   padding: 15px;
-  /* Adjust padding as needed */
   background-color: #FFFFFF;
 }
 
@@ -212,16 +233,14 @@ button[aria-expanded="false"]::after {
   padding-left: 30px !important;
 }
 
-/* Style for rounded corners */
 #example {
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
   overflow: hidden;
-  /* Ensure rounded corners are visible */
+
   width: 100%;
 
 }
-
 
 /*-------------------------------------------------------------------------------- */

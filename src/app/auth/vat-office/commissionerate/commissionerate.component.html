@@ -23,40 +23,38 @@
 
   <div class="accordion" id="commissionerateList"
     [ngStyle]="{ height: commissionerateList.length > 0 ? '600px' : 'auto', 'overflow-y': 'auto' }">
-    <div class="accordion-item" *ngFor="let commissioner of commissionerateList" style="border-radius: 20px; margin-bottom: 20px; 
-      
-      ">
+    <div class="accordion-item" *ngFor="let commissioner of commissionerateList" style="margin-bottom: 20px;">
 
 
-      <button [id]="'heading' + commissioner.code"
-        style="background-color: #FFFFFF; display: flex; align-items: center; border-radius: 20px; padding-top: 10px; padding-bottom: 10px;"
-        class="accordion-button" type="button" data-bs-toggle="collapse"
+      <button [id]="'heading' + commissioner.code" class="accordion-button" type="button" data-bs-toggle="collapse"
         [attr.data-bs-target]="'#collapseCommissioner' + commissioner.code"
         [attr.aria-controls]="'collapseCommissioner' + commissioner.code"
-        [attr.aria-expanded]="currentlyOpenCommissionerId === commissioner.code"
+        [attr.aria-expanded]="isCollapsed[commissioner.code] ? 'false' : 'true'"
         (click)="getDivisionList(commissioner.id); toggleCommissionerCollapse(commissioner.code)" [ngStyle]="{
             'border-radius': currentlyOpenCommissionerId === commissioner.code ? '20px 20px 0 0' : '20px'
         }">
+
 
         <div class="border-custom">
           <p class="code">Code : {{ commissioner.code }}</p>
         </div>
 
         <div class="border-cus">
-          <p style="font-size: 18px; font-weight: bold;">Commisionerate {{ commissioner.id }}:</p>
-          <p style="padding-left: 20px; font-size: 18px;">{{ commissioner.name }}</p>
+          <p class="p1">Commisionerate {{ commissioner.id }}:</p>
+          <p class="p2">{{ commissioner.name }}</p>
         </div>
 
         <div *ngIf="currentlyOpenCommissionerId !== commissioner.code"
-          class="d-flex align-items-center justify-content-center"
-          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px; width: 54px; border-radius: 20px; background-color: #FFE5EC;">
+          class="d-flex align-items-center justify-content-center dropDownCustomIcon"
+          style="background-color: #FFE5EC;">
           <!-- <i class="bi bi-search" style="font-size: 22px;"></i> -->
-          <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid" style="transform: rotate(180deg);">
+          <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid"
+            style="transform: rotate(180deg);">
         </div>
 
         <div *ngIf="currentlyOpenCommissionerId === commissioner.code"
-          class="d-flex align-items-center justify-content-center"
-          style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px; width: 54px; border-radius: 20px; background-color: #FFE5EC;">
+          class="d-flex align-items-center justify-content-center dropDownCustomIcon"
+          style="background-color: #FFE5EC;">
           <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid">
         </div>
       </button>
@@ -68,9 +66,16 @@
       <div [id]="'collapseCommissioner' + commissioner.code" class="accordion-collapse collapse"
         [attr.aria-labelledby]="'heading' + commissioner.code" [attr.data-bs-parent]="'#commissionerateList'">
 
-        <div class="accordion-body">
 
-          <div class="accordion " [id]="'divisionList' + commissioner.code">
+        <div *ngIf="divisionList.length === 0" class="text-center pt-3 ">
+          <h3 style="color: #B13A5A; font-weight: 700;">Division is not available!</h3>
+        </div>
+
+        <div class="accordion-body px-2">
+
+
+
+          <div class="accordion" [id]="'divisionList' + commissioner.code">
 
             <div class="timeline pr-4">
 
@@ -83,48 +88,51 @@
                 <div class="tl-dot b-warning"></div>
 
                 <!-- Content -->
-                <div class="tl-content col" style="padding-left: 50px;">
+                <div class="tl-content col">
 
-                  <div class="accordion-item" style="border-radius: 20px;">
+                  <div class="accordion-item">
 
 
 
 
                     <button (click)="getCircleList(division.id, commissioner.id); toggleDivisionCollapse(division.code)"
-                      style="background-color:  #FFFFFF; display: flex; align-items: center; border-radius: 20px; padding-top: 10px; padding-bottom: 10px;"
                       class="accordion-button" type="button" data-bs-toggle="collapse"
                       [attr.data-bs-target]="'#collapseDivision' + division.code"
                       [attr.aria-controls]="'collapseDivision' + division.code"
-                      [attr.aria-expanded]="currentlyOpenDivisionId === division.code" [ngStyle]="{
-    'border-radius': currentlyOpenDivisionId === division.code ? '20px 20px 0 0' : '20px'
-  }">
-
+                      [attr.aria-expanded]="isCollapsed[division.code] ? 'false' : 'true'" [ngStyle]="{
+                        'border-radius': currentlyOpenDivisionId === division.code ? '20px 20px 0 0' : '20px'
+                           }">
+                      <!-- [attr.aria-expanded]="currentlyOpenDivisionId === division.code"  -->
                       <div class="border-custom">
                         <p class="code1">Code : {{ division.code }}</p>
                       </div>
 
                       <div class="border-cus">
-                        <p style="font-size: 18px; font-weight: bold;">{{ division.name }}</p>
+                        <p class="p1">Division {{ division.id }}:</p>
+                        <p class="p2">{{ division.name }}</p>
                       </div>
 
                       <div>
+
                         <button *ngIf="currentlyOpenDivisionId === division.code"
-                          class="d-flex align-items-center justify-content-center"
-                          style="width: 190px; position: absolute; right: 10%; top: 50%; transform: translateY(-50%); height: 54px; border-radius: 20px; background-color: #F6F6F6; color: #000000; font-size: 20px; font-weight: 400; border: 1px solid #00000033;">
-                          <i class="bi bi-plus-lg" style="font-size: 30px;"></i> &nbsp; Add Circle
+                          class="d-flex align-items-center justify-content-center addbutton">
+                          <i class="bi bi-plus-lg"></i> &nbsp; Add Circle
                         </button>
                       </div>
 
+
+
+
                       <div *ngIf="currentlyOpenDivisionId !== division.code"
-                        class="d-flex align-items-center justify-content-center"
-                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px; width: 54px; border-radius: 20px; background-color: #FFECE5;">
+                        class="d-flex align-items-center justify-content-center dropDownCustomIcon"
+                        style=" background-color: #FFECE5;">
                         <!-- <i class="bi bi-search" style="font-size: 22px;"></i> -->
-                        <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid" style="transform: rotate(180deg);">
+                        <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid"
+                          style="transform: rotate(180deg);">
                       </div>
 
-                      <div *ngIf="currentlyOpenDivisionId === division.code"
-                        class="d-flex align-items-center justify-content-center"
-                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px; width: 54px; border-radius: 20px; background-color: #FFECE5;">
+                      <div *ngIf="currentlyOpenDivisionId === division.code" style=" background-color: #FFECE5;"
+                        class="d-flex align-items-center justify-content-center dropDownCustomIcon">
                         <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid">
                       </div>
 
@@ -137,11 +145,19 @@
                       [attr.aria-labelledby]="'headingDivision' + division.code"
                       [attr.data-bs-parent]="'#divisionList' + commissioner.code">
 
-                      <div class="accordion-body">
+
+
+                      <div *ngIf="circleList.length === 0" class="text-center pt-3 ">
+                        <h3 style="color:  #B05331;; font-weight: 700;">Circle is not available!</h3>
+                      </div>
+
+
+                      <div class="accordion-body px-2">
+
 
                         <div class="accordion" [id]="'circleList' + division.code">
 
-                          <div class="timeline p-4">
+                          <div class="timeline ">
 
                             <div class="tl-item" *ngFor="let circle of circleList">
 
@@ -149,42 +165,44 @@
                               <div class="tl-dot b-warning"></div>
 
                               <!-- Content -->
-                              <div class="tl-content col" style="padding-left: 50px;">
+                              <div class="tl-content col">
 
-                                <div class="accordion-item" style="border-radius: 20px;">
+                                <div class="accordion-item">
 
 
 
-                                  <button
-                                    style="background-color:  #FFFFFF; display: flex; align-items: center; border-radius: 20px; padding-top: 10px; padding-bottom: 10px;"
-                                    class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     [attr.data-bs-target]="'#collapseCircle' + circle.code"
                                     [attr.aria-controls]="'collapseCircle' + circle.code"
                                     [attr.aria-expanded]="isCollapsed[circle.code] ? 'false' : 'true'"
                                     (click)="getTaxPayerList(circle.id , division.id, commissioner.id ); toggleCircleCollapse(circle.code)"
                                     [ngStyle]="{
-                        'border-radius': isCollapsed[circle.code] ? '20px 20px 0 0' : '20px'
-                      }">
+                                    'border-radius': isCollapsed[circle.code] ? '20px 20px 0 0' : '20px'
+                                      }">
 
                                     <div class="border-custom">
                                       <p class="code2">Code : {{ circle.code }} </p>
                                     </div>
 
                                     <div class="border-cus">
-                                      <p style="font-size: 18px; font-weight: bold;">{{ circle.name }}</p>
+
+
+                                      <p class="p1">Circle {{ circle.id }}:</p>
+                                      <p class="p2">{{ circle.name }}</p>
                                     </div>
 
 
                                     <div *ngIf="currentlyOpenCircleId !==  circle.code"
-                                      class="d-flex align-items-center justify-content-center"
-                                      style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px ; width: 54px; border-radius: 20px; background-color: #FFF4DE;">
+                                      class="d-flex align-items-center justify-content-center dropDownCustomIcon"
+                                      style=" background-color: #FFF4DE;">
                                       <!-- <i class="bi bi-search" style="font-size: 22px;"> </i> -->
-                                      <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid" style="transform: rotate(180deg);">
+                                      <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid"
+                                        style="transform: rotate(180deg);">
                                     </div>
 
                                     <div *ngIf="currentlyOpenCircleId ===  circle.code"
-                                      class="d-flex align-items-center justify-content-center"
-                                      style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); height: 54px ; width: 54px; border-radius: 20px; background-color: #FFF4DE;">
+                                      class="d-flex align-items-center justify-content-center dropDownCustomIcon"
+                                      style=" background-color: #FFF4DE;">
                                       <img src="assets/images/droparrow.svg" alt="" class="img-fluid">
 
                                     </div>
@@ -195,16 +213,16 @@
 
                                   <div [id]="'collapseCircle' + circle.code" class="accordion-collapse collapse"
                                     [attr.aria-labelledby]="'headingCircle' + circle.code"
-                                    [attr.data-bs-parent]="'#circleList' + division.code"
-                                    
-                                    *ngIf="taxPayerList?.length > 0; else noData"
-                                    >
+                                    [attr.data-bs-parent]="'#circleList' + division.code">
+
+
+                                    <div *ngIf="taxPayerList.length === 0" class="text-center p-4">
+                                      <h3 style="color: #9C7932; font-weight: 700;">Tax Payer is not available!</h3>
+                                    </div>
 
 
 
-
-
-                                    <table id="example">
+                                    <table *ngIf="taxPayerList.length > 0" id="example">
 
                                       <thead>
                                         <tr>
@@ -229,16 +247,9 @@
                                       </tbody>
                                     </table>
 
-
-
-
-
                                   </div>
 
 
-                                  <ng-template #noData>
-                                    <p>No taxpayer data available.</p>
-                                  </ng-template>
 
                                 </div>
 
