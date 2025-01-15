@@ -19,7 +19,7 @@ export class CommissionerateComponent {
   public divisionList: any =[];
   public circleList: any =[];
   public taxPayerList: any =[];
-  public isLoading: boolean = false;
+  public isLoading: boolean = true;
   public isProgressBarLoading!: boolean;
   // public commissionerateOid: string='';
   // public divisionOid: string='';
@@ -27,23 +27,29 @@ export class CommissionerateComponent {
   commissioners: Commissioner[] = [];
 
 
-//  this one is collapsed for commissionerate
-  toggleCommissionerCollapse(commissionerCode: string) {
-    this.currentlyOpenCommissionerId = 
-      this.currentlyOpenCommissionerId === commissionerCode ? null : commissionerCode;
-  }
-  // this one is collapased for division
-  toggleDivisionCollapse(divisionCode: string) {
-    this.currentlyOpenDivisionId = 
-      this.currentlyOpenDivisionId === divisionCode ? null : divisionCode;
-  }
-// this one is collpased for circle
-  toggleCircleCollapse(circleCode: string) {
+/// Toggle Commissioner Collapse
+toggleCommissionerCollapse(commissionerCode: string) {
+  // Toggle between opening and closing
+  this.currentlyOpenCommissionerId = this.currentlyOpenCommissionerId === commissionerCode ? null : commissionerCode;
+  // Close the division and circle if the commissioner is collapsed
+  this.currentlyOpenDivisionId = null;
+  this.currentlyOpenCircleId = null;
+}
 
-    this.currentlyOpenCircleId = 
-      this.currentlyOpenCircleId === circleCode ? null : circleCode;
+// Toggle Division Collapse
+toggleDivisionCollapse(divisionCode: string) {
+  // Toggle between opening and closing
+  this.currentlyOpenDivisionId = this.currentlyOpenDivisionId === divisionCode ? null : divisionCode;
+  // Close the circle if the division is collapsed
+  this.currentlyOpenCircleId = null;
+}
 
-  }
+// Toggle Circle Collapse
+toggleCircleCollapse(circleCode: string) {
+  // Toggle between opening and closing
+  this.currentlyOpenCircleId = this.currentlyOpenCircleId === circleCode ? null : circleCode;
+}
+
   
 
 
@@ -52,6 +58,7 @@ export class CommissionerateComponent {
   ngOnInit(): void {
 
     this.getCommissionerateList();
+    
 
     // this.commissioners = [
     //   {
@@ -360,6 +367,23 @@ export class CommissionerateComponent {
     });
   }
 
+
+
+
+
+
+  splitNameIntoChunks(name: string): string {
+    const words = name.split(' ');
+    let chunkedName = '';
+    for (let i = 0; i < words.length; i++) {
+      chunkedName += words[i] + ' ';
+      // After every 5 words, insert a line break
+      if ((i + 1) % 5 === 0) {
+        chunkedName += '\n';
+      }
+    }
+    return chunkedName;
+  }
 
 
 

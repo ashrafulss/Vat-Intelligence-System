@@ -21,18 +21,34 @@
 <div class="row pt-4">
 
 
-  <div class="accordion" id="commissionerateList"
+  <div 
+    class="accordion" id="commissionerateList"
     [ngStyle]="{ height: commissionerateList.length > 0 ? '600px' : 'auto', 'overflow-y': 'auto' }">
-    <div class="accordion-item" *ngFor="let commissioner of commissionerateList" style="margin-bottom: 20px;">
+
+    <div 
+    class="accordion-item" 
+    *ngFor="let commissioner of commissionerateList" 
+    style="margin-bottom: 20px;"
+    
+    >
 
 
-      <button [id]="'heading' + commissioner.code" class="accordion-button" type="button" data-bs-toggle="collapse"
+      <button 
+        [id]="'heading' + commissioner.code" 
+        class="accordion-button" 
+        type="button" 
+        data-bs-toggle="collapse"
         [attr.data-bs-target]="'#collapseCommissioner' + commissioner.code"
         [attr.aria-controls]="'collapseCommissioner' + commissioner.code"
         [attr.aria-expanded]="isCollapsed[commissioner.code] ? 'false' : 'true'"
-        (click)="getDivisionList(commissioner.id); toggleCommissionerCollapse(commissioner.code)" [ngStyle]="{
-            'border-radius': currentlyOpenCommissionerId === commissioner.code ? '20px 20px 0 0' : '20px'
-        }">
+        (click)="getDivisionList(commissioner.id); 
+        toggleCommissionerCollapse(commissioner.code)" 
+        [ngStyle]="{'border-radius': currentlyOpenCommissionerId === commissioner.code ? '20px 20px 0 0' : '20px'}"
+            
+            >
+
+
+
 
 
         <div class="border-custom">
@@ -48,14 +64,14 @@
           class="d-flex align-items-center justify-content-center dropDownCustomIcon"
           style="background-color: #FFE5EC;">
           <!-- <i class="bi bi-search" style="font-size: 22px;"></i> -->
-          <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid"
+          <img src="assets/images/droparrow.svg" alt="" class="img-fluid"
             style="transform: rotate(180deg);">
         </div>
 
         <div *ngIf="currentlyOpenCommissionerId === commissioner.code"
           class="d-flex align-items-center justify-content-center dropDownCustomIcon"
           style="background-color: #FFE5EC;">
-          <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid">
+          <img src="assets/images/droparrow.svg" alt="" class="img-fluid">
         </div>
       </button>
 
@@ -95,13 +111,21 @@
 
 
 
-                    <button (click)="getCircleList(division.id, commissioner.id); toggleDivisionCollapse(division.code)"
-                      class="accordion-button" type="button" data-bs-toggle="collapse"
+                    <button 
+                      [id]="'heading' + division.code" 
+                      class="accordion-button"
+                      type="button" 
+                      data-bs-toggle="collapse"
                       [attr.data-bs-target]="'#collapseDivision' + division.code"
                       [attr.aria-controls]="'collapseDivision' + division.code"
-                      [attr.aria-expanded]="isCollapsed[division.code] ? 'false' : 'true'" [ngStyle]="{
-                        'border-radius': currentlyOpenDivisionId === division.code ? '20px 20px 0 0' : '20px'
+                      [attr.aria-expanded]="isCollapsed[division.code] ? 'false' : 'true'" 
+                      (click)="getCircleList(division.id, commissioner.id); 
+                      toggleDivisionCollapse(division.code)"
+                      [ngStyle]="{'border-radius': currentlyOpenDivisionId === division.code ? '20px 20px 0 0' : '20px'
                            }">
+
+
+
                       <!-- [attr.aria-expanded]="currentlyOpenDivisionId === division.code"  -->
                       <div class="border-custom">
                         <p class="code" style=" color: #B05331;">Code : {{ division.code }}</p>
@@ -127,13 +151,13 @@
                         class="d-flex align-items-center justify-content-center dropDownCustomIcon"
                         style=" background-color: #FFECE5;">
                         <!-- <i class="bi bi-search" style="font-size: 22px;"></i> -->
-                        <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid"
+                        <img src="assets/images/droparrow.svg" alt="" class="img-fluid"
                           style="transform: rotate(180deg);">
                       </div>
 
                       <div *ngIf="currentlyOpenDivisionId === division.code" style=" background-color: #FFECE5;"
                         class="d-flex align-items-center justify-content-center dropDownCustomIcon">
-                        <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid">
+                        <img src="assets/images/droparrow.svg" alt="" class="img-fluid">
                       </div>
 
                     </button>
@@ -171,14 +195,20 @@
 
 
 
-                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                  <button 
+                                    [id]="'heading' + circle.code" 
+                                    class="accordion-button" 
+                                    type="button" 
+                                    data-bs-toggle="collapse"
                                     [attr.data-bs-target]="'#collapseCircle' + circle.code"
                                     [attr.aria-controls]="'collapseCircle' + circle.code"
                                     [attr.aria-expanded]="isCollapsed[circle.code] ? 'false' : 'true'"
-                                    (click)="getTaxPayerList(circle.id , division.id, commissioner.id ); toggleCircleCollapse(circle.code)"
-                                    [ngStyle]="{
-                                    'border-radius': isCollapsed[circle.code] ? '20px 20px 0 0' : '20px'
-                                      }">
+                                    (click)="getTaxPayerList(circle.id , division.id, commissioner.id ); 
+                                    toggleCircleCollapse(circle.code)"
+                                     [ngStyle]="{'border-radius': currentlyOpenCircleId === circle.code ? '20px 20px 0 0' : '20px'}"
+                                    
+                                    
+                                    >
 
                                     <div class="border-custom">
                                       <p class="code" style="color: #9C7932;">Code : {{ circle.code }} </p>
@@ -196,7 +226,7 @@
                                       class="d-flex align-items-center justify-content-center dropDownCustomIcon"
                                       style=" background-color: #FFF4DE;">
                                       <!-- <i class="bi bi-search" style="font-size: 22px;"> </i> -->
-                                      <img src="assets/images/droparrow.svg" alt="VAT System Logo" class="img-fluid"
+                                      <img src="assets/images/droparrow.svg" alt="" class="img-fluid"
                                         style="transform: rotate(180deg);">
                                     </div>
 
@@ -237,11 +267,11 @@
                                       <tbody>
                                         <tr *ngFor="let taxpayer of taxPayerList; let i = index">
                                           <td id="slid">{{ i + 1 }}</td>
-                                          <td>{{taxpayer.taxPayerName}}</td>
+                                          <td class="wrap-text"> {{ splitNameIntoChunks(taxpayer.taxPayerName) }} </td>
                                           <td>{{taxpayer.binNo}}</td>
                                           <td>{{taxpayer.etinNo}}</td>
                                           <td>{{taxpayer.mobileNo}}</td>
-                                          <td>Action</td>
+                                          <td></td>
                                         </tr>
 
                                       </tbody>

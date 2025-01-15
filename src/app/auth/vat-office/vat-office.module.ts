@@ -8,12 +8,12 @@ import { AllExpandComponent } from './all-expand/all-expand.component';
 import { LoadingImageModule } from '../../common/components/loading-image/loading-image.module';
 
 
-
 @NgModule({
   declarations: [
     VatOfficeComponent,
     CommissionerateComponent,
-    AllExpandComponent
+    AllExpandComponent,
+   
   ],
   imports: [
     CommonModule,

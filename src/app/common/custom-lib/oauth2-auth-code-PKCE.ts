@@ -663,16 +663,18 @@ public isReturningFromAuthServer(): Promise<boolean> {
 
       recoverState() {
         if (isPlatformBrowser(this.platformId)) {
-            // Retrieve the state from localStorage if it's available
+         
             const stateString = localStorage.getItem(LOCALSTORAGE_STATE);
 
             
             if (stateString) {
                 const state = JSON.parse(stateString);
-                this.setState(state); // Restore the state
+                
+                this.setState(state); 
             }
         } else {
-            // Handle SSR case (if you're using server-side rendering)
+           
+            
         }
     }
     
@@ -684,7 +686,8 @@ public isReturningFromAuthServer(): Promise<boolean> {
         if (isPlatformBrowser(this.platformId)) {
             localStorage.setItem(LOCALSTORAGE_STATE, JSON.stringify(state));
         } else {
-            console.warn('localStorage is not available on the server---------------------------.');
+     
+            console.warn('localStorage is not available on the server.');
         }
     
         return this;
@@ -693,11 +696,8 @@ public isReturningFromAuthServer(): Promise<boolean> {
 
 
 
-      /**
-     * Resets the state of the client. Equivalent to "logging out" the user.
-     */
       public reset() {
-        this.setState({}); // Clear the state object
+        this.setState({}); 
     
         if (isPlatformBrowser(this.platformId)) {
             localStorage.removeItem(LOCALSTORAGE_STATE);
@@ -708,5 +708,25 @@ public isReturningFromAuthServer(): Promise<boolean> {
         this.authCodeForAccessTokenRequest = undefined;
     }
 
+
+
+
+
+
+
+
+
+    // ----------------------------------------------------------
+
+    
+      
+
+
+
+
+
+
+
+    
 
 }

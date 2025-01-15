@@ -19,7 +19,14 @@ throw new Error('Method not implemented.');
 
 
 
-  isloading: boolean = false;
+public isLoading: boolean = false;
+public dashboardCountList: any = [];
+public totalRecords: number = 0;
+public isProgressBarLoading!: boolean;
+
+
+public taxPayerList: any = [];
+public taxPayerOid: string ='';
 
   currentDate: any;
   addDate:any;
@@ -160,13 +167,7 @@ throw new Error('Method not implemented.');
 
   // ---------------------------------------------------------------------
   // backend code
-  public dashboardCountList: any = [];
-  public totalRecords: number = 0;
-  public isProgressBarLoading!: boolean;
-  public isLoading: boolean = false;
-
-  public taxPayerList: any = [];
-  public taxPayerOid: string ='';
+ 
 
   private getDashboardCountList() {
     

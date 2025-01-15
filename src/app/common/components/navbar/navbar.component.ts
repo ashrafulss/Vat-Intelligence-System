@@ -9,8 +9,15 @@ import { SessionService } from '../../services/shared.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit{
+
+
+
   public isLoading: boolean = false;
   public userName: string = '';
+
+
+  
+rlam: any;
   constructor(private _router: Router, private sessionService: SessionService, private route: ActivatedRoute, ) {}
  
 

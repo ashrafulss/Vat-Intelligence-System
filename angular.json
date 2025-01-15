@@ -1,3 +1,15 @@
+
+
+
+
+
+
+
+
+
+
+
+
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
@@ -39,7 +51,8 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
-              }
+              },
+              "src/favicon.ico"
             ],
             "styles": [
               "src/styles.css",
@@ -65,8 +78,6 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-             
-             
               "budgets": [
                 {
                   "type": "initial",
@@ -93,7 +104,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "port": 4200, 
+            "port": 4200,
             "open": true
           },
           "configurations": {
@@ -121,7 +132,13 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
+              },
+              "src/favicon.ico"
             ],
             "styles": [
               "src/styles.css"

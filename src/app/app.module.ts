@@ -3,8 +3,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './common/components/header/header.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './common/components/navbar/navbar.component';
 import { provideHttpClient, HTTP_INTERCEPTORS, withInterceptorsFromDi, withFetch } from '@angular/common/http';
@@ -21,7 +19,6 @@ import { LoadingImageModule } from './common/components/loading-image/loading-im
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     NavbarComponent,
     LoginComponent,
     HomeComponent,
@@ -39,7 +36,7 @@ import { LoadingImageModule } from './common/components/loading-image/loading-im
     provideClientHydration(),
     provideHttpClient(withFetch()),
     provideHttpClient(
-      withInterceptorsFromDi() // Include interceptors from the DI system
+      withInterceptorsFromDi() 
     ),
     OAuth2Service, 
     SessionService,

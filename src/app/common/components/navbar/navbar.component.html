@@ -1,4 +1,9 @@
-<header>
+
+
+
+<loading-image [is-loading]="isLoading"></loading-image>
+
+<header class="sticky-top">
 
 
             <div class="row align-items-stretch align-items-center">
@@ -16,10 +21,10 @@
                     <ul class="col list-group list-group-horizontal gap-2 d-flex align-items-center">
 
                         <!-- Dashboard -->
-                        <li class="col list-group-item d-flex justify-content-center align-items-center"
+                        <li class="col list-group-item d-flex justify-content-center align-items-center "
                             routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
-                            style="border-radius: 18px; padding: 0;">
-
+                            style="border-radius: 18px;  padding: 0;">
+                        
                             <a routerLink="dashboard"
                                 style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
                                 class="d-flex align-items-center justify-content-center" routerLinkActive
@@ -39,27 +44,52 @@
                         </li>
 
                         <!-- Monitoring -->
-                        <li class="col list-group-item d-flex justify-content-center align-items-center"
+                        <li class="col list-group-item d-flex justify-content-center align-items-center moni customli"
                             routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
-                            style="border-radius: 18px; padding: 0;">
+
+                            
+                            style="border-radius: 18px;  padding: 0;">
 
                             <a routerLink="monitoring"
-                                style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
-                                class="d-flex align-items-center justify-content-center" routerLinkActive
-                                #rlam="routerLinkActive">
+                                style="border-radius: 18px;  text-decoration: none; width: 100%; height: 100%;"
+                                class="d-flex align-items-center justify-content-center dropdown-toggle" routerLinkActive
+                                #rlam="routerLinkActive"
+                                id="monitoringDropdown" data-bs-toggle="dropdown" aria-expanded="false"
 
-                                <!-- Conditional Icons -->
-                                <!-- Unfilled Icon -->
+                                >
+
+                              
                                 <img *ngIf="!rlam.isActive" src="assets/images/monitoring.svg" alt="Monitoring"
                                     style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
 
-                                <!-- Filled Icon -->
+                             
                                 <img *ngIf="rlam.isActive" src="assets/images/monitoringF.svg" alt="Monitoring Active"
                                     style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
 
                                 <span >&nbsp;&nbsp;Monitoring</span>
                             </a>
+
+
+                            <ul class="dropdown-menu costom-li" aria-labelledby="monitoringDropdown" 
+                            data-popper-placement="bottom-start"
+                            
+                            >
+                                <li><a class="dropdown-item" routerLink="monitoring">Purchase Comparison</a></li>
+                                <li><a class="dropdown-item" href="#">Purchase Information</a></li>
+                                <li><a class="dropdown-item" href="#">Sales Information</a></li>
+                            </ul>
                         </li>
+
+
+
+                        
+
+
+
+
+
+                
+
 
                         <!-- Analysis -->
                         <li class="col list-group-item d-flex justify-content-center align-items-center"
@@ -104,6 +134,8 @@
                                     style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
 
                                 <span>&nbsp;&nbsp;Mushak</span>
+
+                               
                             </a>
                         </li>
 

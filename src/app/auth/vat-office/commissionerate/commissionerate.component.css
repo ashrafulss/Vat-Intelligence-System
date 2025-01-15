@@ -191,6 +191,13 @@ button[aria-expanded="false"]::after {
 }
 
 
+
+.wrap-text {
+  white-space: pre-line; /* This will respect the line breaks inserted */
+  word-wrap: break-word;
+}
+
+
 #example th {
   padding: 10px 15px;
   text-align: left;

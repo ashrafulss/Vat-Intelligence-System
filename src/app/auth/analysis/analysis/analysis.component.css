@@ -8,9 +8,23 @@
 
 
 
-
+  .custom-icon{
+    height: 34px;
+    width: 34px; background-color: #F6F6F6; 
+    border-radius: 10px; 
+    border: 1px solid #00000033 
+  }
   
-
+  .searchbtn{
+    height: 60px;
+    width: 175px; 
+    background-color: #35BC8C; 
+    border-radius: 15px; 
+    font-weight: 500; 
+    color: #FFFFFF; 
+    font-size: 20px;
+    border: none;
+  }
 
 
   
