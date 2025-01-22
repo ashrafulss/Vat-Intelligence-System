@@ -20,7 +20,15 @@ throw new Error('Method not implemented.');
 
 
 public isLoading: boolean = false;
-public dashboardCountList: any = [];
+
+public dashboardCountList: any[] = [
+  {
+    commissionerateCount: 0,
+    divisionCount: 0,
+    circleCount: 0,
+    vatPayerCount: 0
+  }
+];
 public totalRecords: number = 0;
 public isProgressBarLoading!: boolean;
 
@@ -170,7 +178,7 @@ public taxPayerOid: string ='';
  
 
   private getDashboardCountList() {
-    
+
     this.dashboardService.getDashboardCount().subscribe(res => {
             if (res.status === 200) {
                 this.dashboardCountList = res.body

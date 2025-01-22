@@ -14,10 +14,7 @@ export class NavbarComponent implements OnInit{
 
   public isLoading: boolean = false;
   public userName: string = '';
-
-
-  
-rlam: any;
+  rlam: any;
   constructor(private _router: Router, private sessionService: SessionService, private route: ActivatedRoute, ) {}
  
 
@@ -36,11 +33,16 @@ onLogoutClick() {
 
 
 
+
+
+
   activeLink: boolean = false;
 
   ngOnInit(): void {
     // Detect route changes
     this._router.events.subscribe((event: any) => {
+
+      
       if (event instanceof NavigationEnd) {
         this.activeLink = this._router.url === '/dashboard';
       }
@@ -66,6 +68,9 @@ onLogoutClick() {
           });
 
 
+
+
+          
   }
 
 
@@ -76,6 +81,19 @@ onLogoutClick() {
 
 
 
+
+
+
   }
+
+
+isDropdownOpen:boolean=false;
+
+isDropdownOpenAnalysis:boolean=false;
+
+
+
+
+
 
 }

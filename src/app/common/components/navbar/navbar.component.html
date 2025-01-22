@@ -1,7 +1,7 @@
 
 
 
-<loading-image [is-loading]="isLoading"></loading-image>
+<!-- <loading-image [is-loading]="isLoading"></loading-image> -->
 
 <header class="sticky-top">
 
@@ -44,7 +44,7 @@
                         </li>
 
                         <!-- Monitoring -->
-                        <li class="col list-group-item d-flex justify-content-center align-items-center moni customli"
+                        <!-- <li class="col list-group-item d-flex justify-content-center align-items-center moni customli"
                             routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
 
                             
@@ -78,18 +78,67 @@
                                 <li><a class="dropdown-item" href="#">Purchase Information</a></li>
                                 <li><a class="dropdown-item" href="#">Sales Information</a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
 
 
                         
-
-
-
-
-
-                
-
+                    <li  class="col list-group-item d-flex justify-content-center align-items-center moni customli dropdown"
+                        routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: false }"
+                        [ngStyle]="isDropdownOpen
+                          ? { 
+                              'border-bottom-left-radius': '0px', 
+                              'border-bottom-right-radius': '0px', 
+                              'padding': '0', 
+                              'border-top-left-radius': '18px', 
+                              'border-top-right-radius': '18px' ,
+                             
+                            } 
+                          : { 
+                              'border-radius': '18px', 
+                              'padding': '0' ,
+                              
+                            }"
+                        (mouseenter)="isDropdownOpen = true" (mouseleave)="isDropdownOpen = false">
+                      
+                      <a style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
+                         class="d-flex align-items-center justify-content-center dropdown-toggle"
+                         routerLinkActive #rlam="routerLinkActive"
+                         id="monitoringDropdown">
+                        
+                        <!-- Conditional Icons -->
+                        <img *ngIf="!rlam.isActive" src="assets/images/monitoring.svg" alt="Monitoring"
+                             style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+                        
+                        <img *ngIf="rlam.isActive" src="assets/images/monitoringF.svg" alt="Monitoring Active"
+                             style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+                        
+                        <span>&nbsp;&nbsp;Monitoring</span>
+                      </a>
+                      
+                      <ul *ngIf="isDropdownOpen" class="dropdown-menu custom-li"
+                     
+                    
+                      >
+                        <li><a class="dropdown-item" 
+                               routerLink="/monitoring/purchase-comparison" 
+                               routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                               Purchase Comparison
+                          </a></li>
+                        <li><a class="dropdown-item" 
+                               routerLink="/monitoring/purchase-information" 
+                               routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                               Purchase Information
+                          </a></li>
+                        <li><a class="dropdown-item" 
+                               routerLink="/monitoring/sales-information" 
+                               routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                               Sales Information
+                          </a></li>
+                      </ul>
+                    </li>
+                    
+                    
 
                         <!-- Analysis -->
                         <li class="col list-group-item d-flex justify-content-center align-items-center"
@@ -101,18 +150,25 @@
                                 class="d-flex align-items-center justify-content-center" routerLinkActive
                                 #rla="routerLinkActive">
 
-                                <!-- Conditional Icons -->
-                                <!-- Unfilled Icon -->
+                              
                                 <img *ngIf="!rla.isActive" src="assets/images/analysis.svg" alt="Analysis"
                                     style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
 
-                                <!-- Filled Icon -->
+                             
                                 <img *ngIf="rla.isActive" src="assets/images/analysisF.svg" alt="Analysis Active"
                                     style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
 
                                 <span >&nbsp;&nbsp;Analysis</span>
                             </a>
+
+                            
                         </li>
+
+
+
+
+                      
+
 
                         <!-- Mushak -->
                         <li class="col list-group-item d-flex justify-content-center align-items-center"

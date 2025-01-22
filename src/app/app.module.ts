@@ -33,11 +33,12 @@ import { LoadingImageModule } from './common/components/loading-image/loading-im
      
   ],
   providers: [
-    provideClientHydration(),
-    provideHttpClient(withFetch()),
     provideHttpClient(
+      // withFetch(),
       withInterceptorsFromDi() 
+    
     ),
+  
     OAuth2Service, 
     SessionService,
     {

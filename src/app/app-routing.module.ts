@@ -56,10 +56,10 @@ const routes: Routes = [
     loadChildren: () => import('./security/session-expired/session-expired.module').then(mod => mod.SessionExpiredModule)
   },
 
-  {
-    path: 'page-not-found',
-    loadChildren: () => import('./security/page-not-found/page-not-found.module').then(mod => mod.PageNotFoundModule)
-  },
+  // {
+  //   path: 'page-not-found',
+  //   loadChildren: () => import('./security/page-not-found/page-not-found.module').then(mod => mod.PageNotFoundModule)
+  // },
 
   {
     path: '**',

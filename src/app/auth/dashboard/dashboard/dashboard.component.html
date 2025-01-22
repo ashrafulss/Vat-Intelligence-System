@@ -30,7 +30,7 @@
 
             <p class="card-text p-0 m-0">Commissionerate</p>
 
-            <h2 class="card-title p-0 m-0"> {{dashboardCountList[0].commissionerateCount}}</h2>
+            <h2 class="card-title p-0 m-0"> {{dashboardCountList[0]?.commissionerateCount || 'Loading...'}}</h2>
 
           </div>
         </div>
@@ -50,7 +50,7 @@
               <img src="assets/images/division.svg" style="width: 30px; height: 30px;">
             </div>
             <p class="card-text p-0 m-0">Division</p>
-            <h2 class="card-title p-0 m-0">{{dashboardCountList[0].divisionCount}}</h2>
+            <h2 class="card-title p-0 m-0">{{dashboardCountList[0]?.divisionCount || 'Loading...'}}</h2>
           </div>
         </div>
 
@@ -67,7 +67,7 @@
               <img src="assets/images/circle.svg" style="width: 30px; height: 30px;">
             </div>
             <p class="card-text p-0 m-0">Circle</p>
-            <h2 class="card-title p-0 m-0">{{dashboardCountList[0].circleCount}}</h2>
+            <h2 class="card-title p-0 m-0">{{dashboardCountList[0]?.circleCount || 'Loading...'}}</h2>
           </div>
         </div>
 
@@ -84,7 +84,7 @@
               <img src="assets/images/tax-payer.svg" style="width: 30px; height: 30px;">
             </div>
             <p class="card-text p-0 m-0">Tax Payer</p>
-            <h2 class="card-title p-0 m-0">{{dashboardCountList[0].vatPayerCount}}</h2>
+            <h2 class="card-title p-0 m-0">{{dashboardCountList[0]?.vatPayerCount || 'Loading...'}}</h2>
 
           </div>
 
