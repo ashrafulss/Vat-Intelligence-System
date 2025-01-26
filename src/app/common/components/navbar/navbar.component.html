@@ -43,6 +43,9 @@
                             </a>
                         </li>
 
+
+                        
+
                         <!-- Monitoring -->
                         <!-- <li class="col list-group-item d-flex justify-content-center align-items-center moni customli"
                             routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
@@ -104,6 +107,8 @@
                       <a style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
                          class="d-flex align-items-center justify-content-center dropdown-toggle"
                          routerLinkActive #rlam="routerLinkActive"
+                         routerLink="/monitoring" 
+                               routerLinkActive="active" 
                          id="monitoringDropdown">
                         
                         <!-- Conditional Icons -->
@@ -141,7 +146,7 @@
                     
 
                         <!-- Analysis -->
-                        <li class="col list-group-item d-flex justify-content-center align-items-center"
+                        <!-- <li class="col list-group-item d-flex justify-content-center align-items-center"
                             routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
                             style="border-radius: 18px; padding: 0;">
 
@@ -162,7 +167,68 @@
                             </a>
 
                             
-                        </li>
+                        </li> -->
+
+
+
+                        <li  class="col list-group-item d-flex justify-content-center align-items-center moni customli dropdown"
+                        routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: false }"
+                        [ngStyle]="isDropdownOpenAnalysis
+                          ? { 
+                              'border-bottom-left-radius': '0px', 
+                              'border-bottom-right-radius': '0px', 
+                              'padding': '0', 
+                              'border-top-left-radius': '18px', 
+                              'border-top-right-radius': '18px' ,
+                             
+                            } 
+                          : { 
+                              'border-radius': '18px', 
+                              'padding': '0' ,
+                              
+                            }"
+                        (mouseenter)="isDropdownOpenAnalysis = true" (mouseleave)="isDropdownOpenAnalysis = false">
+                      
+                      <a style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
+                         class="d-flex align-items-center justify-content-center dropdown-toggle"
+                         routerLinkActive #rlam="routerLinkActive"
+                         routerLink="/analysis" 
+                         routerLinkActive="active" 
+                         id="analysisDropdown">
+                        
+                        <!-- Conditional Icons -->
+                        <img *ngIf="!rlam.isActive" src="assets/images/analysis.svg" alt="Monitoring"
+                             style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+                        
+                        <img *ngIf="rlam.isActive" src="assets/images/analysisF.svg" alt=""
+                             style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+                        
+                        <span>&nbsp;&nbsp;Analysis</span>
+                      </a>
+                      
+                      <ul *ngIf="isDropdownOpenAnalysis" class="dropdown-menu analysis-li"
+                     
+                    
+                      >
+                        <li><a class="dropdown-item" 
+                               routerLink="/analysis" 
+                               routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                               ASYCUDA
+                          </a></li>
+                        <li><a class="dropdown-item" 
+                                routerLink="" 
+                               routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                               Others
+                          </a></li>
+                    
+
+                   
+
+             
+                      </ul>
+                    </li>
+
+                   
 
 
 
@@ -171,7 +237,7 @@
 
 
                         <!-- Mushak -->
-                        <li class="col list-group-item d-flex justify-content-center align-items-center"
+                        <!-- <li class="col list-group-item d-flex justify-content-center align-items-center"
                             routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
                             style="border-radius: 18px; padding: 0;">
 
@@ -180,12 +246,11 @@
                                 class="d-flex align-items-center justify-content-center" routerLinkActive
                                 #rlmu="routerLinkActive">
 
-                                <!-- Conditional Icons -->
-                                <!-- Unfilled Icon -->
+                             
                                 <img *ngIf="!rlmu.isActive" src="assets/images/mushak.svg" alt="Mushak"
                                     style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
 
-                                <!-- Filled Icon -->
+                              
                                 <img *ngIf="rlmu.isActive" src="assets/images/mushakF.svg" alt="Mushak Active"
                                     style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
 
@@ -193,7 +258,78 @@
 
                                
                             </a>
-                        </li>
+                        </li> -->
+
+
+
+                        <li  class="col list-group-item d-flex justify-content-center align-items-center moni customli dropdown"
+                        routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: false }"
+                        [ngStyle]="isDropDownOpenMushak
+                          ? { 
+                              'border-bottom-left-radius': '0px', 
+                              'border-bottom-right-radius': '0px', 
+                              'padding': '0', 
+                              'border-top-left-radius': '18px', 
+                              'border-top-right-radius': '18px' ,
+                             
+                            } 
+                          : { 
+                              'border-radius': '18px', 
+                              'padding': '0' ,
+                              
+                            }"
+                        (mouseenter)="isDropDownOpenMushak = true" (mouseleave)="isDropDownOpenMushak = false">
+                      
+                      <a style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
+                         class="d-flex align-items-center justify-content-center dropdown-toggle"
+                         routerLinkActive #rlam="routerLinkActive"
+                         routerLink="/mushaks" 
+                         routerLinkActive="active" 
+                         id="mushaksDropdown">
+                        
+                        <!-- Conditional Icons -->
+                        <img *ngIf="!rlam.isActive" src="assets/images/mushak.svg" alt="Monitoring"
+                             style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+                        
+                        <img *ngIf="rlam.isActive" src="assets/images/mushakF.svg" alt="Monitoring Active"
+                             style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
+                        
+                        <span>&nbsp;&nbsp;Mushak</span>
+                      </a>
+                      
+                      <ul *ngIf="isDropDownOpenMushak" class="dropdown-menu mushak-li"
+                     
+                    
+                      >
+                        <li><a class="dropdown-item" 
+                               routerLink="/mushaks" 
+                               routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                               Mushak 4.3
+                          </a></li>
+                        <li><a class="dropdown-item" 
+                            routerLink="" 
+                               routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                               Mushak 6.1
+                          </a></li>
+                        <li><a class="dropdown-item" 
+                   
+                               routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                               Mushak 6.2
+                          </a></li>
+
+                          <li><a class="dropdown-item" 
+                            routerLink="" 
+                            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                            Mushak 6.3
+                       </a></li>
+
+                       <li><a class="dropdown-item" 
+                        routerLink="" 
+                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        Mushak 9.1
+                   </a></li>
+                      </ul>
+                    </li>
 
                         <!-- VAT Office -->
                         <li class="col list-group-item d-flex justify-content-center align-items-center"

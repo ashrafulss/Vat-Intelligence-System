@@ -89,7 +89,9 @@ onLogoutClick() {
 
 isDropdownOpen:boolean=false;
 
+
 isDropdownOpenAnalysis:boolean=false;
+isDropDownOpenMushak:boolean =false;
 
 
 

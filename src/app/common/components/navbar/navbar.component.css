@@ -114,6 +114,8 @@
 
 .list-group-item.active-item {
     background-color: #0A3B40 !important;
+
+   
 }
 
 
@@ -239,7 +241,7 @@
     border-bottom-left-radius: 18px;
     border-bottom-right-radius: 18px;
     background-color: #0A3B40;
-    border-color: #0A3B40;
+    border: none;
 
     width: 350px;
    
@@ -253,11 +255,11 @@
     position: absolute;
     padding: 0;
     top: -16px;
-    left: -1px;
+    left: 0px;
     right: 90px;
     bottom: 131px;
     background-color:#0A3B40;;
-    border-color: #0A3B40;
+    border: none;
     z-index: -2;
 
     border-top-right-radius: 18px; 
@@ -268,12 +270,13 @@
     content: "";
     position: absolute;
     padding: 0;
-    top: -16px;
-    left: 191px;
-    right: 85px;
-    bottom: 167px;
+    top: -9.5%;
+    
+    left: 192px;
+    right: 80px;
+    bottom: 166px;
     background-color: #FFFFFF;
-    border-color: #0A3B40;
+    border: none;
     z-index: -1;
    
     border-bottom-left-radius: 15px;
@@ -363,6 +366,241 @@
     height: 8px; /* Set size of the marker */
     background-color: #35BC8C; /* Set marker color */
 }
+
+
+
+
+
+
+/* ------------------------------------------ */
+
+
+
+.analysis-li {
+    margin-top: 15px !important;
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    background-color: #0A3B40;
+    border: none;
+
+    width: 350px;
+   
+   
+
+ 
+}
+
+.analysis-li::before{
+    content: "";
+    position: absolute;
+    padding: 0;
+    top: -13%;
+    left: 0;
+    right: 90px;
+    bottom: 100%;
+    background-color:#0A3B40;;
+    border: none;
+    z-index: -2;
+    border: none;
+    border-top-right-radius: 18px; 
+}
+
+
+.analysis-li::after{
+    content: "";
+    position: absolute;
+    padding: 0;
+    top: -13%;
+    left: 192px;
+    right: 85px;
+    bottom: 100%;
+    background-color: #ffffff;
+    border: none;
+    z-index: -1;
+   
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 18px;
+}
+
+
+
+
+.analysis-li .active{
+    background-color: #084C50; /* Active dropdown item background */
+    color: white; /* Text color for active dropdown items */
+}
+
+.dropdown:hover .analysis-li {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    color: white;
+      
+}
+
+
+/* Remove default list-style markers */
+.dropdown-menu.analysis-li {
+    list-style-type: none; /* Disable default markers */
+    padding-left: 20px; /* Indent the list for proper alignment */
+}
+
+/* Custom rotated marker for li */
+.dropdown-menu.analysis-li li {
+    position: relative;
+    padding-left: 20px; /* Add space for the custom marker */
+}
+
+.dropdown-menu.analysis-li a {
+    position: relative;
+    padding-left: 0px; /* Add space for the custom marker */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.dropdown-menu.analysis-li li::before {
+    content: ""; /* Create custom marker */
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(45deg); /* Rotate the marker */
+    width: 8px; /* Set size of the marker */
+    height: 8px; /* Set size of the marker */
+    background-color: #35BC8C; /* Set marker color */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------------------------------------------- */
+
+
+
+
+
+.mushak-li {
+    margin-top: 15px !important;
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    background-color: #0A3B40;
+    border: none;
+
+    width: 350px;
+   
+   
+
+ 
+}
+
+.mushak-li::before{
+    content: "";
+    position: absolute;
+    padding: 0;
+    top: -5.5%;
+    left: 0;
+    right: 90px;
+    bottom: 131px;
+    background-color:#0A3B40;;
+    border: none;
+    z-index: -2;
+    border: none;
+    border-top-right-radius: 18px; 
+}
+
+
+.mushak-li::after{
+    content: "";
+    position: absolute;
+    padding: 0;
+    top: -5.5%;
+    left: 192px;
+    right: 85px;
+    bottom: 100%;
+    background-color: #ffffff;
+    border: none;
+    z-index: -1;
+   
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 18px;
+}
+
+
+
+
+.mushak-li .active{
+    background-color: #084C50; /* Active dropdown item background */
+    color: white; /* Text color for active dropdown items */
+}
+
+.dropdown:hover .mushak-li {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    color: white;
+      
+}
+
+
+/* Remove default list-style markers */
+.dropdown-menu.mushak-li {
+    list-style-type: none; /* Disable default markers */
+    padding-left: 20px; /* Indent the list for proper alignment */
+}
+
+/* Custom rotated marker for li */
+.dropdown-menu.mushak-li li {
+    position: relative;
+    padding-left: 20px; /* Add space for the custom marker */
+}
+
+.dropdown-menu.mushak-li a {
+    position: relative;
+    padding-left: 0px; /* Add space for the custom marker */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.dropdown-menu.mushak-li li::before {
+    content: ""; /* Create custom marker */
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(45deg); /* Rotate the marker */
+    width: 8px; /* Set size of the marker */
+    height: 8px; /* Set size of the marker */
+    background-color: #35BC8C; /* Set marker color */
+}
+
+
+
+
+
 
 
 
