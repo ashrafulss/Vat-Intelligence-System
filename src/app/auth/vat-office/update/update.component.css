@@ -1,0 +1,98 @@
+.hovers:hover{
+
+    color: #0A3B40;
+}
+
+.active{
+
+    color: #0A3B40;
+    position: relative;
+   
+
+}
+
+
+.active::after {
+    content: '';  
+    position: absolute;
+    bottom: -12px;  
+    
+    transform: translateX(-4%);  /* Shift it to center */
+    left: 0;
+    width: 110%;
+    height: 2px;  
+    background-color: #0A3B40;  
+  }
+
+
+  .breadcrumb-item::before {
+    content: ''; /* Remove the default '/' separator */
+  }
+
+  hr {
+    border: none;           
+    border-top: 2px solid #0A3B40;  
+   
+    margin-top: 10px;
+
+  }
+  
+
+
+
+.addbutton{
+
+  width: 144px; 
+  height: 60px; 
+  border-radius: 20px; 
+  background-color: #35BC8C; 
+  color: #FFFFFF; 
+  font-size: 22px; 
+  font-weight: 500; 
+  outline: none;
+
+}
+
+
+
+.custom-icon{
+  height: 34px;
+  width: 34px; background-color: #F6F6F6; 
+  border-radius: 10px; 
+  border: 1px solid #00000033 
+}
+
+
+
+.no-arrow::after {
+  display: none !important;
+}
+
+
+
+.custom-select-wrapper {
+  position: relative; /* Allows absolute positioning of the icon */
+  display: inline-flex; /* Align items horizontally */
+  width: 100%;  /* Make sure the wrapper takes full width */
+
+ 
+  
+
+}
+
+
+.custom-select-wrapper.open .form-select option{
+  background-color: #0A3B40; /* Change background when open */
+  color: white;
+  border-radius: 30px;
+}
+
+.custom-select-wrapper .form-select {
+  transition: all 0.5s ease; /* Smooth transition for styling */
+}
+
+.custom-select-wrapper.open {
+  
+ 
+  background-color: #e3f2fd;
+}

@@ -225,3 +225,69 @@ button[aria-expanded="false"]::after {
 }
 
 /*-------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+.breadcrumb {
+  background-color: transparent; /* Optional: Adjust if needed */
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb-item::before {
+  content: ''; /* Remove the default '/' separator */
+}
+
+.breadcrumb-separator {
+  font-size: 30px;
+  font-weight: 600;
+  color: black;
+  margin: 0 10px;
+}
+
+
+
+
+
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #0A3B4040;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 400px;
+}
+
+.search-container input {
+  flex: 1;
+  height: 60px;
+  border: none;
+  outline: none;
+  padding-left: 15px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.search-container button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  background-color: #FFFFFF;
+}
+
+.search-container button i {
+  font-size: 22.69px;
+  color: #000000;
+}

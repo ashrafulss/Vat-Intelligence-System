@@ -47,45 +47,7 @@
                         
 
                         <!-- Monitoring -->
-                        <!-- <li class="col list-group-item d-flex justify-content-center align-items-center moni customli"
-                            routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
-
-                            
-                            style="border-radius: 18px;  padding: 0;">
-
-                            <a routerLink="monitoring"
-                                style="border-radius: 18px;  text-decoration: none; width: 100%; height: 100%;"
-                                class="d-flex align-items-center justify-content-center dropdown-toggle" routerLinkActive
-                                #rlam="routerLinkActive"
-                                id="monitoringDropdown" data-bs-toggle="dropdown" aria-expanded="false"
-
-                                >
-
-                              
-                                <img *ngIf="!rlam.isActive" src="assets/images/monitoring.svg" alt="Monitoring"
-                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
-
-                             
-                                <img *ngIf="rlam.isActive" src="assets/images/monitoringF.svg" alt="Monitoring Active"
-                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
-
-                                <span >&nbsp;&nbsp;Monitoring</span>
-                            </a>
-
-
-                            <ul class="dropdown-menu costom-li" aria-labelledby="monitoringDropdown" 
-                            data-popper-placement="bottom-start"
-                            
-                            >
-                                <li><a class="dropdown-item" routerLink="monitoring">Purchase Comparison</a></li>
-                                <li><a class="dropdown-item" href="#">Purchase Information</a></li>
-                                <li><a class="dropdown-item" href="#">Sales Information</a></li>
-                            </ul>
-                        </li> -->
-
-
-
-                        
+                    
                     <li  class="col list-group-item d-flex justify-content-center align-items-center moni customli dropdown"
                         routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: false }"
                         [ngStyle]="isDropdownOpen
@@ -108,14 +70,14 @@
                          class="d-flex align-items-center justify-content-center dropdown-toggle"
                          routerLinkActive #rlam="routerLinkActive"
                          routerLink="/monitoring" 
-                               routerLinkActive="active" 
-                         id="monitoringDropdown">
+                         routerLinkActive="active" 
+                         id="monitDropdown">
                         
                         <!-- Conditional Icons -->
                         <img *ngIf="!rlam.isActive" src="assets/images/monitoring.svg" alt="Monitoring"
                              style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
                         
-                        <img *ngIf="rlam.isActive" src="assets/images/monitoringF.svg" alt="Monitoring Active"
+                        <img *ngIf="rlam.isActive" src="assets/images/monitoringF.svg" alt=""
                              style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
                         
                         <span>&nbsp;&nbsp;Monitoring</span>
@@ -146,31 +108,7 @@
                     
 
                         <!-- Analysis -->
-                        <!-- <li class="col list-group-item d-flex justify-content-center align-items-center"
-                            routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
-                            style="border-radius: 18px; padding: 0;">
-
-                            <a routerLink="analysis"
-                                style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
-                                class="d-flex align-items-center justify-content-center" routerLinkActive
-                                #rla="routerLinkActive">
-
-                              
-                                <img *ngIf="!rla.isActive" src="assets/images/analysis.svg" alt="Analysis"
-                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
-
-                             
-                                <img *ngIf="rla.isActive" src="assets/images/analysisF.svg" alt="Analysis Active"
-                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
-
-                                <span >&nbsp;&nbsp;Analysis</span>
-                            </a>
-
-                            
-                        </li> -->
-
-
-
+                  
                         <li  class="col list-group-item d-flex justify-content-center align-items-center moni customli dropdown"
                         routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: false }"
                         [ngStyle]="isDropdownOpenAnalysis
@@ -191,16 +129,16 @@
                       
                       <a style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
                          class="d-flex align-items-center justify-content-center dropdown-toggle"
-                         routerLinkActive #rlam="routerLinkActive"
+                         routerLinkActive #rlams="routerLinkActive"
                          routerLink="/analysis" 
                          routerLinkActive="active" 
                          id="analysisDropdown">
                         
                         <!-- Conditional Icons -->
-                        <img *ngIf="!rlam.isActive" src="assets/images/analysis.svg" alt="Monitoring"
+                        <img *ngIf="!rlams.isActive" src="assets/images/analysis.svg" alt="Monitoring"
                              style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
                         
-                        <img *ngIf="rlam.isActive" src="assets/images/analysisF.svg" alt=""
+                        <img *ngIf="rlams.isActive" src="assets/images/analysisF.svg" alt=""
                              style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
                         
                         <span>&nbsp;&nbsp;Analysis</span>
@@ -237,29 +175,7 @@
 
 
                         <!-- Mushak -->
-                        <!-- <li class="col list-group-item d-flex justify-content-center align-items-center"
-                            routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
-                            style="border-radius: 18px; padding: 0;">
-
-                            <a routerLink="mushaks"
-                                style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
-                                class="d-flex align-items-center justify-content-center" routerLinkActive
-                                #rlmu="routerLinkActive">
-
-                             
-                                <img *ngIf="!rlmu.isActive" src="assets/images/mushak.svg" alt="Mushak"
-                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
-
-                              
-                                <img *ngIf="rlmu.isActive" src="assets/images/mushakF.svg" alt="Mushak Active"
-                                    style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
-
-                                <span>&nbsp;&nbsp;Mushak</span>
-
-                               
-                            </a>
-                        </li> -->
-
+                
 
 
                         <li  class="col list-group-item d-flex justify-content-center align-items-center moni customli dropdown"
@@ -282,16 +198,16 @@
                       
                       <a style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
                          class="d-flex align-items-center justify-content-center dropdown-toggle"
-                         routerLinkActive #rlam="routerLinkActive"
+                         routerLinkActive #rlvo="routerLinkActive"
                          routerLink="/mushaks" 
                          routerLinkActive="active" 
                          id="mushaksDropdown">
                         
                         <!-- Conditional Icons -->
-                        <img *ngIf="!rlam.isActive" src="assets/images/mushak.svg" alt="Monitoring"
+                        <img *ngIf="!rlvo.isActive" src="assets/images/mushak.svg" alt="Monitoring"
                              style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
                         
-                        <img *ngIf="rlam.isActive" src="assets/images/mushakF.svg" alt="Monitoring Active"
+                        <img *ngIf="rlvo.isActive" src="assets/images/mushakF.svg" alt="Monitoring Active"
                              style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
                         
                         <span>&nbsp;&nbsp;Mushak</span>
@@ -333,21 +249,27 @@
 
                         <!-- VAT Office -->
                         <li class="col list-group-item d-flex justify-content-center align-items-center"
-                            routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: true }"
+                            routerLinkActive="active-item" [routerLinkActiveOptions]="{ exact: false }"
                             style="border-radius: 18px; padding: 0;">
 
                             <a routerLink="vat-office"
                                 style="border-radius: 18px; text-decoration: none; width: 100%; height: 100%;"
-                                class="d-flex align-items-center justify-content-center" routerLinkActive
-                                #rlvo="routerLinkActive">
+                                class="d-flex align-items-center justify-content-center" 
+                                routerLinkActive
+                                #rlvoe="routerLinkActive"
+                                routerLinkActive="active" 
+                            
+                                routerLink="/vat-office" 
+                                      
+                                >
 
                                 <!-- Conditional Icons -->
                                 <!-- Unfilled Icon -->
-                                <img *ngIf="!rlvo.isActive" src="assets/images/vatOffice.svg" alt="VAT Office"
+                                <img *ngIf="!rlvoe.isActive" src="assets/images/vatOffice.svg" alt="VAT Office"
                                     style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
 
                                 <!-- Filled Icon -->
-                                <img *ngIf="rlvo.isActive" src="assets/images/vatOfficeF.svg" alt="VAT Office Active"
+                                <img *ngIf="rlvoe.isActive" src="assets/images/vatOfficeF.svg" alt="VAT Office Active"
                                     style="max-height: 22px;" sizes="(min-width: 768px) 80px, 40px">
 
                                 <span >&nbsp;&nbsp;VAT Office</span>

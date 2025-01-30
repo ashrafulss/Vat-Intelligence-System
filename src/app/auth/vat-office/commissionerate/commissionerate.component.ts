@@ -50,7 +50,27 @@ toggleCircleCollapse(circleCode: string) {
   this.currentlyOpenCircleId = this.currentlyOpenCircleId === circleCode ? null : circleCode;
 }
 
-  
+breadcrumb: string[] = ['Commissionerate']; 
+
+updateBreadcrumb(level: string): void {
+
+  switch (level) {
+    case 'Commissionerate':
+      this.breadcrumb = ['Commissionerate'];
+      break;
+    case 'Division':
+      this.breadcrumb = ['Commissionerate', 'Division'];
+      break;
+    case 'Circle':
+      this.breadcrumb = ['Commissionerate', 'Division', 'Circle'];
+      break;
+    case 'Tax Payer':
+      this.breadcrumb = ['Commissionerate', 'Division', 'Circle', 'Tax Payer'];
+      break;
+    default:
+      this.breadcrumb = ['Commissionerate']; 
+  }
+}
 
 
   constructor(private commissionerateService: CommissionerateService) { }
@@ -310,6 +330,8 @@ toggleCircleCollapse(circleCode: string) {
         this.isProgressBarLoading = false;
         this.isLoading = false;
     });
+
+    this.updateBreadcrumb('Division');
   }
 // this one is for get all circleList
   public getCircleList( divisionOid: string, commissionerateOid: string){
@@ -336,6 +358,8 @@ toggleCircleCollapse(circleCode: string) {
         this.isProgressBarLoading = false;
         this.isLoading = false;
     });
+
+    this.updateBreadcrumb('Circle');
   }
 // this one is for get all taxpayerList
   public getTaxPayerList(circleOid:string, divisionOid:string, commissionerateOid:string){
@@ -365,6 +389,8 @@ toggleCircleCollapse(circleCode: string) {
         this.isProgressBarLoading = false;
         this.isLoading = false;
     });
+
+    this.updateBreadcrumb('Tax Payer');
   }
 
 

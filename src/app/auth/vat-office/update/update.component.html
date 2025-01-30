@@ -1,0 +1,257 @@
+                <div class="row pt-5">
+
+                  <div style="">
+
+
+                    <div class="breadcrumb pt-2 d-flex align-items-end" style=" padding: 0; margin: 0;">
+                      <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                          <li *ngFor="let item of breadcrumb; let last = last" class="breadcrumb-item d-flex align-items-center"
+                            [class.actives]="last" [attr.aria-current]="last ? 'page' : null">
+
+                            <!-- Breadcrumb link or label -->
+                            <a *ngIf="!last" href="" style="font-size: 30px; font-weight: 600; color: black; text-decoration: none;">{{
+                              item }}</a>
+                            <span *ngIf="last" style="font-size: 30px; font-weight: 600; color: black;">{{ item }}</span>
+
+                            <!-- Separator '>' for non-last items -->
+                            <span *ngIf="!last"
+                              style="margin-left: 15px; margin-right: 0px; font-weight: 600; color: black; font-size: 30px;"> > </span>
+                          </li>
+
+                        </ol>
+
+                      </nav>
+
+
+
+
+                    </div>
+
+
+                    <div class="d-flex justify-content-end gap-5" style="font-size: 20px; font-weight: 600; color: #00000066;">
+                      <div class="hovers" role="button" (click)="toggleSection('commissionerate'); updateBreadcrumb('Commissionerate')"
+                        [ngClass]="{'active': showSection === 'commissionerate'}">Commissionerate</div>
+                      <div class="hovers" role="button" (click)="toggleSection('division'); updateBreadcrumb('Division')"
+                        [ngClass]="{'active': showSection === 'division'}">Division</div>
+                      <div class="hovers" role="button" (click)="toggleSection('circle'); updateBreadcrumb('Circle')"
+                        [ngClass]="{'active': showSection === 'circle'}">Circle</div>
+                      <div class="hovers" role="button" (click)="toggleSection('taxpayer'); updateBreadcrumb('TaxPayer')"
+                        [ngClass]="{'active': showSection === 'taxpayer'}">Tax Payer</div>
+                    </div>
+
+                    <hr>
+
+
+
+                    <!-- commissionerate add form -->
+
+                    <div *ngIf="showSection === 'commissionerate'" class="d-flex flex-column align-items-center pt-3">
+
+                      <div> <span style="font-size: 26px; font-weight: 600; color: #000000;">Add Commissionerate</span></div>
+
+                      
+
+
+                      <div class="mt-4 pt-5 gap-3 d-flex flex-column"
+                        style="min-height: 314px;max-height: 90vh;  width: 1092px; max-width: 90vw; min-width: 300px;  background-color: #ffffff;border:1px solid #00000033; border-radius: 15px;">
+
+                       
+
+
+                        <div class="d-flex justify-content-center" style="width: 100%;">
+                          <div class="d-flex justify-content-start" style="width:93%;">
+                            <span style="font-size: 20px; font-weight: 500; padding-left: 20px;">Commisionerate Name</span>
+                          </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center" style="width: 100%;">
+                          <input type="text" placeholder="Enter Commissionerate Name"
+                            style="min-height: 60px; border-radius: 10px; width: 93%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+                        </div>
+
+                        <div class="d-flex justify-content-center" style="width: 100%; padding-top: 2.5%;">
+                          <div class="d-flex justify-content-end" style="width: 93%;">
+                            <button class="btn addbutton">
+                              Add&nbsp; <i class="bi bi-plus-lg"></i>
+                            </button>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                    </div>
+
+
+
+
+
+                    <!-- division add from -->
+
+                    <div *ngIf="showSection === 'division'" class="d-flex flex-column align-items-center pt-3">
+
+               
+                      
+                      <div> <span style="font-size: 26px; font-weight: 600; color: #000000;">Add Division</span></div>
+
+                      
+
+
+                      <div class="mt-4 pt-5 gap-3 d-flex flex-column"
+                        style="min-height: 314px;max-height: 90vh;  width: 100%; max-width: 100vw;  background-color: #ffffff;border:1px solid #00000033; border-radius: 15px;">
+
+                       
+
+
+                  <div class="row">
+
+
+
+                <div class="col-6">
+                  <div class="d-flex justify-content-center" style="width: 100%;">
+
+                    <div class="d-flex justify-content-start" style="width:93%;">
+                      <span style="font-size: 20px; font-weight: 500; padding-left: 20px; padding-bottom: 15px;">Division Name</span>
+                    </div>
+
+                  </div>
+
+                  <div class="d-flex justify-content-center" style="width: 100%;">
+                    <input type="text" placeholder="Enter Division Name"
+                      style="min-height: 60px; border-radius: 10px; width: 93%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+                  </div>
+                </div>
+
+
+
+                <div class="col-6">
+                  <div class="d-flex justify-content-center" style="width: 100%;">
+
+                    <div class="d-flex justify-content-start" style="width:93%;">
+                      <span style="font-size: 20px; font-weight: 500; padding-left: 20px; padding-bottom: 15px;">Commisionerate Name</span>
+                    </div>
+
+                  </div>
+
+                  <div class="d-flex justify-content-center" style="width: 100%; position: relative;">
+                 
+
+
+
+
+
+                        <div class="custom-select-wrapper d-flex align-items-center " style="width: 100%;">
+
+
+                          <!-- Custom Dropdown -->
+                         <div style="width:93%;">
+
+                          <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+                          data-bs-toggle="dropdown" aria-expanded="false"
+                          style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 103%; text-align: left; padding-right: 35px; height: 60px; border: 1px solid #00000033;">
+                          Select Commissionerate Name
+                        </button>
+                        
+                        <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style="border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width:96%;
+                                  
+                        max-height: 300px; 
+                  overflow-y: auto; 
+                  overflow-x: hidden; 
+                        ">
+                          <li >
+                            <a class="dropdown-item" href="#" style="color: white;">
+                            hell
+                            </a>
+                          </li>
+                        </ul>
+              
+                        <!-- Custom Icon for Dropdown -->
+                        <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"
+                          style="position: absolute; top: 50%; right: 50px; transform: translateY(-50%); font-size: 20px; "></i>
+                   
+                   
+                         </div>
+                          </div>
+
+
+
+
+
+
+                </div>
+                
+
+                </div>
+
+
+
+
+
+                  </div>
+
+                        
+                        
+                        
+                        <div class="d-flex justify-content-center" style="width: 101.6%; padding-top: 2.5%;">
+                          <div class="d-flex justify-content-end" style="width: 93%;">
+                            <button class="btn addbutton">
+                              Add&nbsp; <i class="bi bi-plus-lg"></i>
+                            </button>
+                          </div>
+                        </div>
+
+
+
+
+
+                      </div>
+
+
+
+
+                    </div>
+
+
+
+
+                    <!-- circle add form  -->
+
+                    <div *ngIf="showSection === 'circle'">
+
+                      <div>
+                        <h3>circle Content</h3>
+                        <p>Content related to circle</p>
+                      </div>
+                    </div>
+
+
+
+
+
+                    <!-- taxpayer add form -->
+
+                    <div *ngIf="showSection === 'taxpayer'">
+
+                      <div>
+                        <h3>taxpayer Content</h3>
+                        <p>Content related to taxpayer</p>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                </div>
+
+
+
+
+
+
+                <div class="row pt-4">
+
+
+
+
+                </div>

@@ -76,16 +76,6 @@
   
   
 
-/* Wrapper for the select and icon */
-.custom-select-wrapper {
-    position: relative; /* Allows absolute positioning of the icon */
-    display: inline-flex; /* Align items horizontally */
-    width: 100%;  /* Make sure the wrapper takes full width */
-
-   
-    
-
-  }
   
   /* Hide the default dropdown icon and style the select */
   .no-dropdown-icon {
@@ -151,7 +141,15 @@
 
 
 
+.custom-select-wrapper {
+  position: relative; /* Allows absolute positioning of the icon */
+  display: inline-flex; /* Align items horizontally */
+  width: 100%;  /* Make sure the wrapper takes full width */
 
+ 
+  
+
+}
 
 
 .custom-select-wrapper.open .form-select option{

@@ -120,15 +120,15 @@
 
 
 .list-group-item a {
-    color: #000000; /* Black color */
-    text-decoration: none; /* Optional: Remove underline */
+    color: #000000; 
+    text-decoration: none; 
     font-size: 20px;
     font-weight: 400;
   }
 
-  /* Active state */
+  
   .list-group-item.active-item a {
-    color: #FFFFFF; /* White color */
+    color: #FFFFFF;
     text-decoration: none;
     
   }
@@ -182,7 +182,6 @@
 
   #analysisDropdown.active-item {
     margin-top: 100px;
-  
 
   }
 
@@ -254,7 +253,7 @@
     content: "";
     position: absolute;
     padding: 0;
-    top: -16px;
+    top: -9.3%;
     left: 0px;
     right: 90px;
     bottom: 131px;
@@ -270,7 +269,7 @@
     content: "";
     position: absolute;
     padding: 0;
-    top: -9.5%;
+    top: -9.3%;
     
     left: 192px;
     right: 80px;

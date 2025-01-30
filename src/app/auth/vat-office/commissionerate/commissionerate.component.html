@@ -1,12 +1,75 @@
 <loading-image [is-loading]="isLoading"></loading-image>
 <div class="row pt-5">
 
-  <div class="d-flex">
+  <div >
 
-    <div class="p-2 d-flex align-items-center">
-      <h3 class="mb-0">Vat Office</h3>
+    <div class="p-2 d-flex justify-content-between align-items-center">
 
+      <!-- <h3 class="mb-0">Vat Office</h3> -->
+
+
+
+      <div class="breadcrumb p-2 d-flex align-items-center">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li
+              *ngFor="let item of breadcrumb; let last = last"
+              class="breadcrumb-item d-flex align-items-center"
+              [class.active]="last"
+              [attr.aria-current]="last ? 'page' : null"
+              >
+              
+              <!-- Breadcrumb link or label -->
+              <a *ngIf="!last" href="" style="font-size: 30px; font-weight: 600; color: black; text-decoration: none;">{{ item }}</a>
+              <span *ngIf="last" style="font-size: 30px; font-weight: 600; color: black;">{{ item }}</span>
+              
+              <!-- Separator '>' for non-last items -->
+              <span *ngIf="!last" style="margin-left: 15px; margin-right: 0px; font-weight: 600; color: black; font-size: 30px;"> > </span>
+            </li>
+          </ol>
+        </nav>
+      </div>
+      
+      
+
+
+
+
+      
+
+
+      <div class=" d-flex justify-content-between"  style=" width: 47%;">
+
+        <div class="search-container">
+          <input type="text" placeholder="Search . . .">
+
+          <button><i class="bi bi-search"></i></button>
+        </div>
+
+
+
+        <button type="button" class=" btn d-flex align-items-center justify-content-evenly"
+        style="height: 60px;width: 178px; background-color: #FFFFFF; border-radius: 15px; font-weight: 500; color: black; font-size: 20px; border:1px solid #0A3B4040"
+        [routerLink]="['/vat-office/update']" 
+        ><span style="font-size: 20px; font-weight: 500;">Upadate </span>
+       
+        <img  src="assets/images/settingIcon.svg" alt=""
+        style="max-height: 24px;" sizes="(min-width: 768px) 80px, 40px">
+      </button>
+
+
+        <button  [routerLink]="['/vat-office/alldata']"  type="button" class=" btn d-flex align-items-center justify-content-evenly"
+            style="height: 60px;width: 205px; background-color: #35BC8C; border-radius: 15px; font-weight: 500; color: white; font-size: 20px;"><span style="font-size: 20px; font-weight: 500;">Expand All </span>
+           
+            <img  src="assets/images/expand.svg" alt=""
+            style="max-height: 18px;" sizes="(min-width: 768px) 80px, 40px">
+          </button>
+
+
+        
     </div>
+    </div>
+    
 
 
   </div>
@@ -23,7 +86,7 @@
 
   <div 
     class="accordion" id="commissionerateList"
-    [ngStyle]="{ height: commissionerateList.length > 0 ? '600px' : 'auto', 'overflow-y': 'auto' }">
+    [ngStyle]="{ height: commissionerateList.length > 0 ? '650px' : 'auto', 'overflow-y': 'auto' }">
 
     <div 
     class="accordion-item" 

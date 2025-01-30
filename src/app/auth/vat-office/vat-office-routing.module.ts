@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { VatOfficeComponent } from './vat-office/vat-office.component';
 import { CommissionerateComponent } from './commissionerate/commissionerate.component';
 import { AllExpandComponent } from './all-expand/all-expand.component';
+import { UpdateComponent } from './update/update.component';
 
 
 
@@ -25,17 +26,22 @@ const routes: Routes = [
       {
         path: 'commissionerate',
         component: CommissionerateComponent,
-        data: { animation: 'CommissioneratePage' }  // Set the animation name for this route
+      
       },
       {
         path: 'alldata',
         component: AllExpandComponent,
-        data: { animation: 'AllDataPage' }  // Set the animation name for this route
+      
+      },
+      {
+        path: 'update',
+        component: UpdateComponent,
+      
       },
       {
         path: '**',
         component: CommissionerateComponent,
-        data: { animation: 'CommissioneratePage' }  // Default animation if path doesn't match
+    
       }
     ]
   }
