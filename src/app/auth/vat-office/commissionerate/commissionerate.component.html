@@ -97,16 +97,16 @@
 
 
       <button 
-        [id]="'heading' + commissioner.code" 
+        [id]="'heading' + commissioner.id" 
         class="accordion-button" 
         type="button" 
         data-bs-toggle="collapse"
-        [attr.data-bs-target]="'#collapseCommissioner' + commissioner.code"
-        [attr.aria-controls]="'collapseCommissioner' + commissioner.code"
-        [attr.aria-expanded]="isCollapsed[commissioner.code] ? 'false' : 'true'"
+        [attr.data-bs-target]="'#collapseCommissioner' + commissioner.id"
+        [attr.aria-controls]="'collapseCommissioner' + commissioner.id"
+        [attr.aria-expanded]="isCollapsed[commissioner.id] ? 'false' : 'true'"
         (click)="getDivisionList(commissioner.id); 
-        toggleCommissionerCollapse(commissioner.code)" 
-        [ngStyle]="{'border-radius': currentlyOpenCommissionerId === commissioner.code ? '20px 20px 0 0' : '20px'}"
+        toggleCommissionerCollapse(commissioner.id) "  
+        [ngStyle]="{'border-radius': currentlyOpenCommissionerId === commissioner.id ? '20px 20px 0 0' : '20px'}"
             
             >
 
@@ -123,7 +123,7 @@
           <p class="p2">{{ commissioner.name }}</p>
         </div>
 
-        <div *ngIf="currentlyOpenCommissionerId !== commissioner.code"
+        <div *ngIf="currentlyOpenCommissionerId !== commissioner.id"
           class="d-flex align-items-center justify-content-center dropDownCustomIcon"
           style="background-color: #FFE5EC;">
           <!-- <i class="bi bi-search" style="font-size: 22px;"></i> -->
@@ -131,7 +131,7 @@
             style="transform: rotate(180deg);">
         </div>
 
-        <div *ngIf="currentlyOpenCommissionerId === commissioner.code"
+        <div *ngIf="currentlyOpenCommissionerId === commissioner.id"
           class="d-flex align-items-center justify-content-center dropDownCustomIcon"
           style="background-color: #FFE5EC;">
           <img src="assets/images/droparrow.svg" alt="" class="img-fluid">
@@ -142,8 +142,8 @@
 
 
 
-      <div [id]="'collapseCommissioner' + commissioner.code" class="accordion-collapse collapse"
-        [attr.aria-labelledby]="'heading' + commissioner.code" [attr.data-bs-parent]="'#commissionerateList'">
+      <div [id]="'collapseCommissioner' + commissioner.id" class="accordion-collapse collapse"
+        [attr.aria-labelledby]="'heading' + commissioner.id" [attr.data-bs-parent]="'#commissionerateList'">
 
 
         <div *ngIf="divisionList.length === 0" class="text-center pt-3 ">
@@ -154,7 +154,7 @@
 
 
 
-          <div class="accordion" [id]="'divisionList' + commissioner.code">
+          <div class="accordion" [id]="'divisionList' + commissioner.id">
 
             <div class="timeline pr-4">
 
@@ -175,21 +175,21 @@
 
 
                     <button 
-                      [id]="'heading' + division.code" 
+                      [id]="'heading' + division.id" 
                       class="accordion-button"
                       type="button" 
                       data-bs-toggle="collapse"
-                      [attr.data-bs-target]="'#collapseDivision' + division.code"
-                      [attr.aria-controls]="'collapseDivision' + division.code"
-                      [attr.aria-expanded]="isCollapsed[division.code] ? 'false' : 'true'" 
+                      [attr.data-bs-target]="'#collapseDivision' + division.id"
+                      [attr.aria-controls]="'collapseDivision' + division.id"
+                      [attr.aria-expanded]="isCollapsed[division.id] ? 'false' : 'true'" 
                       (click)="getCircleList(division.id, commissioner.id); 
-                      toggleDivisionCollapse(division.code)"
-                      [ngStyle]="{'border-radius': currentlyOpenDivisionId === division.code ? '20px 20px 0 0' : '20px'
+                      toggleDivisionCollapse(division.id)"
+                      [ngStyle]="{'border-radius': currentlyOpenDivisionId === division.id ? '20px 20px 0 0' : '20px'
                            }">
 
 
 
-                      <!-- [attr.aria-expanded]="currentlyOpenDivisionId === division.code"  -->
+                    
                       <div class="border-custom">
                         <p class="code" style=" color: #B05331;">Code : {{ division.code }}</p>
                       </div>
@@ -200,17 +200,17 @@
                       </div>
 
                       <div>
-
-                        <button *ngIf="currentlyOpenDivisionId === division.code"
+<!-- 
+                        <button *ngIf="currentlyOpenDivisionId === division.id"
                           class="d-flex align-items-center justify-content-center addbutton">
                           <i class="bi bi-plus-lg"></i> &nbsp; Add Circle
-                        </button>
+                        </button> -->
                       </div>
 
 
 
 
-                      <div *ngIf="currentlyOpenDivisionId !== division.code"
+                      <div *ngIf="currentlyOpenDivisionId !== division.id"
                         class="d-flex align-items-center justify-content-center dropDownCustomIcon"
                         style=" background-color: #FFECE5;">
                         <!-- <i class="bi bi-search" style="font-size: 22px;"></i> -->
@@ -218,7 +218,7 @@
                           style="transform: rotate(180deg);">
                       </div>
 
-                      <div *ngIf="currentlyOpenDivisionId === division.code" style=" background-color: #FFECE5;"
+                      <div *ngIf="currentlyOpenDivisionId === division.id" style=" background-color: #FFECE5;"
                         class="d-flex align-items-center justify-content-center dropDownCustomIcon">
                         <img src="assets/images/droparrow.svg" alt="" class="img-fluid">
                       </div>
@@ -228,9 +228,9 @@
 
 
 
-                    <div [id]="'collapseDivision' + division.code" class="accordion-collapse collapse"
-                      [attr.aria-labelledby]="'headingDivision' + division.code"
-                      [attr.data-bs-parent]="'#divisionList' + commissioner.code">
+                    <div [id]="'collapseDivision' + division.id" class="accordion-collapse collapse"
+                      [attr.aria-labelledby]="'headingDivision' + division.id"
+                      [attr.data-bs-parent]="'#divisionList' + commissioner.id">
 
 
 
@@ -242,7 +242,7 @@
                       <div class="accordion-body px-2">
 
 
-                        <div class="accordion" [id]="'circleList' + division.code">
+                        <div class="accordion" [id]="'circleList' + division.id">
 
                           <div class="timeline ">
 
@@ -259,16 +259,16 @@
 
 
                                   <button 
-                                    [id]="'heading' + circle.code" 
+                                    [id]="'heading' + circle.id" 
                                     class="accordion-button" 
                                     type="button" 
                                     data-bs-toggle="collapse"
-                                    [attr.data-bs-target]="'#collapseCircle' + circle.code"
-                                    [attr.aria-controls]="'collapseCircle' + circle.code"
-                                    [attr.aria-expanded]="isCollapsed[circle.code] ? 'false' : 'true'"
+                                    [attr.data-bs-target]="'#collapseCircle' + circle.id"
+                                    [attr.aria-controls]="'collapseCircle' + circle.id"
+                                    [attr.aria-expanded]="isCollapsed[circle.id] ? 'false' : 'true'"
                                     (click)="getTaxPayerList(circle.id , division.id, commissioner.id ); 
-                                    toggleCircleCollapse(circle.code)"
-                                     [ngStyle]="{'border-radius': currentlyOpenCircleId === circle.code ? '20px 20px 0 0' : '20px'}"
+                                    toggleCircleCollapse(circle.id)"
+                                     [ngStyle]="{'border-radius': currentlyOpenCircleId === circle.id ? '20px 20px 0 0' : '20px'}"
                                     
                                     
                                     >
@@ -285,7 +285,7 @@
                                     </div>
 
 
-                                    <div *ngIf="currentlyOpenCircleId !==  circle.code"
+                                    <div *ngIf="currentlyOpenCircleId !==  circle.id"
                                       class="d-flex align-items-center justify-content-center dropDownCustomIcon"
                                       style=" background-color: #FFF4DE;">
                                       <!-- <i class="bi bi-search" style="font-size: 22px;"> </i> -->
@@ -293,7 +293,7 @@
                                         style="transform: rotate(180deg);">
                                     </div>
 
-                                    <div *ngIf="currentlyOpenCircleId ===  circle.code"
+                                    <div *ngIf="currentlyOpenCircleId ===  circle.id"
                                       class="d-flex align-items-center justify-content-center dropDownCustomIcon"
                                       style=" background-color: #FFF4DE;">
                                       <img src="assets/images/droparrow.svg" alt="" class="img-fluid">
@@ -304,9 +304,11 @@
 
 
 
-                                  <div [id]="'collapseCircle' + circle.code" class="accordion-collapse collapse"
-                                    [attr.aria-labelledby]="'headingCircle' + circle.code"
-                                    [attr.data-bs-parent]="'#circleList' + division.code">
+                                  <div 
+                                  [id]="'collapseCircle' + circle.id" 
+                                  class="accordion-collapse collapse"
+                                    [attr.aria-labelledby]="'headingCircle' + circle.id"
+                                    [attr.data-bs-parent]="'#circleList' + division.id">
 
 
                                     <div *ngIf="taxPayerList.length === 0" class="text-center p-4">

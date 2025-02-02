@@ -1,257 +1,361 @@
-                <div class="row pt-5">
+<div class="row pt-5">
 
-                  <div style="">
-
-
-                    <div class="breadcrumb pt-2 d-flex align-items-end" style=" padding: 0; margin: 0;">
-                      <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0">
-                          <li *ngFor="let item of breadcrumb; let last = last" class="breadcrumb-item d-flex align-items-center"
-                            [class.actives]="last" [attr.aria-current]="last ? 'page' : null">
-
-                            <!-- Breadcrumb link or label -->
-                            <a *ngIf="!last" href="" style="font-size: 30px; font-weight: 600; color: black; text-decoration: none;">{{
-                              item }}</a>
-                            <span *ngIf="last" style="font-size: 30px; font-weight: 600; color: black;">{{ item }}</span>
-
-                            <!-- Separator '>' for non-last items -->
-                            <span *ngIf="!last"
-                              style="margin-left: 15px; margin-right: 0px; font-weight: 600; color: black; font-size: 30px;"> > </span>
-                          </li>
-
-                        </ol>
-
-                      </nav>
+  <div style="">
 
 
+    <div class="breadcrumb pt-2 d-flex align-items-end" style=" padding: 0; margin: 0;">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li *ngFor="let item of breadcrumb; let last = last" class="breadcrumb-item d-flex align-items-center"
+            [class.actives]="last" [attr.aria-current]="last ? 'page' : null">
 
+            <!-- Breadcrumb link or label -->
+            <a *ngIf="!last" href="" style="font-size: 30px; font-weight: 600; color: black; text-decoration: none;">{{
+              item }}</a>
+            <span *ngIf="last" style="font-size: 30px; font-weight: 600; color: black;">{{ item }}</span>
 
-                    </div>
+            <!-- Separator '>' for non-last items -->
+            <span *ngIf="!last"
+              style="margin-left: 15px; margin-right: 0px; font-weight: 600; color: black; font-size: 30px;"> > </span>
+          </li>
 
+        </ol>
 
-                    <div class="d-flex justify-content-end gap-5" style="font-size: 20px; font-weight: 600; color: #00000066;">
-                      <div class="hovers" role="button" (click)="toggleSection('commissionerate'); updateBreadcrumb('Commissionerate')"
-                        [ngClass]="{'active': showSection === 'commissionerate'}">Commissionerate</div>
-                      <div class="hovers" role="button" (click)="toggleSection('division'); updateBreadcrumb('Division')"
-                        [ngClass]="{'active': showSection === 'division'}">Division</div>
-                      <div class="hovers" role="button" (click)="toggleSection('circle'); updateBreadcrumb('Circle')"
-                        [ngClass]="{'active': showSection === 'circle'}">Circle</div>
-                      <div class="hovers" role="button" (click)="toggleSection('taxpayer'); updateBreadcrumb('TaxPayer')"
-                        [ngClass]="{'active': showSection === 'taxpayer'}">Tax Payer</div>
-                    </div>
-
-                    <hr>
+      </nav>
 
 
 
-                    <!-- commissionerate add form -->
 
-                    <div *ngIf="showSection === 'commissionerate'" class="d-flex flex-column align-items-center pt-3">
-
-                      <div> <span style="font-size: 26px; font-weight: 600; color: #000000;">Add Commissionerate</span></div>
-
-                      
+    </div>
 
 
-                      <div class="mt-4 pt-5 gap-3 d-flex flex-column"
-                        style="min-height: 314px;max-height: 90vh;  width: 1092px; max-width: 90vw; min-width: 300px;  background-color: #ffffff;border:1px solid #00000033; border-radius: 15px;">
+    <div class="d-flex justify-content-end gap-5" style="font-size: 20px; font-weight: 600; color: #00000066;">
+      <div class="hovers" role="button" (click)="toggleSection('commissionerate'); updateBreadcrumb('Commissionerate')"
+        [ngClass]="{'active': showSection === 'commissionerate'}">Commissionerate</div>
+      <div class="hovers" role="button" (click)="toggleSection('division'); updateBreadcrumb('Division')"
+        [ngClass]="{'active': showSection === 'division'}">Division</div>
+      <div class="hovers" role="button" (click)="toggleSection('circle'); updateBreadcrumb('Circle')"
+        [ngClass]="{'active': showSection === 'circle'}">Circle</div>
+      <div class="hovers" role="button" (click)="toggleSection('taxpayer'); updateBreadcrumb('TaxPayer')"
+        [ngClass]="{'active': showSection === 'taxpayer'}">Tax Payer</div>
+    </div>
 
-                       
+    <hr>
 
 
-                        <div class="d-flex justify-content-center" style="width: 100%;">
-                          <div class="d-flex justify-content-start" style="width:93%;">
-                            <span style="font-size: 20px; font-weight: 500; padding-left: 20px;">Commisionerate Name</span>
-                          </div>
+
+    <!-- commissionerate add form -->
+
+                    <div *ngIf="showSection === 'commissionerate'" class=" pt-1">
+
+
+
+                      <div class="d-flex justify-content-evenly align-items-center px-4"
+                        style="height: 12vh; background-color: #ffffff; border-radius: 15px; border: 1px solid #0A3B4040;">
+
+                        <div class="col-3 d-flex justify-content-start"><span
+                            style="font-size: 26px; font-weight: 600; color: #000000;">Add Commissionerate</span></div>
+
+
+                        <div class="col"> <input type="text" placeholder="Enter Commissionerate Name"
+                            style="min-height: 60px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
                         </div>
 
-                        <div class="d-flex justify-content-center" style="width: 100%;">
-                          <input type="text" placeholder="Enter Commissionerate Name"
-                            style="min-height: 60px; border-radius: 10px; width: 93%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+
+                        <div class="col-2 d-flex justify-content-end">
+                          <button class="btn addbutton">
+                            Add&nbsp; <i class="bi bi-plus-lg"></i>
+                          </button>
                         </div>
 
-                        <div class="d-flex justify-content-center" style="width: 100%; padding-top: 2.5%;">
-                          <div class="d-flex justify-content-end" style="width: 93%;">
-                            <button class="btn addbutton">
-                              Add&nbsp; <i class="bi bi-plus-lg"></i>
-                            </button>
-                          </div>
-                        </div>
 
                       </div>
 
 
-                    </div>
+
+                      <!-- table start here -->
 
 
+                      <div class="pt-4"
+                      style="">
 
+                   
+                        <table id="example" style="width: 100%; ">
+                            <thead class="" >
+                                <tr >
+                                    <th class="px-4" style="font-weight: 600; font-size: 24px;" colspan="3">List of Commissionerates</th>
+                                 
 
+                                
+                                    <th    style="height: 10vh; padding-left: 50px;" class="d-flex justify-content-end">
+                                      
+                                      <input type="text" placeholder="Search . . ." style="border-radius: 15px; height: 60px;border: 1px solid #0A3B4040; outline: none; width: 397px;">
 
-                    <!-- division add from -->
-
-                    <div *ngIf="showSection === 'division'" class="d-flex flex-column align-items-center pt-3">
-
-               
-                      
-                      <div> <span style="font-size: 26px; font-weight: 600; color: #000000;">Add Division</span></div>
-
-                      
-
-
-                      <div class="mt-4 pt-5 gap-3 d-flex flex-column"
-                        style="min-height: 314px;max-height: 90vh;  width: 100%; max-width: 100vw;  background-color: #ffffff;border:1px solid #00000033; border-radius: 15px;">
-
-                       
-
-
-                  <div class="row">
-
-
-
-                <div class="col-6">
-                  <div class="d-flex justify-content-center" style="width: 100%;">
-
-                    <div class="d-flex justify-content-start" style="width:93%;">
-                      <span style="font-size: 20px; font-weight: 500; padding-left: 20px; padding-bottom: 15px;">Division Name</span>
-                    </div>
-
-                  </div>
-
-                  <div class="d-flex justify-content-center" style="width: 100%;">
-                    <input type="text" placeholder="Enter Division Name"
-                      style="min-height: 60px; border-radius: 10px; width: 93%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
-                  </div>
-                </div>
-
-
-
-                <div class="col-6">
-                  <div class="d-flex justify-content-center" style="width: 100%;">
-
-                    <div class="d-flex justify-content-start" style="width:93%;">
-                      <span style="font-size: 20px; font-weight: 500; padding-left: 20px; padding-bottom: 15px;">Commisionerate Name</span>
-                    </div>
-
-                  </div>
-
-                  <div class="d-flex justify-content-center" style="width: 100%; position: relative;">
-                 
-
-
-
-
-
-                        <div class="custom-select-wrapper d-flex align-items-center " style="width: 100%;">
-
-
-                          <!-- Custom Dropdown -->
-                         <div style="width:93%;">
-
-                          <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
-                          data-bs-toggle="dropdown" aria-expanded="false"
-                          style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 103%; text-align: left; padding-right: 35px; height: 60px; border: 1px solid #00000033;">
-                          Select Commissionerate Name
-                        </button>
+                                      <button style="background: none;
+                                      border: none;
+                                      cursor: pointer;
+                                      padding: 10px 15px;
+                                      background-color: #FFFFFF;"><i class="bi bi-search" style="border: none; background: none; background-color: #ffffff; padding-right: -20px;"></i></button>
+                                    
+                                    </th>
+                                    
+                                </tr>
+                                <tr style="font-weight: 500; font-size: 20px;">
+                                  <th class="px-4" style="font-weight: 500; font-size: 20px;">Code</th>
+                                  <th style="font-weight: 500; font-size: 20px;">Commissionerate Name</th>
+                                  <th style="font-weight: 500; font-size: 20px;">Date Added</th>
+                               
+                                  <th class="d-flex gap-3 justify-content-end px-5">Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody >
+                                <tr style="font-size: 20px; font-weight: 400;">
+                                    <td id="slid">00</td>
+                                    <td>Customs, Excise and VAT Commissionerate, Dhaka (North)</td>
+                                    <td>30 Jan 2025</td>
+                                   
+                                    <td class="d-flex gap-3 justify-content-end px-5">
+                                      <div role="button">   <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
+                                      <div role="button">   <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
+                                    </td>
+                                </tr>
+                                <tr style="font-size: 20px; font-weight: 400;">
+                                  <td id="slid">01</td>
+                                  <td>Customs, Excise and VAT Commissionerate, Dhaka (North)</td>
+                                  <td>30 Jan 2025</td>
+                                 
+                                  <td class="d-flex gap-3 justify-content-end px-5">
+                                    <div role="button">   <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
+                                    <div role="button">   <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
+                                  </td>
+                              </tr>
+                              <tr style="font-size: 20px; font-weight: 400;">
+                                <td id="slid">02</td>
+                                <td>Customs, Excise and VAT Commissionerate, Dhaka (North)</td>
+                                <td>30 Jan 2025</td>
+                               
+                                <td class="d-flex gap-3 justify-content-end px-5">
+                                  <div role="button">   <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
+                                  <div role="button">   <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
+                                </td>
+                            </tr>
+                            <tr style="font-size: 20px; font-weight: 400;">
+                              <td id="slid">03</td>
+                              <td>Customs, Excise and VAT Commissionerate, Dhaka (North)</td>
+                              <td>30 Jan 2025</td>
+                             
+                              <td class="d-flex gap-3 justify-content-end px-5">
+                                <div role="button">   <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
+                                <div role="button">   <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
+                              </td>
+                          </tr>
+                          <tr style="font-size: 20px; font-weight: 400;">
+                            <td id="slid">04</td>
+                            <td>Customs, Excise and VAT Commissionerate, Dhaka (North)</td>
+                            <td>30 Jan 2025</td>
+                           
+                            <td class="d-flex gap-3 justify-content-end px-5">
+                              <div role="button">   <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
+                              <div role="button">   <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
+                            </td>
+                        </tr>
+                        <tr style="font-size: 20px; font-weight: 400;">
+                          <td id="slid">05</td>
+                          <td>Customs, Excise and VAT Commissionerate, Dhaka (North)</td>
+                          <td>30 Jan 2025</td>
+                         
+                          <td class="d-flex gap-3 justify-content-end px-5">
+                            <div role="button">   <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
+                            <div role="button">   <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
+                          </td>
+                      </tr>
                         
-                        <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style="border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width:96%;
+                            
+                            </tbody>
+                        </table>
+            
+                    </div>
+
+
+                   
+
+
+                    </div>
+
+
+
+
+
+
+
+    <!-- division add from -->
+
+    <div *ngIf="showSection === 'division'" class="d-flex flex-column align-items-center pt-3">
+
+
+
+      <div> <span style="font-size: 26px; font-weight: 600; color: #000000;">Add Division</span></div>
+
+
+
+
+      <div class="mt-4 pt-5 gap-3 d-flex flex-column"
+        style="min-height: 314px;max-height: 90vh;  width: 100%; max-width: 100vw;  background-color: #ffffff;border:1px solid #00000033; border-radius: 15px;">
+
+
+
+
+        <div class="row">
+
+
+
+          <div class="col-6">
+            <div class="d-flex justify-content-center" style="width: 100%;">
+
+              <div class="d-flex justify-content-start" style="width:93%;">
+                <span style="font-size: 20px; font-weight: 500; padding-left: 20px; padding-bottom: 15px;">Division
+                  Name</span>
+              </div>
+
+            </div>
+
+            <div class="d-flex justify-content-center" style="width: 100%;">
+              <input type="text" placeholder="Enter Division Name"
+                style="min-height: 60px; border-radius: 10px; width: 93%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+            </div>
+          </div>
+
+
+
+          <div class="col-6">
+            <div class="d-flex justify-content-center" style="width: 100%;">
+
+              <div class="d-flex justify-content-start" style="width:93%;">
+                <span
+                  style="font-size: 20px; font-weight: 500; padding-left: 20px; padding-bottom: 15px;">Commisionerate
+                  Name</span>
+              </div>
+
+            </div>
+
+            <div class="d-flex justify-content-center" style="width: 100%; position: relative;">
+
+
+
+
+
+
+              <div class="custom-select-wrapper d-flex align-items-center " style="width: 100%;">
+
+
+                <!-- Custom Dropdown -->
+                <div style="width:93%;">
+
+                  <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown" aria-expanded="false"
+                    style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 103%; text-align: left; padding-right: 35px; height: 60px; border: 1px solid #00000033;">
+                    Select Commissionerate Name
+                  </button>
+
+                  <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style="border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width:96%;
                                   
                         max-height: 300px; 
                   overflow-y: auto; 
                   overflow-x: hidden; 
                         ">
-                          <li >
-                            <a class="dropdown-item" href="#" style="color: white;">
-                            hell
-                            </a>
-                          </li>
-                        </ul>
-              
-                        <!-- Custom Icon for Dropdown -->
-                        <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"
-                          style="position: absolute; top: 50%; right: 50px; transform: translateY(-50%); font-size: 20px; "></i>
-                   
-                   
-                         </div>
-                          </div>
+                    <li>
+                      <a class="dropdown-item" href="#" style="color: white;">
+                        hell
+                      </a>
+                    </li>
+                  </ul>
 
-
-
-
+                  <!-- Custom Icon for Dropdown -->
+                  <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"
+                    style="position: absolute; top: 50%; right: 50px; transform: translateY(-50%); font-size: 20px; "></i>
 
 
                 </div>
-                
-
-                </div>
-
-
-
-
-
-                  </div>
-
-                        
-                        
-                        
-                        <div class="d-flex justify-content-center" style="width: 101.6%; padding-top: 2.5%;">
-                          <div class="d-flex justify-content-end" style="width: 93%;">
-                            <button class="btn addbutton">
-                              Add&nbsp; <i class="bi bi-plus-lg"></i>
-                            </button>
-                          </div>
-                        </div>
-
-
-
-
-
-                      </div>
-
-
-
-
-                    </div>
-
-
-
-
-                    <!-- circle add form  -->
-
-                    <div *ngIf="showSection === 'circle'">
-
-                      <div>
-                        <h3>circle Content</h3>
-                        <p>Content related to circle</p>
-                      </div>
-                    </div>
-
-
-
-
-
-                    <!-- taxpayer add form -->
-
-                    <div *ngIf="showSection === 'taxpayer'">
-
-                      <div>
-                        <h3>taxpayer Content</h3>
-                        <p>Content related to taxpayer</p>
-                      </div>
-                    </div>
-
-
-                  </div>
-
-                </div>
+              </div>
 
 
 
 
 
 
-                <div class="row pt-4">
+            </div>
+
+
+          </div>
 
 
 
 
-                </div>
+
+        </div>
+
+
+
+
+        <div class="d-flex justify-content-center" style="width: 101.6%; padding-top: 2.5%;">
+          <div class="d-flex justify-content-end" style="width: 93%;">
+            <button class="btn addbutton">
+              Add&nbsp; <i class="bi bi-plus-lg"></i>
+            </button>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+    <!-- circle add form  -->
+
+    <div *ngIf="showSection === 'circle'">
+
+      <div>
+        <h3>circle Content</h3>
+        <p>Content related to circle</p>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- taxpayer add form -->
+
+    <div *ngIf="showSection === 'taxpayer'">
+
+      <div>
+        <h3>taxpayer Content</h3>
+        <p>Content related to taxpayer</p>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+<div class="row pt-4">
+
+
+
+
+</div>

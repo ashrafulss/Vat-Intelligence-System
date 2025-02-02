@@ -96,3 +96,75 @@
  
   background-color: #e3f2fd;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+#example thead tr{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  
+}
+
+#example tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+/* Add padding to header cells */
+#example th {
+  padding: 10px 10px; /* Adjust padding as needed */
+  text-align: left; /* Optional: Align text to the left */
+  background-color: #FFFFFF; /* Optional: Add a light background for the header */
+}
+
+/* Add padding to data cells */
+#example td {
+  padding: 10px;  /* Adjust padding as needed */
+  background-color: #FFFFFF;
+}
+
+#slid{
+  padding-left: 30px !important;
+}
+  
+
+
+/* Style for rounded corners */
+#example {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border-radius: 15px;
+  overflow: hidden; /* Ensure rounded corners are visible */
+  
+}
+
+
+
+
+
+
+
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-container .ngx-pagination {
+  display: flex;
+  gap: 10px;
+  font-size: 18px;
+}
+
+.pagination-container .ngx-pagination .current {
+  font-weight: bold;
+  color: #043d40;
+}

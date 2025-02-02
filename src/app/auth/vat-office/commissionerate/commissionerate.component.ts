@@ -29,24 +29,24 @@ export class CommissionerateComponent {
 
 /// Toggle Commissioner Collapse
 toggleCommissionerCollapse(commissionerCode: string) {
-  // Toggle between opening and closing
+
   this.currentlyOpenCommissionerId = this.currentlyOpenCommissionerId === commissionerCode ? null : commissionerCode;
-  // Close the division and circle if the commissioner is collapsed
+
   this.currentlyOpenDivisionId = null;
   this.currentlyOpenCircleId = null;
 }
 
 // Toggle Division Collapse
 toggleDivisionCollapse(divisionCode: string) {
-  // Toggle between opening and closing
+
   this.currentlyOpenDivisionId = this.currentlyOpenDivisionId === divisionCode ? null : divisionCode;
-  // Close the circle if the division is collapsed
+
   this.currentlyOpenCircleId = null;
 }
 
 // Toggle Circle Collapse
 toggleCircleCollapse(circleCode: string) {
-  // Toggle between opening and closing
+ 
   this.currentlyOpenCircleId = this.currentlyOpenCircleId === circleCode ? null : circleCode;
 }
 
@@ -294,19 +294,19 @@ updateBreadcrumb(level: string): void {
         this.isLoading = false;
     });
   }
+
+
+
 // this one is for get all divisionList
   public getDivisionList(commisionarateID: string){
-    console.log("Calling ");
-    
-    // this.isLoading = true;
+  
     this.commissionerateService.getDivisions(commisionarateID).subscribe(res => {
         if (res.status === 200) {
           this.divisionList = res.body;
-          // setTimeout(()=>{this.isLoading = false;}, 2000);
+        
           return;
         }
-        // setTimeout(()=>{this.isLoading = false;}, 2000);
-        
+       
     },
     err => {
         this.isProgressBarLoading = false;
@@ -333,15 +333,19 @@ updateBreadcrumb(level: string): void {
 
     this.updateBreadcrumb('Division');
   }
+
+
+
+
 // this one is for get all circleList
   public getCircleList( divisionOid: string, commissionerateOid: string){
     this.commissionerateService.getCircles(divisionOid,commissionerateOid).subscribe(res => {
       if (res.status === 200) {
         this.circleList = res.body;
-        // setTimeout(()=>{this.isLoading = false;}, 2000);
+        
         return;
       }
-      // setTimeout(()=>{this.isLoading = false;}, 2000);
+      
     },
     err => {
         this.isProgressBarLoading = false;
@@ -361,16 +365,19 @@ updateBreadcrumb(level: string): void {
 
     this.updateBreadcrumb('Circle');
   }
+
+
+
 // this one is for get all taxpayerList
   public getTaxPayerList(circleOid:string, divisionOid:string, commissionerateOid:string){
     this.commissionerateService.getTaxPayers(circleOid, divisionOid, commissionerateOid).subscribe(res => {
        
       if (res.status === 200) {
         this.taxPayerList = res.body;
-        // setTimeout(()=>{this.isLoading = false;}, 2000);
+       
         return;
       }
-      // setTimeout(()=>{this.isLoading = false;}, 2000);
+     
 
 
     },
@@ -378,7 +385,7 @@ updateBreadcrumb(level: string): void {
         this.isProgressBarLoading = false;
         this.isLoading = false;
         if (err.status === 404) {
-            this.circleList = [];
+            this.taxPayerList = [];
         }
 
         if (err.error && err.error.message) {
@@ -392,6 +399,12 @@ updateBreadcrumb(level: string): void {
 
     this.updateBreadcrumb('Tax Payer');
   }
+
+
+
+
+
+
 
 
 

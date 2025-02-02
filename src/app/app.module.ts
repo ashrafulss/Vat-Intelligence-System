@@ -14,6 +14,7 @@ import { SessionService } from './common/services/session.service';
 import { OAuth2Service } from './common/services/oauth.service';
 import { TokenInterceptorService } from './common/services/token-interceptor.service';
 import { LoadingImageModule } from './common/components/loading-image/loading-image.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -29,7 +30,9 @@ import { LoadingImageModule } from './common/components/loading-image/loading-im
     AppRoutingModule,
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
-    LoadingImageModule
+    LoadingImageModule,
+    NgxPaginationModule
+    
      
   ],
   providers: [

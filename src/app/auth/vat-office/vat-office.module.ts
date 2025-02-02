@@ -7,6 +7,7 @@ import { CommissionerateComponent } from './commissionerate/commissionerate.comp
 import { AllExpandComponent } from './all-expand/all-expand.component';
 import { LoadingImageModule } from '../../common/components/loading-image/loading-image.module';
 import { UpdateComponent } from './update/update.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { UpdateComponent } from './update/update.component';
   imports: [
     CommonModule,
     VatOfficeRoutingModule,
-    LoadingImageModule
+    LoadingImageModule,
+    NgxPaginationModule
   ]
 })
 export class VatOfficeModule { }

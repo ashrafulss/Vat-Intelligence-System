@@ -63,6 +63,24 @@ showSection: string = '';  // Variable to track the current section to show
   }
 
 
+
+
+
+
+
+
+  currentPage = 1; // Track current page
+  itemsPerPage = 5; // Number of items per page
+  commissionerates = [
+    { code: '00', name: 'Customs, Excise and VAT Commissionerate, Dhaka (North)', dateAdded: '30 Jan 2025' },
+    { code: '01', name: 'Customs, Excise and VAT Commissionerate, Dhaka (South)', dateAdded: '29 Jan 2025' },
+    { code: '02', name: 'Customs, Excise and VAT Commissionerate, Chattogram', dateAdded: '28 Jan 2025' },
+    { code: '03', name: 'Customs, Excise and VAT Commissionerate, Khulna', dateAdded: '27 Jan 2025' },
+    { code: '04', name: 'Customs, Excise and VAT Commissionerate, Rajshahi', dateAdded: '26 Jan 2025' },
+    { code: '05', name: 'Customs, Excise and VAT Commissionerate, Sylhet', dateAdded: '25 Jan 2025' }
+  ];
+
+
   
 }
 
