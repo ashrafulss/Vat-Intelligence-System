@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { RouterOutlet } from '@angular/router';
+import { CommissionerateService } from '../services/commissionerate.service';
 
 @Component({
   selector: 'app-vat-office',
@@ -11,6 +12,6 @@ import { RouterOutlet } from '@angular/router';
 export class VatOfficeComponent {
 
 
- 
+
 
 }
