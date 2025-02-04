@@ -8,6 +8,7 @@ import { AllExpandComponent } from './all-expand/all-expand.component';
 import { LoadingImageModule } from '../../common/components/loading-image/loading-image.module';
 import { UpdateComponent } from './update/update.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +23,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     VatOfficeRoutingModule,
     LoadingImageModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
+  
   ]
 })
 export class VatOfficeModule { }

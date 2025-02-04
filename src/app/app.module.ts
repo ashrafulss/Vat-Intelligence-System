@@ -17,6 +17,7 @@ import { LoadingImageModule } from './common/components/loading-image/loading-im
 import { NgxPaginationModule } from 'ngx-pagination';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     LoadingImageModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    
+        
     
      
   ],

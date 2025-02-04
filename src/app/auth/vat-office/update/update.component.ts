@@ -31,11 +31,15 @@ export class UpdateComponent implements OnInit {
    public pageSize: number = 5;     // Number of items per page
    public pageSizes: number =2;
  
+
+
+
+   
    public getCommissionerateList(){
 
    
     
-     this.commissionerateService.dataArray().subscribe(res => {
+     this.commissionerateService.getCommissionerArray().subscribe(res => {
    
          if (res.status === 200) {
              this.allData = res.body;
@@ -62,7 +66,7 @@ export class UpdateComponent implements OnInit {
    public getDivisionList(){
 
 
-    this.commissionerateService.divisionArray().subscribe(res => {
+    this.commissionerateService.getDivisionArray().subscribe(res => {
   
         if (res.status === 200) {
             this.divisionAllData = res.body;
@@ -91,7 +95,7 @@ export class UpdateComponent implements OnInit {
   public getTaxPayerList(){
 
 
-    this.commissionerateService.taxPayerArray().subscribe(res => {
+    this.commissionerateService.getTaxPayerArray().subscribe(res => {
   
         if (res.status === 200) {
             this.taxPayerAllData = res.body;
@@ -283,10 +287,52 @@ showSection: string = '';  // Variable to track the current section to show
 
 
 
-    editCommissionerate(){
-      
+ 
+
+    commissionerateName: string = '';  // To hold the input value
+    isEditing: boolean = false;  // To track whether we're in edit mode
+    currentCommissionerateId: string = ''; 
+
+
+
+   // 📌 Add or Edit a Commissionerate
+   addCommissionerate(): void {
+    if (this.isEditing) {
+      // Update the existing commissionerate
+      const updatedCommissionerate = {
+        id: this.currentCommissionerateId,
+        name: this.commissionerateName,
+        date: new Date().toLocaleDateString()  // Update the date as needed
+      };
+      this.commissionerateService.editCommissionerate(updatedCommissionerate);
+      this.isEditing = false;  // Reset editing state
+    } else {
+      // Add a new commissionerate
+      const newCommissionerate = {
+        id: (this.commissionerateList.length + 1).toString().padStart(2, '0'),
+        name: this.commissionerateName,
+        date: new Date().toLocaleDateString()
+      };
+      this.commissionerateService.addCommissioner(newCommissionerate);
     }
-    
+
+    this.commissionerateName = '';  // Clear input field
+    this.getCommissionerateList();  // Fetch updated data
+  }
+
+
+
+
+  // 📌 Start Editing a Commissionerate
+  editCommissionerate(id: string): void {
+    const commissionerate = this.commissionerateList.find((c: { id: string; }) => c.id === id);
+    if (commissionerate) {
+      this.isEditing = true;
+      this.commissionerateName = commissionerate.name;  // Set the input field to the name of the selected commissionerate
+    }
+  }
+
+ 
 
 
 

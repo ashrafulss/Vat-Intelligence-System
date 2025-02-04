@@ -60,15 +60,16 @@
             style="font-size: 26px; font-weight: 600; color: #000000;">Add Commissionerate</span></div>
 
 
-        <div class="col"> <input type="text" placeholder="Enter Commissionerate Name"
-            style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
-        </div>
+            <div class="col"> 
+              <input type="text" [(ngModel)]="commissionerateName" placeholder="Enter Commissionerate Name"
+                  style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+          </div>
 
 
         <div class="col-2 d-flex justify-content-end">
-          <button class="btn addbutton">
-            Add&nbsp; <i class="bi bi-plus-lg"></i>
-          </button>
+          <button (click)="addCommissionerate()" class="btn addbutton">
+            {{ isEditing ? 'Update' : 'Add' }}&nbsp; <i class="bi bi-plus-lg"></i>
+        </button>
         </div>
 
 
@@ -136,8 +137,8 @@
               <td>{{item.name}}</td>
               <td>{{item.date}}</td>
               <td class="d-flex gap-3 justify-content-end px-5">
-                <div role="button" > <img src="assets/images/editIcon.svg" alt="" class="img-fluid" ></div>
-                <div role="button" (click)="deleteCommissionerate()"> <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
+                <div role="button"  style="cursor: pointer;" (click)="editCommissionerate(item.id)"> <img src="assets/images/editIcon.svg" alt="" class="img-fluid" ></div>
+                <div role="button" style="cursor: pointer;" (click)="deleteCommissionerate()"> <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
               </td>
             </tr>
 
@@ -787,7 +788,7 @@
               <td>{{item.contactNo}}</td>
               <td>{{item.dateAdded}}</td>
               <td class="d-flex gap-3 justify-content-end px-5">
-                <div role="button"> <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
+                <div role="button" style="cursor: pointer;"> <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
                 <div role="button"> <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
               </td>
             </tr>
