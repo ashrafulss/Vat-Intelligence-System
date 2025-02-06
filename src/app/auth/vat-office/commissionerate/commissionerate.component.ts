@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { Commissioner } from '../vat-office-model';
 import { CommissionerateService } from '../services/commissionerate.service';
 
@@ -73,7 +73,7 @@ updateBreadcrumb(level: string): void {
 }
 
 
-  constructor(private commissionerateService: CommissionerateService) { }
+  constructor(private commissionerateService: CommissionerateService, private eRef: ElementRef) { }
 
   ngOnInit(): void {
 
@@ -425,5 +425,49 @@ updateBreadcrumb(level: string): void {
   }
 
 
+
+
+
+
+  isDropdownVisible = false;
+  searchQuery = '';
+  selectedIndex = -1;
+
+  searchResults = [
+    'Search Result 1',
+    'Search Result 2',
+    'Search Result 3',
+    'Search Result 4',
+    'Search Result 5'
+  ];
+
+  hideDropdown() {
+    setTimeout(() => { // Timeout to allow clicks inside the dropdown
+      this.isDropdownVisible = false;
+    }, 200);
+  }
+
+  showDropdown() {
+    this.isDropdownVisible = true;
+  }
+
+  selectResult(result: string) {  
+    this.searchQuery = result; 
+    this.isDropdownVisible = false; 
+  }
+  
+
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: Event) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.isDropdownVisible = false;
+    }
+  }
+
+
+
+
+
+  
 
 }

@@ -9,6 +9,7 @@ import { LoadingImageModule } from '../../common/components/loading-image/loadin
 import { UpdateComponent } from './update/update.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { DateFormat } from '../../common/pipes/date-format.pipe';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     CommissionerateComponent,
     AllExpandComponent,
     UpdateComponent,
+    DateFormat
    
   ],
   imports: [

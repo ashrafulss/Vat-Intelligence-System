@@ -38,11 +38,31 @@
 
       <div class=" d-flex justify-content-between"  style=" width: 47%;">
 
-        <div class="search-container">
-          <input type="text" placeholder="Search . . .">
+        <div class="search-container" 
+        [class.focused]="isDropdownVisible" 
+        #searchContainer>
+     
+     <input type="text" 
+            placeholder="Search . . ." 
+            (focus)="showDropdown()" 
+            (blur)="hideDropdown()" 
+            [(ngModel)]="searchQuery">
+   
+     <button><i class="bi bi-search"></i></button>
+   
+     <div class="dropdown " *ngIf="isDropdownVisible">
+       <div class="d-flex justify-content-between" *ngFor="let result of searchResults; let i = index" 
+            [class.selected]="i === selectedIndex"
+            (click)="selectResult(result)">
+         {{ result }}
+         <img class="arrow-icon"  src="assets/images/arrowIcon.svg" alt=""
+        style="max-height: 24px ;" sizes="(min-width: 768px) 80px, 40px">
+       </div>
+     </div>
+   </div>
+   
 
-          <button><i class="bi bi-search"></i></button>
-        </div>
+        
 
 
 
@@ -57,7 +77,7 @@
 
 
         <button  [routerLink]="['/vat-office/alldata']"  type="button" class=" btn d-flex align-items-center justify-content-evenly"
-            style="height: 60px;width: 205px; background-color: #35BC8C; border-radius: 15px; font-weight: 500; color: white; font-size: 20px;"><span style="font-size: 20px; font-weight: 500;">Expand All </span>
+            style="height: 60px;width: 205px; background-color: #35BC8C; border-radius: 20px; font-weight: 500; color: white; font-size: 20px;"><span style="font-size: 20px; font-weight: 500;">Expand All </span>
            
             <img  src="assets/images/expand.svg" alt=""
             style="max-height: 18px;" sizes="(min-width: 768px) 80px, 40px">

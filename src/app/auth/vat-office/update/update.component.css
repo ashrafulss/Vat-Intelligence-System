@@ -147,9 +147,16 @@
 }
 
 #slid{
-  padding-left: 30px !important;
+  padding-left: 57px !important;
 }
   
+#slidDivision{
+  padding-left: 50px !important;
+}
+
+#slidCircle{
+  padding-left: 45px !important;
+}
 
 
 /* Style for rounded corners */
@@ -274,3 +281,62 @@
     pointer-events: none; /* Make sure the icon doesn't interfere with dropdown functionality */
     z-index: 1; /* Ensure the icon is always on top */
   }
+
+
+
+
+  .pagination-controls {
+    text-align: right;
+    position: fixed;
+    bottom: 30px;
+    right: 55px;
+    z-index: 1000; 
+  }
+
+
+
+
+
+  
+
+.custom-select-wrapper {
+  position: relative; /* Allows absolute positioning of the icon */
+  display: inline-flex; /* Align items horizontally */
+  width: 100%;  /* Make sure the wrapper takes full width */
+
+ 
+  
+
+}
+
+
+.custom-select-wrapper.open .form-select option{
+  background-color: #0A3B40; /* Change background when open */
+  color: white;
+  border-radius: 30px;
+}
+
+.custom-select-wrapper .form-select {
+  transition: all 0.5s ease; /* Smooth transition for styling */
+}
+
+.custom-select-wrapper.open {
+  
+ 
+  background-color: #e3f2fd;
+}
+
+
+
+.costom-li li a{
+  color: white;
+}
+
+.costom-li li a:hover{
+  color: black;
+}
+
+  
+
+
+ 

@@ -60,16 +60,31 @@
             style="font-size: 26px; font-weight: 600; color: #000000;">Add Commissionerate</span></div>
 
 
-            <div class="col"> 
+            <div class="col " > 
               <input type="text" [(ngModel)]="commissionerateName" placeholder="Enter Commissionerate Name"
                   style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
-          </div>
+          
+                  
+  
+
+                </div>
+
+                <div class="col-1 d-flex justify-content-start"  style="padding-left: 10px;">
+                  <i role="button" *ngIf="isEditing" (click)="refresh()" class="bi bi-x-square-fill" style="font-size: 24px; color: #0A3B40;"></i>
+                </div>
 
 
-        <div class="col-2 d-flex justify-content-end">
-          <button (click)="addCommissionerate()" class="btn addbutton">
+        <div class="col-1 d-flex justify-content-end" >
+
+
+       
+
+
+          <button (click)="onCreateCommissionerate()"  class="btn addbutton">
             {{ isEditing ? 'Update' : 'Add' }}&nbsp; <i class="bi bi-plus-lg"></i>
         </button>
+
+  
         </div>
 
 
@@ -125,20 +140,20 @@
         <table id="example" style="width: 99.9%;  margin-left: 1px; ">
           <thead>
             <tr style="font-weight: 500; font-size: 20px;">
-              <th class="px-4" style="font-weight: 500; font-size: 20px;">Code</th>
+              <th class="px-5" style="font-weight: 500; font-size: 20px;">Code</th>
               <th style="font-weight: 500; font-size: 20px;">Commissionerate Name</th>
               <th style="font-weight: 500; font-size: 20px;">Date Added</th>
               <th class="d-flex gap-3 justify-content-end px-5">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of commissionerateList" style="font-size: 20px; font-weight: 400;">
-              <td style="padding-right: 100px;" id="slid">{{item.id}}</td>
+            <tr *ngFor="let item of commissionerateList" style="font-size: 20px; font-weight: 400; ;">
+              <td style="padding-right: 100px; " id="slid">{{item.code}}</td>
               <td>{{item.name}}</td>
-              <td>{{item.date}}</td>
+              <td>{{item.createdOn | dateFormat }}</td>
               <td class="d-flex gap-3 justify-content-end px-5">
-                <div role="button"  style="cursor: pointer;" (click)="editCommissionerate(item.id)"> <img src="assets/images/editIcon.svg" alt="" class="img-fluid" ></div>
-                <div role="button" style="cursor: pointer;" (click)="deleteCommissionerate()"> <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
+                <div role="button"  style="cursor: pointer;" (click)="editCommissionerate(item.id)"> <img style="cursor: pointer;" src="assets/images/editIcon.svg" alt="" class="img-fluid" ></div>
+                <div role="button" style="cursor: pointer;" > <img style="cursor: pointer;" src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
               </td>
             </tr>
 
@@ -152,33 +167,33 @@
           </tbody>
         </table>
 
-        <div class="pagination-controls d-flex justify-content-end pt-3">
-
-          <span style="font-size: 20px; font-weight: 400;">Page:</span><span
-            style="font-size: 20px; font-weight: 500;">{{currentPage}}/10</span>
-
-
-          <!-- Previous Button -->
-          <button (click)="prevPage()" [disabled]="currentPage === 1" style="border: none; background-color:#f6f6f6;"
-            type="button">
-            <i style="transform: rotate(90deg);"
-              class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
-            </i>
-          </button>
-
-          <!-- Next Button -->
-          <button (click)="nextPage()" [disabled]="currentPage * pageSize >= allData.length"
-            style="border: none; background-color:#f6f6f6;" type="button">
-            <i style="transform: rotate(-90deg);"
-              class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
-            </i>
-          </button>
-
-
-        </div>
+        
       </div>
 
+      <div class="pagination-controls " >
 
+        <span style="font-size: 20px; font-weight: 400;">Page:</span><span
+          style="font-size: 20px; font-weight: 500;">{{currentPage}}/{{ totalPagesCommissionerate() }}</span>
+
+
+        <!-- Previous Button -->
+        <button (click)="prevPage()" [disabled]="currentPage === 1" style="border: none; background-color:#f6f6f6;"
+          type="button">
+          <i style="transform: rotate(90deg);"
+            class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
+          </i>
+        </button>
+
+        <!-- Next Button -->
+        <button (click)="nextPage()" [disabled]="currentPage * pageSize >= allData.length"
+          style="border: none; background-color:#f6f6f6;" type="button">
+          <i style="transform: rotate(-90deg);"
+            class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
+          </i>
+        </button>
+
+
+      </div>
 
 
 
@@ -203,7 +218,7 @@
         <div>
 
           <div class=" px-4 d-flex justify-content-between align-items-center"
-            style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 8vh;border: 1px solid #0A3B4040;">
+            style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 8vh;border: 1px solid #0A3B4040; ">
 
             <h3 class="mb-0" style="font-size: 26px; font-weight: 600; color: #000000;">Add Division</h3>
 
@@ -230,18 +245,43 @@
         <div class="col">
           <div style="padding-bottom: 10px;"><span
               style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Commissionerate Name</span></div>
+          
+          
+          
           <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-            <select class="form-select no-dropdown-icon " id="taxPayer" style="font-weight: 400; font-size: 20px;">
-              <option value="">Select Commissionerate Name</option>
-              <option value="payer1">Commissionerate 1</option>
-              <option value="payer2">Commissionerate 2</option>
-            </select>
+
+            <!-- <select class="form-select no-dropdown-icon" id="" style="font-weight: 400; font-size: 20px; width: 100%; max-height: 100px;"   >
+              <option value="" disabled selected>Select Commissionerate</option>
+              <option *ngFor="let item of allData" [value]="item.id">{{ item.name }}</option>
+            </select> -->
+
+            <!-- Custom Dropdown -->
+          <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false"
+            style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 60px; border: 1px solid #00000033;">
+            Select Commissionerate Name
+          </button>
+          <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                    
+          max-height: 300px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+          ">
+            <li *ngFor="let payer of allData" >
+              <a class="dropdown-item" href="#" >
+                {{ payer.name }}
+              </a>
+            </li>
+          </ul>
 
 
             <i
               class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
 
           </div>
+
+
+
         </div>
 
         <div class="col">
@@ -310,15 +350,15 @@
         <table id="example" style="width: 99.89%; margin-left: 1px; ">
           <thead>
             <tr style="font-weight: 500; font-size: 20px;">
-              <th class="px-4" style="font-weight: 500; font-size: 20px;">Code</th>
+              <th class="px-5" style="font-weight: 500; font-size: 20px;">Code</th>
               <th style="font-weight: 500; font-size: 20px;">Division Name</th>
               <th style="font-weight: 500; font-size: 20px;">Date Added</th>
               <th class="d-flex gap-3 justify-content-end px-5">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of divisionList" style="font-size: 20px; font-weight: 400;">
-              <td style="padding-right: 100px;" id="slid">{{item.id}}</td>
+            <tr *ngFor="let item of divisionListAll" style="font-size: 20px; font-weight: 400;">
+              <td style="padding-right: 100px;" id="slidDivision">{{item.code}}</td>
               <td>{{item.name}}</td>
               <td>{{item.date}}</td>
               <td class="d-flex gap-3 justify-content-end px-5">
@@ -327,7 +367,7 @@
               </td>
             </tr>
 
-            <tr *ngIf="!divisionList || divisionList.length === 0">
+            <tr *ngIf="!divisionListAll || divisionListAll.length === 0">
               <td colspan="4" class="text-center" style="font-size: 20px; font-weight: 400; padding: 10px; color: #000000B2;">
                 No Data Available
               </td>
@@ -335,10 +375,15 @@
           </tbody>
         </table>
 
-        <div class="pagination-controls d-flex justify-content-end pt-3">
+        
+      </div>
+
+<div class="pagination-controls ">
 
           <span style="font-size: 20px; font-weight: 400;">Page:</span><span
-            style="font-size: 20px; font-weight: 500;">{{currentPage}}/10</span>
+            style="font-size: 20px; font-weight: 500;">{{currentPage}}/{{ totalPagesDivision() }}</span>
+
+      
 
 
           <!-- Previous Button -->
@@ -350,7 +395,7 @@
           </button>
 
           <!-- Next Button -->
-          <button (click)="nextPageDivision()" [disabled]="currentPage * pageSize >= allData.length"
+          <button (click)="nextPageDivision()" [disabled]="currentPage * pageSize >= divisionAllData.length"
             style="border: none; background-color:#f6f6f6;" type="button">
             <i style="transform: rotate(-90deg);"
               class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
@@ -359,8 +404,6 @@
 
 
         </div>
-      </div>
-
 
 
     </div>
@@ -407,11 +450,27 @@
           <div style="padding-bottom: 10px;"><span
               style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Commissionerate Name</span></div>
           <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-            <select class="form-select no-dropdown-icon " id="taxPayer" style="font-weight: 400; font-size: 20px;">
-              <option value="">Select Commissionerate Name</option>
-              <option value="payer1">Commissionerate 1</option>
-              <option value="payer2">Commissionerate 2</option>
-            </select>
+            
+            
+
+
+            <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false"
+            style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 60px; border: 1px solid #00000033;">
+            Select Commissionerate Name
+          </button>
+          <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                    
+          max-height: 300px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+          ">
+            <li *ngFor="let payer of allData" >
+              <a class="dropdown-item" href="#" >
+                {{ payer.name }}
+              </a>
+            </li>
+          </ul>
 
 
             <i
@@ -427,11 +486,23 @@
               style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Division Name</span></div>
 
           <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-            <select class="form-select no-dropdown-icon " id="taxPayer" style="font-weight: 400; font-size: 20px;">
-              <option value="">Select Division Name</option>
-              <option value="payer1">Division 1</option>
-              <option value="payer2">Division 2</option>
-            </select>
+            <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false"
+            style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 60px; border: 1px solid #00000033;">
+            Select Division Name
+          </button>
+          <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                    
+          max-height: 300px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+          ">
+            <li *ngFor="let payer of divisionAllData" >
+              <a class="dropdown-item" href="#" >
+                {{ payer.name }}
+              </a>
+            </li>
+          </ul>
 
 
             <i
@@ -507,15 +578,16 @@
         <table id="example" style="width: 99.9%;  margin-left: 1px; ">
           <thead>
             <tr style="font-weight: 500; font-size: 20px;">
-              <th class="px-4" style="font-weight: 500; font-size: 20px;">Code</th>
+              <th class="px-5" style="font-weight: 500; font-size: 20px;">Code</th>
               <th style="font-weight: 500; font-size: 20px;">Circle Name</th>
               <th style="font-weight: 500; font-size: 20px;">Date Added</th>
               <th class="d-flex gap-3 justify-content-end px-5">Actions</th>
             </tr>
+
           </thead>
           <tbody>
-            <tr *ngFor="let item of divisionList" style="font-size: 20px; font-weight: 400;">
-              <td style="padding-right: 100px;" id="slid">{{item.id}}</td>
+            <tr *ngFor="let item of circleListAll" style="font-size: 20px; font-weight: 400;">
+              <td style="padding-right: 100px;" id="slidCircle">{{item.code}}</td>
               <td>{{item.name}}</td>
               <td>{{item.date}}</td>
               <td class="d-flex gap-3 justify-content-end px-5">
@@ -524,7 +596,7 @@
               </td>
             </tr>
 
-            <tr *ngIf="!divisionList || divisionList.length === 0">
+            <tr *ngIf="!circleListAll || circleListAll.length === 0">
               <td colspan="4" class="text-center" style="font-size: 20px; font-weight: 400; padding: 10px; color: #000000B2;">
                 No Data Available
               </td>
@@ -532,30 +604,33 @@
           </tbody>
         </table>
 
-        <div class="pagination-controls d-flex justify-content-end pt-3">
+        
 
-          <span style="font-size: 20px; font-weight: 400;">Page:</span><span
-            style="font-size: 20px; font-weight: 500;">{{currentPage}}/10</span>
+      </div>
 
+      <div class="pagination-controls">
 
-          <!-- Previous Button -->
-          <button (click)="prevPageDivision()" [disabled]="currentPage === 1"
-            style="border: none; background-color:#f6f6f6;" type="button">
-            <i style="transform: rotate(90deg);"
-              class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
-            </i>
-          </button>
-
-          <!-- Next Button -->
-          <button (click)="nextPageDivision()" [disabled]="currentPage * pageSize >= allData.length"
-            style="border: none; background-color:#f6f6f6;" type="button">
-            <i style="transform: rotate(-90deg);"
-              class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
-            </i>
-          </button>
+        <span style="font-size: 20px; font-weight: 400;">Page:</span><span
+          style="font-size: 20px; font-weight: 500;">{{currentPage}}/{{ totalPagesCircle() }}</span>
 
 
-        </div>
+        <!-- Previous Button -->
+        <button (click)="prevPageCircle()" [disabled]="currentPage === 1"
+          style="border: none; background-color:#f6f6f6;" type="button">
+          <i style="transform: rotate(90deg);"
+            class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
+          </i>
+        </button>
+
+        <!-- Next Button -->
+        <button (click)="nextPageCircle()" [disabled]="currentPage * pageSize >= circleAllData.length"
+          style="border: none; background-color:#f6f6f6;" type="button">
+          <i style="transform: rotate(-90deg);"
+            class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
+          </i>
+        </button>
+
+
       </div>
     </div>
 
@@ -606,11 +681,26 @@
             <div style="padding-bottom: 10px;"><span
                 style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Commissionerate Name</span></div>
             <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-              <select class="form-select no-dropdown-icon " id="taxPayer" style="font-weight: 400; font-size: 20px;">
-                <option value="">Select Commissionerate Name</option>
-                <option value="payer1">Commissionerate 1</option>
-                <option value="payer2">Commissionerate 2</option>
-              </select>
+              
+              
+
+              <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false"
+            style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 60px; border: 1px solid #00000033;">
+            Select Commissionerate Name
+          </button>
+          <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                    
+          max-height: 300px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+          ">
+            <li *ngFor="let payer of allData" >
+              <a class="dropdown-item" href="#" >
+                {{ payer.name }}
+              </a>
+            </li>
+          </ul>
 
 
               <i
@@ -626,11 +716,26 @@
                 style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Division Name</span></div>
 
             <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-              <select class="form-select no-dropdown-icon " id="taxPayer" style="font-weight: 400; font-size: 20px;">
-                <option value="">Select Division Name</option>
-                <option value="payer1">Division 1</option>
-                <option value="payer2">Division 2</option>
-              </select>
+              
+              
+
+              <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+              data-bs-toggle="dropdown" aria-expanded="false"
+              style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 60px; border: 1px solid #00000033;">
+              Select Division Name
+            </button>
+            <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                      
+            max-height: 300px; 
+      overflow-y: auto; 
+      overflow-x: hidden; 
+            ">
+              <li *ngFor="let payer of divisionAllData" >
+                <a class="dropdown-item" href="#" >
+                  {{ payer.name }}
+                </a>
+              </li>
+            </ul>
 
 
               <i
@@ -644,11 +749,26 @@
                 style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Circle Name</span></div>
 
             <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-              <select class="form-select no-dropdown-icon " id="taxPayer" style="font-weight: 400; font-size: 20px;">
-                <option value="">Select Circle Name</option>
-                <option value="payer1">Circle 1</option>
-                <option value="payer2">Circle 2</option>
-              </select>
+            
+              
+
+              <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+              data-bs-toggle="dropdown" aria-expanded="false"
+              style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 60px; border: 1px solid #00000033;">
+              Select Circle Name
+            </button>
+            <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                      
+            max-height: 300px; 
+      overflow-y: auto; 
+      overflow-x: hidden; 
+            ">
+              <li *ngFor="let payer of circleAllData" >
+                <a class="dropdown-item" href="#" >
+                  {{ payer.name }}
+                </a>
+              </li>
+            </ul>
 
 
               <i
@@ -769,7 +889,7 @@
         <table id="example" style="width: 99.9%;  margin-left: 1px; ">
           <thead>
             <tr style="font-weight: 500; font-size: 20px;">
-              <th class="px-4" style="font-weight: 500; font-size: 20px;">SI No.</th>
+              <th class="px-5" style="font-weight: 500; font-size: 20px;">SI No.</th>
               <th style="font-weight: 500; font-size: 20px;">Tax Payer Name</th>
               <th style="font-weight: 500; font-size: 20px;">BIN No.</th>
               <th style="font-weight: 500; font-size: 20px;">E-TIN</th>
@@ -780,13 +900,13 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of taxPayerList" style="font-size: 20px; font-weight: 400;">
-              <td style="padding-right: 100px;" id="slid">{{item.sino}}</td>
-              <td>{{item.taxpayerName}}</td>
+              <td style="padding-right: 100px;" id="slid">{{item.id}}</td>
+              <td>{{item.taxPayerName}}</td>
               <td>{{item.binNo}}</td>
-              <td>{{item.E_tin}}</td>
+              <td>{{item.etinNo}}</td>
 
-              <td>{{item.contactNo}}</td>
-              <td>{{item.dateAdded}}</td>
+              <td>{{item.mobileNo}}</td>
+              <td>{{item.createdOn}}</td>
               <td class="d-flex gap-3 justify-content-end px-5">
                 <div role="button" style="cursor: pointer;"> <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
                 <div role="button"> <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
@@ -802,31 +922,41 @@
           </tbody>
         </table>
 
-        <div class="pagination-controls d-flex justify-content-end pt-3">
 
-          <span style="font-size: 20px; font-weight: 400;">Page:</span><span
-            style="font-size: 20px; font-weight: 500;">{{currentPage}}/10</span>
+      
+        
+        
 
-
-          <!-- Previous Button -->
-          <button (click)="prevPageTaxPayer()" [disabled]="currentPage === 1"
-            style="border: none; background-color:#f6f6f6;" type="button">
-            <i style="transform: rotate(90deg);"
-              class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
-            </i>
-          </button>
-
-          <!-- Next Button -->
-          <button (click)="nextPageTaxPayer()" [disabled]="currentPage * pageSize >= allData.length"
-            style="border: none; background-color:#f6f6f6;" type="button">
-            <i style="transform: rotate(-90deg);"
-              class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
-            </i>
-          </button>
-
-
-        </div>
       </div>
+      
+
+
+      <div class="pagination-controls">
+
+        <span style="font-size: 20px; font-weight: 400;">Page:</span><span
+          style="font-size: 20px; font-weight: 500;">{{currentPage}}/{{ totalPagesTaxPayer() }}</span>
+
+
+        <!-- Previous Button -->
+        <button (click)="prevPageTaxPayer()" [disabled]="currentPage === 1"
+          style="border: none; background-color:#f6f6f6;" type="button">
+          <i style="transform: rotate(90deg);"
+            class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
+          </i>
+        </button>
+
+        <!-- Next Button -->
+        <button (click)="nextPageTaxPayer()" [disabled]="currentPage * pageSize >= taxPayerAllData.length"
+          style="border: none; background-color:#f6f6f6;" type="button">
+          <i style="transform: rotate(-90deg);"
+            class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
+          </i>
+        </button>
+
+
+      </div>
+
+      
     </div>
 
 

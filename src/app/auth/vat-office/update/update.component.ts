@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommissionerateService } from '../services/commissionerate.service';
+import { ReportService } from '../../analysis/report.service';
 
 @Component({
   selector: 'app-update',
@@ -9,40 +10,65 @@ import { CommissionerateService } from '../services/commissionerate.service';
 export class UpdateComponent implements OnInit {
 
 
-
-
-
-  constructor(private commissionerateService: CommissionerateService) { }
-
-
-
+  breadcrumb: string[] = ['VAT Office > Update']; 
   public commissionerateList: any =[];
-  public demoArray: any =[];
-  public divisionList: any =[];
+  public divisionListAll: any =[];
+  public circleListAll: any = [];
   public taxPayerList: any =[];
   public allData: any = [];
   public divisionAllData: any = [];
-
+  public circleAllData: any =[];
   public taxPayerAllData: any = [];
 
-   public isLoading: boolean = true;
-   public isProgressBarLoading!: boolean;
-   public currentPage: number = 1;  // Tracks the current page
-   public pageSize: number = 5;     // Number of items per page
-   public pageSizes: number =2;
+  isCommissionerate:boolean = false;
+  isDivision:boolean = false;
+  isCircle:boolean = false;
+  isTaxPayer:boolean = false;
+  public isLoading: boolean = true;
+  public isProgressBarLoading!: boolean;
+  isPrevClicked: boolean = false;
+  isNextClicked: boolean = false;
+  isEditing: boolean = false;  
+  
+  public currentPage: number = 1;  
+  public pageSize: number = 5;     
+  public pageSizes: number =2;
+
+  commissionerateName: string = '';  
+  commissionerateCode: string = ''; 
+  showSection: string = ''; 
+  currentCommissionerateId: string = ''; 
+
+  constructor(private commissionerateService: CommissionerateService,  private reportService: ReportService) { }
+  
  
 
+  public totalPagesCommissionerate(): number {
+    return Math.ceil(this.allData.length / this.pageSize);
+  }
 
+  public totalPagesDivision(): number {
+    return Math.ceil(this.divisionAllData.length / this.pageSize);
+  }
+
+  public totalPagesCircle(): number {
+    return Math.ceil(this.circleAllData.length / this.pageSize);
+  }
+
+  public totalPagesTaxPayer(): number {
+    return Math.ceil(this.taxPayerAllData.length / this.pageSize);
+  }
+  
 
    
    public getCommissionerateList(){
 
    
     
-     this.commissionerateService.getCommissionerArray().subscribe(res => {
+     this.commissionerateService.getCommissionerates().subscribe(res => {
    
          if (res.status === 200) {
-             this.allData = res.body;
+             this.allData = res.body.reverse();
              this.loadPage(this.currentPage);
          }
      },
@@ -62,13 +88,37 @@ export class UpdateComponent implements OnInit {
          this.isLoading = false;
      });
    }
+
+
+
+
+
+
+
+   onCreateCommissionerate() {
+    this.commissionerateService.saveCommissionerates(this.commissionerateName, this.commissionerateCode).subscribe(
+      (response) => {
+        console.log('Commissionerate created successfully:', response);
+       
+      },
+      err => {
+        console.error('Error creating commissionerate:', err);
+       
+      }
+    );
+  }
+
+
+
+
   
-   public getDivisionList(){
+   public getDivisionListAll(){
 
 
-    this.commissionerateService.getDivisionArray().subscribe(res => {
+    this.commissionerateService.getDivisionAll().subscribe(res => {
   
         if (res.status === 200) {
+          
             this.divisionAllData = res.body;
             this.loadPageDivison(this.currentPage);
         }
@@ -77,7 +127,7 @@ export class UpdateComponent implements OnInit {
         this.isProgressBarLoading = false;
         this.isLoading = false;
         if (err.status === 404) {
-            this.divisionList = [];
+            this.divisionListAll = [];
         }
 
         if (err.error && err.error.message) {
@@ -92,10 +142,45 @@ export class UpdateComponent implements OnInit {
 
 
 
-  public getTaxPayerList(){
 
 
-    this.commissionerateService.getTaxPayerArray().subscribe(res => {
+
+  public getCircleListAll(){
+
+
+    this.commissionerateService.getCirclesAll().subscribe(res => {
+  
+        if (res.status === 200) {
+          
+            this.circleAllData = res.body;
+            this.loadPageCircle(this.currentPage);
+        }
+    },
+    err => {
+        this.isProgressBarLoading = false;
+        this.isLoading = false;
+        if (err.status === 404) {
+            this.circleAllData = [];
+        }
+
+        if (err.error && err.error.message) {
+            // this.messageService.add({severity: 'error', summary: err.error.message, detail: ''});
+        }
+    },
+    () => {
+        this.isProgressBarLoading = false;
+        this.isLoading = false;
+    });
+  }
+
+
+
+
+
+  public getTaxPayerListAll(){
+
+
+    this.reportService.getVatPayerList().subscribe(res => {
   
         if (res.status === 200) {
             this.taxPayerAllData = res.body;
@@ -126,76 +211,59 @@ export class UpdateComponent implements OnInit {
     this.toggleSection('commissionerate');
     this.updateBreadcrumb('Commissionerate')
     this.getCommissionerateList();
-    this.getDivisionList();
-    this.getTaxPayerList();
+    this.getDivisionListAll();
+    this.getCircleListAll();
+    this.getTaxPayerListAll();
 
 
   }
 
 
-  isCommissionerate:boolean = false;
-  isDivision:boolean = false;
-  isCircle:boolean = false;
-  isTaxPayer:boolean = false;
+ 
 
+ 
 
-  breadcrumb: string[] = ['Vat Office > Update']; 
+  updateBreadcrumb(level: string): void {
 
-updateBreadcrumb(level: string): void {
-
-  switch (level) {
-    case 'Commissionerate':
-      this.breadcrumb = ['Vat Office > Update','Commissionerate'];
-      break;
-    case 'Division':
-      this.breadcrumb = ['Vat Office > Update', 'Division'];
-      break;
-    case 'Circle':
-      this.breadcrumb = ['Vat Office > Update', 'Circle'];
-      break;
-    case 'TaxPayer':
-      this.breadcrumb = ['Vat Office > Update', 'Tax Payer'];
-      break;
-    default:
-      this.breadcrumb = ['Vat Office > Update']; 
+    switch (level) {
+      case 'Commissionerate':
+        this.breadcrumb = ['VAT Office > Update','Commissionerate'];
+        break;
+      case 'Division':
+        this.breadcrumb = ['VAT Office > Update', 'Division'];
+        break;
+      case 'Circle':
+        this.breadcrumb = ['VAT Office > Update', 'Circle'];
+        break;
+      case 'TaxPayer':
+        this.breadcrumb = ['VAT Office > Update', 'Tax Payer'];
+        break;
+      default:
+        this.breadcrumb = ['VAT Office > Update']; 
+    }
   }
-}
 
 
-
-showSection: string = '';  // Variable to track the current section to show
 
   toggleSection(section: string) {
-    // Toggle the section visibility
+  
     if (this.showSection === section) {
-      this.showSection = '';  // Hide if already open
+      this.showSection = '';  
     } else {
-      this.showSection = section;  // Show the selected section
+      this.showSection = section;  
     }
   }
 
 
 
 
-
-
-  isPrevClicked: boolean = false;
-  isNextClicked: boolean = false;
-  
-
-
-
-
-
-
-   // Load data for the current page
    loadPage(page: number) {
     const startIndex = (page - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.commissionerateList = this.allData.slice(startIndex, endIndex);
   }
 
-  // Move to the next page
+ 
   nextPage() {
     if ((this.currentPage * this.pageSize) < this.allData.length) {
       this.currentPage++;
@@ -203,7 +271,7 @@ showSection: string = '';  // Variable to track the current section to show
     }
   }
 
-  // Move to the previous page
+ 
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -212,25 +280,24 @@ showSection: string = '';  // Variable to track the current section to show
   }
 
 
-
-
-
-     // Load data for the current page
      loadPageDivison(page: number) {
       const startIndex = (page - 1) * this.pageSize;
       const endIndex = startIndex + this.pageSize;
-      this.divisionList = this.divisionAllData.slice(startIndex, endIndex);
+      this.divisionListAll = this.divisionAllData.slice(startIndex, endIndex);
     }
-  
-    // Move to the next page
+
     nextPageDivision() {
+      console.log(this.divisionAllData.length+"----------------------------------------------");
+      console.log(this.currentPage * this.pageSize+"----------------------------------------------")
+
       if ((this.currentPage * this.pageSize) < this.divisionAllData.length) {
         this.currentPage++;
         this.loadPageDivison(this.currentPage);
       }
+
     }
   
-    // Move to the previous page
+  
     prevPageDivision() {
       if (this.currentPage > 1) {
         this.currentPage--;
@@ -240,12 +307,38 @@ showSection: string = '';  // Variable to track the current section to show
 
 
 
+    // -------------------------------------------------
+
+
+    loadPageCircle(page: number) {
+      const startIndex = (page - 1) * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      this.circleListAll = this.circleAllData.slice(startIndex, endIndex);
+    }
+
+    nextPageCircle() {
+ 
+      if ((this.currentPage * this.pageSize) < this.circleAllData.length) {
+        this.currentPage++;
+        this.loadPageCircle(this.currentPage);
+      }
+
+    }
+  
+  
+    prevPageCircle() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.loadPageCircle(this.currentPage);
+      }
+    }
 
 
 
+// ------------------------------------------------------
 
 
-     // Load data for the current page
+
      loadPageTaxPayer(page: number) {
       const startIndex = (page - 1) * this.pageSizes;
       const endIndex = startIndex + this.pageSizes;
@@ -274,51 +367,7 @@ showSection: string = '';  // Variable to track the current section to show
 
 
 
-
-
-    deleteCommissionerate() {
-      if (confirm('Are you sure you want to delete?')) {
-        console.log('Commissionerate deleted.');
-      } else {
-        console.log('Deletion canceled.');
-      }
-    }
-
-
-
-
- 
-
-    commissionerateName: string = '';  // To hold the input value
-    isEditing: boolean = false;  // To track whether we're in edit mode
-    currentCommissionerateId: string = ''; 
-
-
-
-   // 📌 Add or Edit a Commissionerate
-   addCommissionerate(): void {
-    if (this.isEditing) {
-      // Update the existing commissionerate
-      const updatedCommissionerate = {
-        id: this.currentCommissionerateId,
-        name: this.commissionerateName,
-        date: new Date().toLocaleDateString()  // Update the date as needed
-      };
-      this.commissionerateService.editCommissionerate(updatedCommissionerate);
-      this.isEditing = false;  // Reset editing state
-    } else {
-      // Add a new commissionerate
-      const newCommissionerate = {
-        id: (this.commissionerateList.length + 1).toString().padStart(2, '0'),
-        name: this.commissionerateName,
-        date: new Date().toLocaleDateString()
-      };
-      this.commissionerateService.addCommissioner(newCommissionerate);
-    }
-
-    this.commissionerateName = '';  // Clear input field
-    this.getCommissionerateList();  // Fetch updated data
-  }
+  
 
 
 
@@ -328,8 +377,16 @@ showSection: string = '';  // Variable to track the current section to show
     const commissionerate = this.commissionerateList.find((c: { id: string; }) => c.id === id);
     if (commissionerate) {
       this.isEditing = true;
-      this.commissionerateName = commissionerate.name;  // Set the input field to the name of the selected commissionerate
+      this.commissionerateName = commissionerate.name;  
     }
+  }
+
+
+  refresh(){
+    console.log('hello')
+     this.commissionerateName = '';
+    this.isEditing = false;
+     
   }
 
  
