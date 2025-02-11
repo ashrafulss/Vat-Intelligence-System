@@ -20,11 +20,11 @@
               >
               
               <!-- Breadcrumb link or label -->
-              <a *ngIf="!last" href="" style="font-size: 30px; font-weight: 600; color: black; text-decoration: none; ">{{ item }}</a>
-              <a *ngIf="last" href="" style="font-size: 30px; font-weight: 600; color: black;  text-decoration: none; ">{{ item }}</a>
+              <h5><a *ngIf="!last" href="" style=" font-weight: 600; color: black; text-decoration: none; ">{{ item }}</a></h5>
+             <h5> <a *ngIf="last" href="" style=" font-weight: 600; color: black;  text-decoration: none; ">{{ item }}</a></h5>
               
               <!-- Separator '>' for non-last items -->
-              <span *ngIf="!last" style="margin-left: 15px; margin-right: 0px; font-weight: 600; color: black; font-size: 30px;"> > </span>
+              <span *ngIf="!last" style="margin-left: 15px; margin-right: 0px; font-weight: 600; color: #35BC8C; font-size: 20px;"> <h5>></h5> </span>
             </li>
           </ol>
         </nav>
@@ -122,8 +122,7 @@
         [attr.data-bs-target]="'#collapseCommissioner' + commissioner.id"
         [attr.aria-controls]="'collapseCommissioner' + commissioner.id"
         [attr.aria-expanded]="isCollapsed[commissioner.id] ? 'false' : 'true'"
-        (click)="getDivisionList(commissioner.id); 
-        toggleCommissionerCollapse(commissioner.id) "  
+        (click)="handleCommissionerClick(commissioner.id, commissioner.name)" 
         [ngStyle]="{'border-radius': currentlyOpenCommissionerId === commissioner.id ? '20px 20px 0 0' : '20px'}"
             
             >
@@ -200,8 +199,7 @@
                       [attr.data-bs-target]="'#collapseDivision' + division.id"
                       [attr.aria-controls]="'collapseDivision' + division.id"
                       [attr.aria-expanded]="isCollapsed[division.id] ? 'false' : 'true'" 
-                      (click)="getCircleList(division.id, commissioner.id); 
-                      toggleDivisionCollapse(division.id)"
+                      (click)="handleDivisionClick( division.name, division.id, commissioner.id)"
                       [ngStyle]="{'border-radius': currentlyOpenDivisionId === division.id ? '20px 20px 0 0' : '20px'
                            }">
 
@@ -284,8 +282,7 @@
                                     [attr.data-bs-target]="'#collapseCircle' + circle.id"
                                     [attr.aria-controls]="'collapseCircle' + circle.id"
                                     [attr.aria-expanded]="isCollapsed[circle.id] ? 'false' : 'true'"
-                                    (click)="getTaxPayerList(circle.id , division.id, commissioner.id ); 
-                                    toggleCircleCollapse(circle.id)"
+                                    (click)="handleCircleClick(circle.id, circle.name, division.id, commissioner.id)"
                                      [ngStyle]="{'border-radius': currentlyOpenCircleId === circle.id ? '20px 20px 0 0' : '20px'}"
                                     
                                     
@@ -324,6 +321,7 @@
 
                                   <div 
                                   [id]="'collapseCircle' + circle.id" 
+                                  [ngClass]="{ 'show': isCollapsed[circle.id] }"
                                   class="accordion-collapse collapse"
                                     [attr.aria-labelledby]="'headingCircle' + circle.id"
                                     [attr.data-bs-parent]="'#circleList' + division.id">

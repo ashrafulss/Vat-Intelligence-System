@@ -10,6 +10,9 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 export class CommissionerateService {
 
 
+  private apiUrl = `${resourceServerUrl}/v1/commissionerate/create`;  
+  private apiDeleteCommissionerate = `${resourceServerUrl}/v1/commissionerate/delete`;  
+  private apiUpdateCommissionerate = `${resourceServerUrl}/v1/commissionerate/update`;  
 
   constructor(private http: HttpClient) { }
 
@@ -23,16 +26,33 @@ export class CommissionerateService {
   }
 
 
-  private apiUrl = `${resourceServerUrl}/v1/commissionerate/create`;  // Adjust to your API endpoint
 
-  saveCommissionerates(name: string, code: string): Observable<HttpResponse<any>> {
-    const payload = { name: name, code: code };
+
+  saveCommissionerates(name: string): Observable<HttpResponse<any>> {
+    const payload = { name: name };
     return this.http.post<HttpResponse<any>>(this.apiUrl, payload, {
       headers: getHttpHeaders(),
       observe: 'response'
     });
   }
 
+
+  updateCommissionerate(id: string, name: string): Observable<HttpResponse<any>> {
+    const payload = { name: name };
+    return this.http.put<HttpResponse<any>>(`${this.apiUpdateCommissionerate}/${id}`, payload, {
+      headers: getHttpHeaders(),
+      observe: 'response'
+    });
+  }
+  
+
+
+  deleteCommissionerate(id: string): Observable<HttpResponse<any>> {
+    return this.http.delete<HttpResponse<any>>(`${this.apiDeleteCommissionerate}/${id}`, {
+      headers: getHttpHeaders(),
+      observe: 'response'
+    });
+  }
 
 
 

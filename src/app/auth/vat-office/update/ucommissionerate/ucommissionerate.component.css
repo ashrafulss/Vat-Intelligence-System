@@ -1,0 +1,135 @@
+
+ 
+  
+  .addbutton{
+  
+    width: 144px; 
+    height: 55px; 
+    border-radius: 20px; 
+    background-color: #35BC8C; 
+    color: #FFFFFF; 
+    font-size: 22px; 
+    font-weight: 500; 
+    outline: none;
+  
+  }
+  
+ 
+  
+  
+  #example thead tr{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  #example tbody tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  /* Add padding to header cells */
+  #example th {
+    padding: 10px 10px; /* Adjust padding as needed */
+    text-align: left; /* Optional: Align text to the left */
+    background-color: #FFFFFF; /* Optional: Add a light background for the header */
+  }
+  
+  /* Add padding to data cells */
+  #example td {
+    padding: 10px;  /* Adjust padding as needed */
+    background-color: #FFFFFF;
+  }
+  
+  #slid{
+    padding-left: 57px !important;
+  }
+    
+
+  
+  
+  /* Style for rounded corners */
+  #example {
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: hidden; /* Ensure rounded corners are visible */
+    
+  }
+  
+  
+  
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #0A3B4040;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 400px;
+  }
+  
+  .search-container input {
+    flex: 1;
+    height: 55px;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  .search-container button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #FFFFFF;
+  }
+  
+  .search-container button i {
+    font-size: 22.69px;
+    color: #000000;
+  }
+  
+  
+  
+  .dropdown-icon1 {
+    height: 34px;
+    width: 34px;
+    background-color: #f6f6f6;
+    color: black;
+    border-radius: 10px;
+    border: 1px solid #00000033;
+    
+  }
+  
+  .dropdown-icon2{
+    height: 34px;
+    width: 34px;
+    background-color: #0A3B40;
+    color: #FFFFFF;
+    border-radius: 10px;
+    border: 1px solid #00000033;
+    
+  }
+  
+  
+  
+    .pagination-controls {
+      text-align: right;
+      position: fixed;
+      bottom: 30px;
+      right: 55px;
+      z-index: 1000; 
+    }
+  
+  
+  
+  
+  
+
+    
+  
+  
+   

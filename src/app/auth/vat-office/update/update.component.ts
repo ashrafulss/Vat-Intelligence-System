@@ -21,6 +21,7 @@ export class UpdateComponent implements OnInit {
   public taxPayerAllData: any = [];
 
   isCommissionerate:boolean = false;
+  commissionerateNameInvalid: boolean = false; 
   isDivision:boolean = false;
   isCircle:boolean = false;
   isTaxPayer:boolean = false;
@@ -36,6 +37,7 @@ export class UpdateComponent implements OnInit {
 
   commissionerateName: string = '';  
   commissionerateCode: string = ''; 
+  commissionerateId:string ='';
   showSection: string = ''; 
   currentCommissionerateId: string = ''; 
 
@@ -43,9 +45,6 @@ export class UpdateComponent implements OnInit {
   
  
 
-  public totalPagesCommissionerate(): number {
-    return Math.ceil(this.allData.length / this.pageSize);
-  }
 
   public totalPagesDivision(): number {
     return Math.ceil(this.divisionAllData.length / this.pageSize);
@@ -92,25 +91,6 @@ export class UpdateComponent implements OnInit {
 
 
 
-
-
-
-   onCreateCommissionerate() {
-    this.commissionerateService.saveCommissionerates(this.commissionerateName, this.commissionerateCode).subscribe(
-      (response) => {
-        console.log('Commissionerate created successfully:', response);
-       
-      },
-      err => {
-        console.error('Error creating commissionerate:', err);
-       
-      }
-    );
-  }
-
-
-
-
   
    public getDivisionListAll(){
 
@@ -139,7 +119,6 @@ export class UpdateComponent implements OnInit {
         this.isLoading = false;
     });
   }
-
 
 
 
@@ -373,21 +352,18 @@ export class UpdateComponent implements OnInit {
 
 
   // 📌 Start Editing a Commissionerate
-  editCommissionerate(id: string): void {
-    const commissionerate = this.commissionerateList.find((c: { id: string; }) => c.id === id);
-    if (commissionerate) {
-      this.isEditing = true;
-      this.commissionerateName = commissionerate.name;  
-    }
-  }
+  // editCommissionerate(id: string): void {
+  //   const commissionerate = this.commissionerateList.find((c: { id: string; }) => c.id === id);
+  //   if (commissionerate) {
+  //     this.isEditing = true;
+  //     this.commissionerateName = commissionerate.name;  
+  //   }
+  // }
 
 
-  refresh(){
-    console.log('hello')
-     this.commissionerateName = '';
-    this.isEditing = false;
-     
-  }
+
+
+  
 
  
 

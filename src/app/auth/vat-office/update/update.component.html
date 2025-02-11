@@ -33,14 +33,19 @@
 
 
     <div class="d-flex justify-content-end gap-5" style="font-size: 20px; font-weight: 600; color: #00000066;">
+      
       <div class="hovers" role="button" (click)="toggleSection('commissionerate'); updateBreadcrumb('Commissionerate')"
         [ngClass]="{'active': showSection === 'commissionerate'}">Commissionerate</div>
-      <div class="hovers" role="button" (click)="toggleSection('division'); updateBreadcrumb('Division')"
+      
+        <div class="hovers" role="button" (click)="toggleSection('division'); updateBreadcrumb('Division')"
         [ngClass]="{'active': showSection === 'division'}">Division</div>
-      <div class="hovers" role="button" (click)="toggleSection('circle'); updateBreadcrumb('Circle')"
+      
+        <div class="hovers" role="button" (click)="toggleSection('circle'); updateBreadcrumb('Circle')"
         [ngClass]="{'active': showSection === 'circle'}">Circle</div>
+
       <div class="hovers" role="button" (click)="toggleSection('taxpayer'); updateBreadcrumb('TaxPayer')"
         [ngClass]="{'active': showSection === 'taxpayer'}">Tax Payer</div>
+
     </div>
 
     <hr>
@@ -51,151 +56,8 @@
 
     <div *ngIf="showSection === 'commissionerate'" class=" pt-1">
 
-
-
-      <div class="d-flex justify-content-evenly align-items-center px-4"
-        style="height: 15vh; background-color: #ffffff; border-radius: 15px; border: 1px solid #0A3B4040;">
-
-        <div class="col-3 d-flex justify-content-start"><span
-            style="font-size: 26px; font-weight: 600; color: #000000;">Add Commissionerate</span></div>
-
-
-            <div class="col " > 
-              <input type="text" [(ngModel)]="commissionerateName" placeholder="Enter Commissionerate Name"
-                  style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
-          
-                  
-  
-
-                </div>
-
-                <div class="col-1 d-flex justify-content-start"  style="padding-left: 10px;">
-                  <i role="button" *ngIf="isEditing" (click)="refresh()" class="bi bi-x-square-fill" style="font-size: 24px; color: #0A3B40;"></i>
-                </div>
-
-
-        <div class="col-1 d-flex justify-content-end" >
-
-
-       
-
-
-          <button (click)="onCreateCommissionerate()"  class="btn addbutton">
-            {{ isEditing ? 'Update' : 'Add' }}&nbsp; <i class="bi bi-plus-lg"></i>
-        </button>
-
-  
-        </div>
-
-
-      </div>
-
-
-
-      <!-- table start here -->
-
-
-      <div class="row pt-3">
-
-        <div>
-
-          <div class=" px-4 d-flex justify-content-between align-items-center"
-            style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 9vh;border: 1px solid #0A3B4040;">
-
-            <h3 class="mb-0" style="font-weight: 600; font-size: 24px;">List of Commissionerates</h3>
-
-
-
-
-
-
-
-
-
-
-            <div class=" d-flex justify-content-end" style=" width: 47%;">
-
-              <div class="search-container">
-                <input type="text" placeholder="Search . . .">
-
-                <button><i class="bi bi-search"></i></button>
-              </div>
-
-
-
-
-
-
-            </div>
-          </div>
-
-
-
-        </div>
-
-      </div>
-
-
-      <div>
-        <table id="example" style="width: 99.9%;  margin-left: 1px; ">
-          <thead>
-            <tr style="font-weight: 500; font-size: 20px;">
-              <th class="px-5" style="font-weight: 500; font-size: 20px;">Code</th>
-              <th style="font-weight: 500; font-size: 20px;">Commissionerate Name</th>
-              <th style="font-weight: 500; font-size: 20px;">Date Added</th>
-              <th class="d-flex gap-3 justify-content-end px-5">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of commissionerateList" style="font-size: 20px; font-weight: 400; ;">
-              <td style="padding-right: 100px; " id="slid">{{item.code}}</td>
-              <td>{{item.name}}</td>
-              <td>{{item.createdOn | dateFormat }}</td>
-              <td class="d-flex gap-3 justify-content-end px-5">
-                <div role="button"  style="cursor: pointer;" (click)="editCommissionerate(item.id)"> <img style="cursor: pointer;" src="assets/images/editIcon.svg" alt="" class="img-fluid" ></div>
-                <div role="button" style="cursor: pointer;" > <img style="cursor: pointer;" src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
-              </td>
-            </tr>
-
-
-            <tr *ngIf="!commissionerateList || commissionerateList.length === 0">
-              <td colspan="4" class="text-center" style="font-size: 20px; font-weight: 400; padding: 10px; color: #000000B2;">
-                No Data Available
-              </td>
-            </tr>
-
-          </tbody>
-        </table>
-
-        
-      </div>
-
-      <div class="pagination-controls " >
-
-        <span style="font-size: 20px; font-weight: 400;">Page:</span><span
-          style="font-size: 20px; font-weight: 500;">{{currentPage}}/{{ totalPagesCommissionerate() }}</span>
-
-
-        <!-- Previous Button -->
-        <button (click)="prevPage()" [disabled]="currentPage === 1" style="border: none; background-color:#f6f6f6;"
-          type="button">
-          <i style="transform: rotate(90deg);"
-            class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
-          </i>
-        </button>
-
-        <!-- Next Button -->
-        <button (click)="nextPage()" [disabled]="currentPage * pageSize >= allData.length"
-          style="border: none; background-color:#f6f6f6;" type="button">
-          <i style="transform: rotate(-90deg);"
-            class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
-          </i>
-        </button>
-
-
-      </div>
-
-
+     
+      <app-ucommissionerate> </app-ucommissionerate>
 
 
 
@@ -372,6 +234,8 @@
                 No Data Available
               </td>
             </tr>
+
+           
           </tbody>
         </table>
 

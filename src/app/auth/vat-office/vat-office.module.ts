@@ -10,6 +10,7 @@ import { UpdateComponent } from './update/update.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { DateFormat } from '../../common/pipes/date-format.pipe';
+import { UcommissionerateComponent } from './update/ucommissionerate/ucommissionerate.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { DateFormat } from '../../common/pipes/date-format.pipe';
     CommissionerateComponent,
     AllExpandComponent,
     UpdateComponent,
-    DateFormat
+    DateFormat,
+    UcommissionerateComponent
    
   ],
   imports: [

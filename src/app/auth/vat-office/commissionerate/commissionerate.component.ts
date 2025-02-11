@@ -11,10 +11,8 @@ import { CommissionerateService } from '../services/commissionerate.service';
 export class CommissionerateComponent {
 
 
-  isCollapsed: { [key: string]: boolean } = {};
-  currentlyOpenCommissionerId: string | null = null;
-  currentlyOpenDivisionId: string | null = null;
-  currentlyOpenCircleId: string | null = null;
+
+  
   public commissionerateList: any =[];
   public divisionList: any =[];
   public circleList: any =[];
@@ -27,50 +25,137 @@ export class CommissionerateComponent {
   commissioners: Commissioner[] = [];
 
 
-/// Toggle Commissioner Collapse
-toggleCommissionerCollapse(commissionerCode: string) {
+  selectedCommissionerate: string = 'Commissionerate'; // Default value
+  selectedDivision: string = 'Division'; // Define in class
 
-  this.currentlyOpenCommissionerId = this.currentlyOpenCommissionerId === commissionerCode ? null : commissionerCode;
+
+
+  isCollapsed: { [key: string]: boolean } = {};
+
+  currentlyOpenCommissionerId: string | null = null;
+  currentlyOpenDivisionId: string | null = null;
+  currentlyOpenCircleId: string | null = null;
+
+
+  handleCommissionerClick(commissionerId: string, commissionerName: string) {
+    // Check if the accordion is being expanded or collapsed
+    if (this.currentlyOpenCommissionerId !== commissionerId) {
+      // Accordion is being expanded
+      this.getDivisionList(commissionerId);
+    }
+  
+    // Toggle the collapse state
+    this.toggleCommissionerCollapse(commissionerId, commissionerName);
+  }
+
+
+  handleDivisionClick(divisionName: string, divisionId: string, commissionerId: string) {
+    // Check if the accordion is being expanded or collapsed
+    if (this.currentlyOpenDivisionId !== divisionId) {
+      // Accordion is being expanded
+      this.getCircleList( divisionId, commissionerId);
+    }
+  
+    // Toggle the collapse state
+    this.toggleDivisionCollapse(divisionId, divisionName);
+  }
+
+
+  handleCircleClick(circleId: string, circleName: string, divisionId: string, commissionerId: string) {
+    // Close the previously opened circle
+    if (this.currentlyOpenCircleId && this.currentlyOpenCircleId !== circleId) {
+      this.isCollapsed[this.currentlyOpenCircleId] = false;
+    }
+  
+    // Toggle the collapse state of the clicked circle
+    this.currentlyOpenCircleId = 
+      this.currentlyOpenCircleId === circleId ? null : circleId;
+  
+    this.isCollapsed[circleId] = !this.isCollapsed[circleId];
+  
+    // Fetch Taxpayer list if the circle is being expanded
+    if (this.currentlyOpenCircleId === circleId) {
+      this.getTaxPayerList(circleId, divisionId, commissionerId);
+    }
+  
+    // Update breadcrumb (if needed)
+    this.updateBreadcrumb('Circle', [this.selectedCommissionerate, this.selectedDivision, circleName]);
+  }
+
+
+/// Toggle Commissioner Collapse
+toggleCommissionerCollapse(commissionerCode: string, commissionerName: string): void {
+  this.currentlyOpenCommissionerId = 
+    this.currentlyOpenCommissionerId === commissionerCode ? null : commissionerCode;
 
   this.currentlyOpenDivisionId = null;
   this.currentlyOpenCircleId = null;
+
+  // Store selected Commissionerate name
+  this.selectedCommissionerate = this.currentlyOpenCommissionerId ? commissionerName : 'Commissionerate';
+
+
+  this.isCollapsed[commissionerCode] = !this.isCollapsed[commissionerCode];
+
+  // Update breadcrumb
+  this.updateBreadcrumb('Commissionerate', this.selectedCommissionerate);
 }
 
-// Toggle Division Collapse
-toggleDivisionCollapse(divisionCode: string) {
 
-  this.currentlyOpenDivisionId = this.currentlyOpenDivisionId === divisionCode ? null : divisionCode;
+// Toggle Division Collapse
+toggleDivisionCollapse(divisionCode: string, divisionName: string): void {
+  this.currentlyOpenDivisionId = 
+    this.currentlyOpenDivisionId === divisionCode ? null : divisionCode;
 
   this.currentlyOpenCircleId = null;
+
+  // Store selected Division name
+  this.selectedDivision = this.currentlyOpenDivisionId ? divisionName : 'Division';
+
+
+  this.isCollapsed[divisionCode] = !this.isCollapsed[divisionCode];
+
+
+  // Update breadcrumb with Commissionerate name + Division name
+  this.updateBreadcrumb(
+    'Division',
+    this.currentlyOpenDivisionId 
+      ? [this.selectedCommissionerate, divisionName] 
+      : [this.selectedCommissionerate]
+  );
 }
 
 // Toggle Circle Collapse
-toggleCircleCollapse(circleCode: string) {
- 
-  this.currentlyOpenCircleId = this.currentlyOpenCircleId === circleCode ? null : circleCode;
+toggleCircleCollapse(circleId: string, circleName: string): void {
+  this.currentlyOpenCircleId = 
+    this.currentlyOpenCircleId === circleId ? null : circleId;
+
+
+
+    this.isCollapsed[circleId] = !this.isCollapsed[circleId];
+
+  // Update breadcrumb with Commissionerate name + Division name + Circle name
+  this.updateBreadcrumb(
+    'Circle',
+    this.currentlyOpenCircleId 
+      ? [this.selectedCommissionerate, this.selectedDivision, circleName] 
+      : [this.selectedCommissionerate, this.selectedDivision]
+  );
 }
+
+
+
+
 
 breadcrumb: string[] = ['Commissionerate']; 
 
-updateBreadcrumb(level: string): void {
 
-  switch (level) {
-    case 'Commissionerate':
-      this.breadcrumb = ['Commissionerate'];
-      break;
-    case 'Division':
-      this.breadcrumb = ['Commissionerate', 'Division'];
-      break;
-    case 'Circle':
-      this.breadcrumb = ['Commissionerate', 'Division', 'Circle'];
-      break;
-    case 'Tax Payer':
-      this.breadcrumb = ['Commissionerate', 'Division', 'Circle', 'Tax Payer'];
-      break;
-    default:
-      this.breadcrumb = ['Commissionerate']; 
-  }
+
+updateBreadcrumb(level: string, names: string | string[]): void {
+  this.breadcrumb = Array.isArray(names) ? names : [names];
 }
+
+
 
 
   constructor(private commissionerateService: CommissionerateService, private eRef: ElementRef) { }
@@ -331,7 +416,7 @@ updateBreadcrumb(level: string): void {
         this.isLoading = false;
     });
 
-    this.updateBreadcrumb('Division');
+    
   }
 
 
@@ -363,7 +448,7 @@ updateBreadcrumb(level: string): void {
         this.isLoading = false;
     });
 
-    this.updateBreadcrumb('Circle');
+   
   }
 
 
@@ -373,6 +458,8 @@ updateBreadcrumb(level: string): void {
     this.commissionerateService.getTaxPayers(circleOid, divisionOid, commissionerateOid).subscribe(res => {
        
       if (res.status === 200) {
+      
+
         this.taxPayerList = res.body;
        
         return;
@@ -397,7 +484,7 @@ updateBreadcrumb(level: string): void {
         this.isLoading = false;
     });
 
-    this.updateBreadcrumb('Tax Payer');
+    
   }
 
 
