@@ -15,6 +15,7 @@ import { OAuth2Service } from './common/services/oauth.service';
 import { TokenInterceptorService } from './common/services/token-interceptor.service';
 import { LoadingImageModule } from './common/components/loading-image/loading-image.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -33,6 +34,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BsDatepickerModule.forRoot(),
     LoadingImageModule,
     NgxPaginationModule,
+    NgbModule
     
         
     
@@ -40,7 +42,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   providers: [
     provideHttpClient(
-      // withFetch(),
+      withFetch(),
       withInterceptorsFromDi() 
     
     ),

@@ -11,6 +11,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { DateFormat } from '../../common/pipes/date-format.pipe';
 import { UcommissionerateComponent } from './update/ucommissionerate/ucommissionerate.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UdivisionComponent } from './update/udivision/udivision.component';
+import { UcircleComponent } from './update/ucircle/ucircle.component';
+import { UtaxpayerComponent } from './update/utaxpayer/utaxpayer.component';
 
 
 @NgModule({
@@ -20,7 +24,10 @@ import { UcommissionerateComponent } from './update/ucommissionerate/ucommission
     AllExpandComponent,
     UpdateComponent,
     DateFormat,
-    UcommissionerateComponent
+    UcommissionerateComponent,
+    UdivisionComponent,
+    UcircleComponent,
+    UtaxpayerComponent
    
   ],
   imports: [
@@ -28,7 +35,8 @@ import { UcommissionerateComponent } from './update/ucommissionerate/ucommission
     VatOfficeRoutingModule,
     LoadingImageModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   
   ]
 })

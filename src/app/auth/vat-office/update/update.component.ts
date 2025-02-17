@@ -229,8 +229,17 @@ export class UpdateComponent implements OnInit {
     if (this.showSection === section) {
       this.showSection = '';  
     } else {
-      this.showSection = section;  
+      this.showSection = section; 
+      if (section === 'division') {
+      this.getCommissionerateList();
+    } 
+
     }
+
+
+   
+
+
   }
 
 
