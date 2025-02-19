@@ -15,43 +15,34 @@ export class UcommissionerateComponent implements OnInit{
 
 
 
+  @ViewChild('deleteModal') deleteModal: any;
+  @ViewChild('modalContent') modalContent: any;
 
   public commissionerateList: any =[];
-
   public allData: any = [];
-
-
   commissionerateNameInvalid: boolean = false; 
-
 
   public isLoading: boolean = true;
   public isProgressBarLoading!: boolean;
-  isPrevClicked: boolean = false;
-  isNextClicked: boolean = false;
   isEditing: boolean = false;  
   
   public currentPage: number = 1;  
   public pageSize: number = 5;     
 
-
   commissionerateName: string = '';  
   commissionerateId:string ='';
   searchTerm: string = '';  
- 
-  @ViewChild('deleteModal') deleteModal: any;
-  @ViewChild('modalContent') modalContent: any;
-
-  commissionerateIdToDelete: string | null = null;
-
-  modalMessage: string = ''; // Variable to store message for modal
-
+  modalMessage: string = ''; 
+  commissionerateIdToDelete: string ='';
 
 
 
   constructor(
-    private commissionerateService: CommissionerateService,  // Your service for saving/updating
-    private modalService: NgbModal  // To trigger the modal
+    private commissionerateService: CommissionerateService,  
+    private modalService: NgbModal  
   ) {}
+
+
 
   ngOnInit(): void {
    
@@ -99,103 +90,50 @@ export class UcommissionerateComponent implements OnInit{
 
 
 
+   onInputChange() {
+    this.commissionerateNameInvalid = !this.commissionerateName.trim();
+  }
 
-  // onCreateCommissionerate() {
-  
-  
-
-  //   if (!this.commissionerateName || this.commissionerateName.trim() === '') {
-  //     this.commissionerateNameInvalid = true; // Show validation error
-  //     return; // Stop further execution
-  //   }
-
-  //   // Reset validation error
-  //   this.commissionerateNameInvalid = false;
-
-
-
-  //   if (this.isEditing) {
-  //     // Ensure that commissionerateId is available for the update
-  //     const commissionerateId = this.commissionerateId; // Get the ID of the commissionerate being editedco
-
-  //     console.log(commissionerateId+'----------------------------------------------------')
-
-  
-  //     // Update existing commissionerate
-  //     this.commissionerateService.updateCommissionerate(commissionerateId, this.commissionerateName).subscribe(
-  //       (response) => {
-  //         console.log('Commissionerate updated successfully:', response);
-  //         // alert('Commissionerate updated successfully!');
-  //         this.refresh();  // Refresh the form or list
-  //       },
-  //       (error) => {
-  //         console.error('Error updating commissionerate:', error);
-  //         alert('Failed to update commissionerate');
-  //       }
-  //     );
-  //   } else {
-  //     // Add new commissionerate
-  //     this.commissionerateService.saveCommissionerates(this.commissionerateName).subscribe(
-  //       (response) => {
-  //         console.log('Commissionerate created successfully:', response);
-  //         // alert('Commissionerate saved successfully!');
-  //         this.refresh();  // Refresh the form or list
-  //       },
-  //       (error) => {
-  //         console.error('Error creating commissionerate:', error);
-  //         alert('Failed to save commissionerate');
-  //       }
-  //     );
-  //   }
-  // }
-
-
-
-  onCreateCommissionerate() {
-
-   
+   addCommissionerate() {
    
     if (!this.commissionerateName || this.commissionerateName.trim() === '') {
-      this.commissionerateNameInvalid = true; // Show validation error
-      return; // Stop further execution
+      this.commissionerateNameInvalid = true; 
+      return; 
     }
 
-    // Reset validation error
     this.commissionerateNameInvalid = false;
 
     if (this.isEditing) {
-      // Ensure that commissionerateId is available for the update
-      const commissionerateId = this.commissionerateId; // Get the ID of the commissionerate being edited
+      const commissionerateId = this.commissionerateId; 
       console.log(commissionerateId + '----------------------------------------------------')
      
 
-      // Update existing commissionerate
       this.commissionerateService.updateCommissionerate(commissionerateId, this.commissionerateName).subscribe(
         (response) => {
           console.log('Commissionerate updated successfully:', response);
           this.modalMessage = 'Commissionerate updated successfully!';
-          this.modalService.open(this.modalContent, { centered: true });  // Open the modal on success
-          this.refresh();  // Refresh the form or list
+          this.modalService.open(this.modalContent, { centered: true });  
+          this.refresh(); 
         },
         (error) => {
           console.error('Error updating commissionerate:', error);
           this.modalMessage = 'Failed to update commissionerate';
-          this.modalService.open(this.modalContent, { centered: true });  // Open the modal on failure
+          this.modalService.open(this.modalContent, { centered: true });  
         }
       );
     } else {
-      // Add new commissionerate
+   
       this.commissionerateService.saveCommissionerates(this.commissionerateName).subscribe(
         (response) => {
-          console.log('Commissionerate created successfully:', response);
-          this.modalMessage = 'Commissionerate created successfully!';
-          this.modalService.open(this.modalContent, { centered: true });  // Open the modal on success
-          this.refresh();  // Refresh the form or list
+          console.log('Commissionerate added successfully:', response);
+          this.modalMessage = 'Commissionerate added successfully!';
+          this.modalService.open(this.modalContent, { centered: true });  
+          this.refresh();  
         },
         (error) => {
-          console.error('Error creating commissionerate:', error);
-          this.modalMessage = 'Failed to save commissionerate';
-          this.modalService.open(this.modalContent, { centered: true });  // Open the modal on failure
+          console.error('Error added commissionerate:', error);
+          this.modalMessage = 'Failed to added commissionerate';
+          this.modalService.open(this.modalContent, { centered: true });  
         }
       );
     }
@@ -205,17 +143,12 @@ export class UcommissionerateComponent implements OnInit{
   
 
  
-  
-  
-
-
-  // Open the delete confirmation modal
   onDeleteCommissionerate(commId: string) {
-    this.commissionerateIdToDelete = commId; // Store ID for later deletion
+    this.commissionerateIdToDelete = commId; 
     this.modalService.open(this.deleteModal, { centered: true });
   }
 
-  // Confirm and delete the commissionerate
+ 
   confirmDelete(modal: any) {
     if (!this.commissionerateIdToDelete) return;
 
@@ -223,17 +156,14 @@ export class UcommissionerateComponent implements OnInit{
       () => {
         console.log('Commissionerate deleted successfully');
         this.refresh();
-        modal.close(); // Close modal on success
+        modal.close(); 
       },
       (err) => {
         console.error('Error deleting commissionerate:', err);
-        modal.dismiss('error'); // Close modal on failure
+        modal.dismiss('error'); 
       }
     );
   }
-
-
-
 
 
    loadPage(page: number) {
@@ -287,19 +217,17 @@ export class UcommissionerateComponent implements OnInit{
   }
 
 
-
- // Getter to filter the list based on the search term across all pages
 get filteredCommissionerates() {
   if (!this.searchTerm) {
-    return this.commissionerateList; // Return paginated data if no search term
+    return this.commissionerateList; 
   }
   
-  // Filter all data based on the search term
+ 
   const filteredData = this.allData.filter((item: { name: string }) =>
     item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
   );
 
-  // Apply pagination to the filtered results
+ 
   const startIndex = (this.currentPage - 1) * this.pageSize;
   const endIndex = startIndex + this.pageSize;
   return filteredData.slice(startIndex, endIndex);

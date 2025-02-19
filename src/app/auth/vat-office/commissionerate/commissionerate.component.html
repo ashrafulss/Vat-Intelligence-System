@@ -1,7 +1,7 @@
 <loading-image [is-loading]="isLoading"></loading-image>
 <div class="row pt-5">
 
-  <div >
+  <div>
 
     <div class="p-2 d-flex justify-content-between align-items-center">
 
@@ -12,82 +12,77 @@
       <div class="breadcrumb p-2 d-flex align-items-center">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
-            <li
-              *ngFor="let item of breadcrumb; let last = last"
-              class="breadcrumb-item d-flex align-items-center"
-              [class.active]="last"
-              [attr.aria-current]="last ? 'page' : null"
-              >
-              
+            <li *ngFor="let item of breadcrumb; let last = last" class="breadcrumb-item d-flex align-items-center"
+              [class.active]="last" [attr.aria-current]="last ? 'page' : null">
+
               <!-- Breadcrumb link or label -->
-              <h5><a *ngIf="!last" href="" style=" font-weight: 600; color: black; text-decoration: none; ">{{ item }}</a></h5>
-             <h5> <a *ngIf="last" href="" style=" font-weight: 600; color: black;  text-decoration: none; ">{{ item }}</a></h5>
-              
+              <h5><a *ngIf="!last" href="" style=" font-weight: 600; color: black; text-decoration: none; ">{{ item
+                  }}</a></h5>
+              <h5> <a *ngIf="last" href="" style=" font-weight: 600; color: black;  text-decoration: none; ">{{ item
+                  }}</a></h5>
+
               <!-- Separator '>' for non-last items -->
-              <span *ngIf="!last" style="margin-left: 15px; margin-right: 0px; font-weight: 600; color: #35BC8C; font-size: 20px;"> <h5>></h5> </span>
+              <span *ngIf="!last"
+                style="margin-left: 15px; margin-right: 0px; font-weight: 600; color: #35BC8C; font-size: 20px;">
+                <h5>></h5>
+              </span>
             </li>
           </ol>
         </nav>
       </div>
-      
-      
 
 
-    
 
 
-      <div class=" d-flex justify-content-between"  style=" width: 47%;">
 
-        <div class="search-container" 
-        [class.focused]="isDropdownVisible" 
-        #searchContainer>
-     
-     <input type="text" 
-            placeholder="Search . . ." 
-            (focus)="showDropdown()" 
-            (blur)="hideDropdown()" 
+
+
+      <div class=" d-flex justify-content-between" style=" width: 47%;">
+
+        <div class="search-container" [class.focused]="isDropdownVisible" #searchContainer>
+
+          <input type="text" placeholder="Search . . ." (focus)="showDropdown()" (blur)="hideDropdown()"
             [(ngModel)]="searchQuery">
-   
-     <button><i class="bi bi-search"></i></button>
-   
-     <div class="dropdown " *ngIf="isDropdownVisible">
-       <div class="d-flex justify-content-between" *ngFor="let result of searchResults; let i = index" 
-            [class.selected]="i === selectedIndex"
-            (click)="selectResult(result)">
-         {{ result }}
-         <img class="arrow-icon"  src="assets/images/arrowIcon.svg" alt=""
-        style="max-height: 24px ;" sizes="(min-width: 768px) 80px, 40px">
-       </div>
-     </div>
-   </div>
-   
 
-        
+          <button><i class="bi bi-search"></i></button>
+
+          <div class="dropdown " *ngIf="isDropdownVisible">
+            <div class="d-flex justify-content-between" *ngFor="let result of searchResults; let i = index"
+              [class.selected]="i === selectedIndex" (click)="selectResult(result)">
+              {{ result }}
+              <img class="arrow-icon" src="assets/images/arrowIcon.svg" alt="" style="max-height: 24px ;"
+                sizes="(min-width: 768px) 80px, 40px">
+            </div>
+          </div>
+        </div>
+
+
+
 
 
 
         <button type="button" class=" btn d-flex align-items-center justify-content-evenly"
-        style="height: 60px;width: 178px; background-color: #FFFFFF; border-radius: 20px; font-weight: 500; color: black; font-size: 20px; border:1px solid #0A3B4040"
-        [routerLink]="['/vat-office/update']" 
-        ><span style="font-size: 20px; font-weight: 500;">Upadate </span>
-       
-        <img  src="assets/images/settingIcon.svg" alt=""
-        style="max-height: 24px;" sizes="(min-width: 768px) 80px, 40px">
-      </button>
+          style="height: 60px;width: 178px; background-color: #FFFFFF; border-radius: 20px; font-weight: 500; color: black; font-size: 20px; border:1px solid #0A3B4040"
+          [routerLink]="['/vat-office/update']"><span style="font-size: 20px; font-weight: 500;">Upadate </span>
+
+          <img src="assets/images/settingIcon.svg" alt="" style="max-height: 24px;"
+            sizes="(min-width: 768px) 80px, 40px">
+        </button>
 
 
-        <button  [routerLink]="['/vat-office/alldata']"  type="button" class=" btn d-flex align-items-center justify-content-evenly"
-            style="height: 60px;width: 205px; background-color: #35BC8C; border-radius: 20px; font-weight: 500; color: white; font-size: 20px;"><span style="font-size: 20px; font-weight: 500;">Expand All </span>
-           
-            <img  src="assets/images/expand.svg" alt=""
-            style="max-height: 18px;" sizes="(min-width: 768px) 80px, 40px">
-          </button>
+        <button [routerLink]="['/vat-office/alldata']" type="button"
+          class=" btn d-flex align-items-center justify-content-evenly"
+          style="height: 60px;width: 205px; background-color: #35BC8C; border-radius: 20px; font-weight: 500; color: white; font-size: 20px;"><span
+            style="font-size: 20px; font-weight: 500;">Expand All </span>
+
+          <img src="assets/images/expand.svg" alt="" style="max-height: 18px;" sizes="(min-width: 768px) 80px, 40px">
+        </button>
 
 
-        
+
+      </div>
     </div>
-    </div>
-    
+
 
 
   </div>
@@ -102,30 +97,18 @@
 <div class="row pt-4">
 
 
-  <div 
-    class="accordion" id="commissionerateList"
+  <div class="accordion" id="commissionerateList"
     [ngStyle]="{ height: commissionerateList.length > 0 ? '650px' : 'auto', 'overflow-y': 'auto' }">
 
-    <div 
-    class="accordion-item" 
-    *ngFor="let commissioner of commissionerateList" 
-    style="margin-bottom: 20px;"
-    
-    >
+    <div class="accordion-item" *ngFor="let commissioner of commissionerateList" style="margin-bottom: 20px;">
 
 
-      <button 
-        [id]="'heading' + commissioner.id" 
-        class="accordion-button" 
-        type="button" 
-        data-bs-toggle="collapse"
+      <button [id]="'heading' + commissioner.id" class="accordion-button" type="button" data-bs-toggle="collapse"
         [attr.data-bs-target]="'#collapseCommissioner' + commissioner.id"
         [attr.aria-controls]="'collapseCommissioner' + commissioner.id"
         [attr.aria-expanded]="isCollapsed[commissioner.id] ? 'false' : 'true'"
-        (click)="handleCommissionerClick(commissioner.id, commissioner.name)" 
-        [ngStyle]="{'border-radius': currentlyOpenCommissionerId === commissioner.id ? '20px 20px 0 0' : '20px'}"
-            
-            >
+        (click)="handleCommissionerClick(commissioner.id, commissioner.name)"
+        [ngStyle]="{'border-radius': currentlyOpenCommissionerId === commissioner.id ? '20px 20px 0 0' : '20px'}">
 
 
 
@@ -144,8 +127,7 @@
           class="d-flex align-items-center justify-content-center dropDownCustomIcon"
           style="background-color: #FFE5EC;">
           <!-- <i class="bi bi-search" style="font-size: 22px;"></i> -->
-          <img src="assets/images/droparrow.svg" alt="" class="img-fluid"
-            style="transform: rotate(180deg);">
+          <img src="assets/images/droparrow.svg" alt="" class="img-fluid" style="transform: rotate(180deg);">
         </div>
 
         <div *ngIf="currentlyOpenCommissionerId === commissioner.id"
@@ -191,21 +173,16 @@
 
 
 
-                    <button 
-                      [id]="'heading' + division.id" 
-                      class="accordion-button"
-                      type="button" 
-                      data-bs-toggle="collapse"
-                      [attr.data-bs-target]="'#collapseDivision' + division.id"
+                    <button [id]="'heading' + division.id" class="accordion-button" type="button"
+                      data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseDivision' + division.id"
                       [attr.aria-controls]="'collapseDivision' + division.id"
-                      [attr.aria-expanded]="isCollapsed[division.id] ? 'false' : 'true'" 
-                      (click)="handleDivisionClick( division.name, division.id, commissioner.id)"
-                      [ngStyle]="{'border-radius': currentlyOpenDivisionId === division.id ? '20px 20px 0 0' : '20px'
+                      [attr.aria-expanded]="isCollapsed[division.id] ? 'false' : 'true'"
+                      (click)="handleDivisionClick( division.name, division.id, commissioner.id)" [ngStyle]="{'border-radius': currentlyOpenDivisionId === division.id ? '20px 20px 0 0' : '20px'
                            }">
 
 
 
-                    
+
                       <div class="border-custom">
                         <p class="code" style=" color: #B05331;">Code : {{ division.code }}</p>
                       </div>
@@ -216,7 +193,7 @@
                       </div>
 
                       <div>
-<!-- 
+                        <!-- 
                         <button *ngIf="currentlyOpenDivisionId === division.id"
                           class="d-flex align-items-center justify-content-center addbutton">
                           <i class="bi bi-plus-lg"></i> &nbsp; Add Circle
@@ -274,19 +251,12 @@
 
 
 
-                                  <button 
-                                    [id]="'heading' + circle.id" 
-                                    class="accordion-button" 
-                                    type="button" 
-                                    data-bs-toggle="collapse"
-                                    [attr.data-bs-target]="'#collapseCircle' + circle.id"
+                                  <button [id]="'heading' + circle.id" class="accordion-button" type="button"
+                                    data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseCircle' + circle.id"
                                     [attr.aria-controls]="'collapseCircle' + circle.id"
                                     [attr.aria-expanded]="isCollapsed[circle.id] ? 'false' : 'true'"
                                     (click)="handleCircleClick(circle.id, circle.name, division.id, commissioner.id)"
-                                     [ngStyle]="{'border-radius': currentlyOpenCircleId === circle.id ? '20px 20px 0 0' : '20px'}"
-                                    
-                                    
-                                    >
+                                    [ngStyle]="{'border-radius': currentlyOpenCircleId === circle.id ? '20px 20px 0 0' : '20px'}">
 
                                     <div class="border-custom">
                                       <p class="code" style="color: #9C7932;">Code : {{ circle.code }} </p>
@@ -319,10 +289,8 @@
 
 
 
-                                  <div 
-                                  [id]="'collapseCircle' + circle.id" 
-                                  [ngClass]="{ 'show': isCollapsed[circle.id] }"
-                                  class="accordion-collapse collapse"
+                                  <div [id]="'collapseCircle' + circle.id"
+                                    [ngClass]="{ 'show': isCollapsed[circle.id] }" class="accordion-collapse collapse"
                                     [attr.aria-labelledby]="'headingCircle' + circle.id"
                                     [attr.data-bs-parent]="'#circleList' + division.id">
 
@@ -342,7 +310,7 @@
                                           <th>BIN No.</th>
                                           <th>E-TIN</th>
                                           <th>Contact No.</th>
-                                          <th>Actions</th>
+
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -352,7 +320,7 @@
                                           <td>{{taxpayer.binNo}}</td>
                                           <td>{{taxpayer.etinNo}}</td>
                                           <td>{{taxpayer.mobileNo}}</td>
-                                          <td></td>
+
                                         </tr>
 
                                       </tbody>
