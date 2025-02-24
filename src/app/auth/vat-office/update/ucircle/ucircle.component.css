@@ -330,6 +330,7 @@
   
   .costom-li li a{
     color: white;
+    /* font-size: 16px; */
   }
   
   .costom-li li a:hover{

@@ -1,94 +1,93 @@
+<div class="row">
 
-<div class="row" >
+  <div>
 
-    <div>
+    <div class=" px-4 d-flex justify-content-between align-items-center"
+      style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 8vh;border: 1px solid #0A3B4040;">
 
-      <div class=" px-4 d-flex justify-content-between align-items-center"
-        style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 8vh;border: 1px solid #0A3B4040;">
-
-        <h3 class="mb-0" style="font-size: 26px; font-weight: 600; color: #000000;">Add Tax Payer</h3>
-
+      <h3 class="mb-0" style="font-size: 26px; font-weight: 600; color: #000000;">Add Tax Payer</h3>
 
 
 
 
-
-
-      </div>
 
 
 
     </div>
 
+
+
   </div>
 
-
-
-  <div
-    style=" background-color: #ffffff; margin-top: -1px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; border: 1px solid #0A3B4040;">
+</div>
 
 
 
-    <div class="d-flex justify-content-evenly align-items-center px-4 gap-3 pb-3 pt-2">
-
-<input hidden [(ngModel)]="TAXpayerid" type="text" name="" id="">
+<div class="scrollable-container">
 
 
-      <div class="col ">
-        <div style="padding-bottom: 10px;"><span
-            style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Commissionerate Name</span></div>
-        <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-          
-          
 
-          <button [innerText]="selectedCommissionerateName || 'Select Commissionerate Name'" class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
-        data-bs-toggle="dropdown" aria-expanded="false"
-        style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
-  
-      </button>
-      <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+  <div class="d-flex justify-content-evenly align-items-center px-4 gap-3 pb-3 pt-2">
+
+    <input hidden [(ngModel)]="TAXpayerid" type="text" name="" id="">
+
+
+    <div [ngClass]="{'col': !isDropdownOpen, 'col-5': isDropdownOpen}">
+      <div style="padding-bottom: 10px;"><span
+          style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Commissionerate Name</span></div>
+      <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
+
+
+
+        <button [innerText]="selectedCommissionerateName || 'Select Commissionerate Name'"
+          class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false"
+          (click)="toggleDropdown()"
+          style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
+
+        </button>
+        <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
                 
-      max-height: 300px; 
-overflow-y: auto; 
-overflow-x: hidden; 
+      max-height: 150px; 
+      overflow-y: auto; 
+      overflow-x: hidden; 
       ">
-        <li *ngFor="let payer of allData" >
-          <a class="dropdown-item" (click)="onCommissionerateSelect(payer)" >
-            {{ payer.name }}
-          </a>
-        </li>
-      </ul>
+          <li *ngFor="let payer of allData">
+            <a class="dropdown-item" (click)="onCommissionerateSelect(payer)">
+              {{ payer.name }}
+            </a>
+          </li>
+        </ul>
 
 
-          <i
-            class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
+        <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
 
-        </div>
+    </div>
 
-      </div>
+    </div>
 
 
       <div class="col ">
-        <div style="padding-bottom: 10px;"><span
-            style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Division Name</span></div>
+      <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Division
+          Name</span></div>
 
-        <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-          
-          
+      <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
 
-          <button [disabled]="!selectedCommissionerateId"
-          [innerText]="selectedDivisionName || 'Select Division Name'" class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+
+
+        <button [disabled]="!selectedCommissionerateId" [innerText]="selectedDivisionName || 'Select Division Name'"
+          class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
           data-bs-toggle="dropdown" aria-expanded="false"
           style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
-       
+
         </button>
         <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
                   
-        max-height: 300px; 
-  overflow-y: auto; 
-  overflow-x: hidden; 
+        max-height: 150px; 
+     overflow-y: auto; 
+      overflow-x: hidden; 
         ">
-          <li *ngFor="let payer of divisionListByComID" >
+          <li *ngFor="let payer of divisionListByComID">
             <a class="dropdown-item" (click)="onDivisionSelect(payer)">
               {{ payer.name }}
             </a>
@@ -96,33 +95,32 @@ overflow-x: hidden;
         </ul>
 
 
-          <i
-            class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
+        <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
 
-        </div>
       </div>
+    </div>
 
-      <div class="col ">
-        <div style="padding-bottom: 10px;"><span
-            style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Circle Name</span></div>
+    <div class="col ">
+      <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Circle
+          Name</span></div>
 
         <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-        
-          
 
-          <button [disabled]="!selectedDivisionId"
-          [innerText]="selectedCircleName || 'Select Circle Name'" class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+
+
+        <button [disabled]="!selectedDivisionId" [innerText]="selectedCircleName || 'Select Circle Name'"
+          class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
           data-bs-toggle="dropdown" aria-expanded="false"
           style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
-          
+
         </button>
         <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
                   
-        max-height: 300px; 
-  overflow-y: auto; 
-  overflow-x: hidden; 
+        max-height: 150px; 
+          overflow-y: auto; 
+         overflow-x: hidden; 
         ">
-          <li *ngFor="let payer of circleListByComID" >
+          <li *ngFor="let payer of circleListByComID">
             <a class="dropdown-item" (click)="onCircleSelect(payer)">
               {{ payer.name }}
             </a>
@@ -130,28 +128,276 @@ overflow-x: hidden;
         </ul>
 
 
-          <i
-            class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
+        <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
 
-        </div>
       </div>
+    </div>
 
-      <div class="col">
-        <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Tax
-            Payer Name</span></div>
+    <div class="col">
+      <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Tax
+          Payer Name</span></div>
 
-        <input [(ngModel)]="taxPayerName" type="text" placeholder="Enter Circle Name"
-          style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
-      </div>
-
-
-
+      <input [(ngModel)]="taxPayerName" type="text" placeholder="Enter Circle Name"
+        style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+    </div>
 
 
 
+
+
+
+
+  </div>
+
+
+
+
+  <!-- ---------start--------- -->
+
+
+  <div class="d-flex justify-content-evenly align-items-center px-4 gap-3 pb-3 pt-2">
+
+
+
+
+
+
+
+
+
+    <div class="col">
+      <div style="padding-bottom: 10px;"><span
+          style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Type of Ownership</span></div>
+      <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
+
+
+
+        <button [innerText]="selectedOwnership || 'Select Ownership Type'"
+          class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false"
+          style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
+
+        </button>
+        <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                
+      max-height: 150px; 
+      overflow-y: auto; 
+      overflow-x: hidden; 
+      ">
+          <li *ngFor="let payer of ownershipList">
+            <a class="dropdown-item" (click)="onOwnershipSelect(payer)">
+              {{ payer }}
+            </a>
+          </li>
+        </ul>
+
+
+        <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
 
     </div>
 
+    </div>
+  
+  
+  
+
+
+
+    <div class="col">
+      <div style="padding-bottom: 10px;"><span
+          style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Normal Central Registration</span></div>
+      <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
+
+
+
+        <button [innerText]="selectedNormalCentralRegistration || 'Select Normal Central Registration'"
+          class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false"
+          style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
+
+        </button>
+        <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                
+      max-height: 150px; 
+      overflow-y: auto; 
+      overflow-x: hidden; 
+      ">
+          <li *ngFor="let payer of registrationList">
+            <a class="dropdown-item" (click)="onNormalCentralRegistrationSelect(payer)">
+              {{ payer }}
+            </a>
+          </li>
+        </ul>
+
+
+        <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
+
+    </div>
+
+    </div>
+
+
+
+    <div class="col">
+      <div style="padding-bottom: 10px;"><span
+          style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Registration Category</span></div>
+      <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
+
+
+
+        <button [innerText]="selectedRegistrationCategory || 'Select Registration Category'"
+          class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false"
+          style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
+
+        </button>
+        <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                
+      max-height: 150px; 
+      overflow-y: auto; 
+      overflow-x: hidden; 
+      ">
+          <li *ngFor="let payer of registrationCategoryList">
+            <a class="dropdown-item" (click)="onRegistrationCategorySelect(payer)">
+              {{ payer }}
+            </a>
+          </li>
+        </ul>
+
+
+        <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
+
+    </div>
+
+    </div>
+
+
+
+    <div class="col">
+      <div style="padding-bottom: 10px;"><span
+          style="font-weight: 500; font-size: 20px; padding-left: 10px; "> Forced Registration</span></div>
+      <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
+
+
+
+        <button [innerText]="selectedForcedRegistration || 'Select Forced Registration'"
+          class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false"
+          style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
+
+        </button>
+        <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                
+      max-height: 150px; 
+      overflow-y: auto; 
+      overflow-x: hidden; 
+      ">
+          <li *ngFor="let payer of forcedRegistrationList">
+            <a class="dropdown-item" (click)="onForcedRegistration(payer)">
+              {{ payer }}
+            </a>
+          </li>
+        </ul>
+
+
+        <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
+
+    </div>
+
+    </div>
+
+
+
+
+
+  </div>
+  <!-- -------------end--------------- -->
+
+
+
+    <!-- ---------start--------- -->
+
+
+    <div class="d-flex justify-content-evenly align-items-center px-4 gap-3 pb-3 pt-2">
+
+
+      <div class="col">
+        <div style="padding-bottom: 10px;"><span
+            style="font-weight: 500; font-size: 20px; padding-left: 10px; ">  Residency Status</span></div>
+        <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
+  
+  
+  
+          <button [innerText]="selectedResidency || 'Select Residency Status'"
+            class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false"
+            style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
+  
+          </button>
+          <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
+                  
+        max-height: 150px; 
+        overflow-y: auto; 
+        overflow-x: hidden; 
+        ">
+            <li *ngFor="let payer of residencyList">
+              <a class="dropdown-item" (click)="onResidency(payer)">
+                {{ payer }}
+              </a>
+            </li>
+          </ul>
+  
+  
+          <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
+  
+      </div>
+  
+      </div>
+
+
+      <div class="col">
+        <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Old BIN
+            No.</span></div>
+  
+        <input [(ngModel)]="oldBinNo" type="text" placeholder="Enter Old BIN NO."
+          style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+      </div>
+
+      <div class="col">
+        <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; ">BIN
+            No.</span></div>
+  
+        <input [(ngModel)]="binNo" type="text" placeholder="Enter BIN NO."
+          style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+      </div>
+    
+      <div class="col">
+        <div style="padding-bottom: 10px;"><span
+            style="font-weight: 500; font-size: 20px; padding-left: 10px; ">E-TIN</span></div>
+  
+        <input [(ngModel)]="etinNo" type="text" placeholder="Enter E-TIN"
+          style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+      </div>
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    </div>
+    <!-- -------------end--------------- -->
+  
+
+
+
+    <!-- ---------start--------- -->
 
 
     <div class="d-flex justify-content-evenly align-items-center px-4 gap-3 pb-3 pt-2">
@@ -160,177 +406,256 @@ overflow-x: hidden;
 
 
       <div class="col">
-        <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; ">BIN
-            No.</span></div>
-
-        <input [(ngModel)]="binNo" type="text" placeholder="Enter BIN NO."
+        <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; "> Economic Activity</span></div>
+  
+        <input  [(ngModel)]="economicActivity"  type="text" placeholder="Enter Economic Activity"
           style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
       </div>
-      <div class="col">
-        <div style="padding-bottom: 10px;"><span
-            style="font-weight: 500; font-size: 20px; padding-left: 10px; ">E-TIN</span></div>
 
-        <input [(ngModel)]="etinNo" type="text" placeholder="Enter E-TIN"
+
+        <div class="col">
+        <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; "> Area of Manufacturing</span></div>
+  
+        <input [(ngModel)]="areaOfManufacture"  type="text" placeholder="Enter Area of Manufacturing"
           style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
       </div>
-      <div class="col">
-        <div style="padding-bottom: 10px;"><span
-            style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Contact No.</span></div>
 
-        <!-- <input [(ngModel)]="mobileNo" type="text" placeholder="Enter Contact No."
+
+      <div class="col">
+        <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; "> Area of Service</span></div>
+  
+        <input [(ngModel)]="areaOfService" type="text" placeholder="Enter Area of Service"
+          style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+      </div>
+
+      <div class="col">
+        <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; "> Business Classification Code</span></div>
+  
+        <input [(ngModel)]="businessClassificationCode"  type="text" placeholder="Business Classification Code"
+          style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+      </div>
+  
+  
+  
+  
+  
+  
+    </div>
+    <!-- -------------end--------------- -->
+  
+
+
+
+  <div class="d-flex justify-content-evenly align-items-center px-4 gap-3 pb-3 pt-2">
+
+    <div class="col">
+      <div style="padding-bottom: 10px;"><span
+          style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Address</span></div>
+
+      <input [(ngModel)]="address" type="text" placeholder="Enter Address"
+        style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+    </div>
+
+
+   <div class="col">
+      <div style="padding-bottom: 10px;"><span
+          style="font-weight: 500; font-size: 20px; padding-left: 10px; "> Registration Type</span></div>
+
+      <input [(ngModel)]="registrationType" type="text" placeholder="Enter Registration Type"
+        style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+    </div>
+
+    <div class="col">
+      <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; "> Email </span></div>
+
+      <input [(ngModel)]="email" type="email" placeholder="Enter email"
+        style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+    </div>
+
+   
+    <div class="col">
+      <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Contact
+          No.</span></div>
+
+      <!-- <input [(ngModel)]="mobileNo" type="text" placeholder="Enter Contact No."
           style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;"> -->
 
 
-          <div class="col d-flex align-items-center gap-3 ">
-            <input type="text" (keydown.enter)="addTaxPayer()"  [(ngModel)]="mobileNo" placeholder="Enter Circle Name"
-            style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
-            <i role="button" *ngIf="isEditing" (click)="refresh()" class="bi bi-x-square-fill" style="font-size: 24px; color: #0A3B40;"></i>
-        
-           </div>
+      <div class="col d-flex align-items-center gap-3 ">
+        <input type="text" [(ngModel)]="mobileNo" placeholder="Enter Contact No"
+          style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
+        <i role="button" *ngIf="isEditing" (click)="refresh()" class="bi bi-x-square-fill"
+          style="font-size: 24px; color: #0A3B40;"></i>
 
       </div>
-    
-
-      <div class="col d-flex justify-content-start align-self-end" >
-        <button (click)="addTaxPayer()" class="btn addbutton">
-          {{ isEditing ? 'Update' : 'Add' }}&nbsp;
-           <i class="bi bi-plus-lg"></i>
-        </button>
-      </div>
-
-
-
-
 
     </div>
+
+
+    <!-- <div class="col-1 d-flex justify-content-start align-self-end">
+      <button (click)="addTaxPayer()" class="btn addbutton">
+       <div class="d-flex justify-content-center">
+        {{ isEditing ? 'Update' : 'Add' }}&nbsp;
+        <i class="bi bi-plus-lg"></i>
+       </div>
+      </button>
+    </div> -->
+
+
+
+
+
+  </div>
+
+  <div class="d-flex justify-content-end align-items-center px-4 gap-3 pb-3 pt-2">
+
+
+
+
+    <div class="col-3 d-flex justify-content-end" style="padding-right: 30px;">
+      <button (click)="addTaxPayer()" class="btn addbutton" style="width: 160px !important;">
+       <div class="d-flex justify-content-center">
+        {{ isEditing ? 'Update' : 'Add' }}&nbsp;
+        <i class="bi bi-plus-lg"></i>
+       </div>
+      </button>
+    </div>
+
+
+
 
 
   </div>
 
 
-  <!-- table start here -->
+</div>
 
 
-  <div class="row pt-3">
-
-    <div>
-
-      <div class=" px-4 d-flex justify-content-between align-items-center"
-        style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 8vh;border: 1px solid #0A3B4040;">
-
-        <h3 class="mb-0" style="font-weight: 600; font-size: 24px;">List of Tax Payers</h3>
+<!-- table start here -->
 
 
-
-
-
-
-
-
-
-
-        <div class=" d-flex justify-content-end" style=" width: 47%;">
-
-          <div class="search-container">
-            <input type="text" placeholder="Search . . ." [(ngModel)]="searchTerm">
-
-            <button><i class="bi bi-search"></i></button>
-          </div>
-
-
-
-
-
-
-        </div>
-      </div>
-
-
-
-    </div>
-
-  </div>
-
+<div class="row pt-3">
 
   <div>
-    <table id="example" style="width: 99.9%;  margin-left: 1px; ">
-      <thead>
-        <tr style="font-weight: 500; font-size: 20px;">
-          <th class="px-5" style="font-weight: 500; font-size: 20px;">SI No.</th>
-          <th style="font-weight: 500; font-size: 20px;">Tax Payer Name</th>
-          <th style="font-weight: 500; font-size: 20px;">BIN No.</th>
-          <th style="font-weight: 500; font-size: 20px;">E-TIN</th>
-          <th style="font-weight: 500; font-size: 20px;">Contact No.</th>
-          <th style="font-weight: 500; font-size: 20px;">Date Added</th>
-          <th class="d-flex gap-3 justify-content-end px-5">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of filteredTaxpyer; let i = index" style="font-size: 20px; font-weight: 400;">
-          <td style="padding-right: 100px;" id="slid">{{ (currentPage - 1) * pageSizes + i + 1 }}</td>
-          <td>{{item.taxPayerName}}</td>
-          <td>{{item.binNo}}</td>
-          <td>{{item.etinNo}}</td>
 
-          <td>{{item.mobileNo}}</td>
-          <td>{{item.createdOn | dateFormat}}</td>
-          <td class="d-flex gap-3 justify-content-end px-5">
-            <div (click)="editTaxpayer(item)" role="button" style="cursor: pointer;"> <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
-            <div (click)="onDeleteTAXpayer(item.id)" role="button"> <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
-          </td>
-        </tr>
+    <div class=" px-4 d-flex justify-content-between align-items-center"
+      style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 8vh;border: 1px solid #0A3B4040;">
+
+      <h3 class="mb-0" style="font-weight: 600; font-size: 24px;">List of Tax Payers</h3>
 
 
-        <tr *ngIf="!taxPayerList || taxPayerList.length === 0">
-          <td colspan="7" class="text-center" style="font-size: 20px; font-weight: 400; padding: 10px; color: #000000B2;">
-            No Data Available
-          </td>
-        </tr>
-      </tbody>
-    </table>
 
 
-  
-    
-    
-
-  </div>
-  
 
 
-  <div class="pagination-controls">
-
-    <span style="font-size: 20px; font-weight: 400;">Page:</span><span
-      style="font-size: 20px; font-weight: 500;">{{currentPage}}/{{ totalPagesTaxPayer() }}</span>
 
 
-    <!-- Previous Button -->
-    <button (click)="prevPageTaxPayer()" [disabled]="currentPage === 1"
-      style="border: none; background-color:#f6f6f6;" type="button">
-      <i style="transform: rotate(90deg);"
-        class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
-      </i>
-    </button>
 
-    <!-- Next Button -->
-    <button (click)="nextPageTaxPayer()" [disabled]="currentPage * pageSize >= taxPayerAllData.length"
-      style="border: none; background-color:#f6f6f6;" type="button">
-      <i style="transform: rotate(-90deg);"
-        class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
-      </i>
-    </button>
+
+      <div class=" d-flex justify-content-end" style=" width: 47%;">
+
+        <div class="search-container">
+          <input type="text" placeholder="Search . . ." [(ngModel)]="searchTerm">
+
+          <button><i class="bi bi-search"></i></button>
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+
 
 
   </div>
 
+</div>
+
+
+<div>
+  <table id="example" style="width: 99.9%;  margin-left: 1px; ">
+    <thead>
+      <tr style="font-weight: 500; font-size: 20px;">
+        <th class="px-5" style="font-weight: 500; font-size: 20px;">SI No.</th>
+        <th style="font-weight: 500; font-size: 20px;">Tax Payer Name</th>
+        <th style="font-weight: 500; font-size: 20px;">BIN No.</th>
+        <th style="font-weight: 500; font-size: 20px;">E-TIN</th>
+        <th style="font-weight: 500; font-size: 20px;">Contact No.</th>
+        <th style="font-weight: 500; font-size: 20px;">Date Added</th>
+        <th class="d-flex gap-3 justify-content-end px-5">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredTaxpyer; let i = index" style="font-size: 20px; font-weight: 400;">
+        <td style="padding-right: 100px;" id="slid">{{ (currentPage - 1) * pageSizes + i + 1 }}</td>
+        <td>{{item.taxPayerName}}</td>
+        <td>{{item.binNo}}</td>
+        <td>{{item.etinNo}}</td>
+
+        <td>{{item.mobileNo}}</td>
+        <td>{{item.createdOn | dateFormat}}</td>
+        <td class="d-flex gap-3 justify-content-end px-5">
+          <div (click)="editTaxpayer(item)" role="button" style="cursor: pointer;"> <img
+              src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
+          <div (click)="onDeleteTAXpayer(item.id)" role="button"> <img src="assets/images/deleteIcon.svg" alt=""
+              class="img-fluid"></div>
+        </td>
+      </tr>
+
+
+      <tr *ngIf="!taxPayerList || taxPayerList.length === 0">
+        <td colspan="7" class="text-center" style="font-size: 20px; font-weight: 400; padding: 10px; color: #000000B2;">
+          No Data Available
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 
 
 
-    <!-- Modal Content -->
+
+
+</div>
+
+
+
+<div class="pagination-controls">
+
+  <span style="font-size: 20px; font-weight: 400;">Page:</span><span
+    style="font-size: 20px; font-weight: 500;">{{currentPage}}/{{ totalPagesTaxPayer() }}</span>
+
+
+  <!-- Previous Button -->
+  <button (click)="prevPageTaxPayer()" [disabled]="currentPage === 1" style="border: none; background-color:#f6f6f6;"
+    type="button">
+    <i style="transform: rotate(90deg);"
+      class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
+    </i>
+  </button>
+
+  <!-- Next Button -->
+  <button (click)="nextPageTaxPayer()" [disabled]="currentPage * pageSize >= taxPayerAllData.length"
+    style="border: none; background-color:#f6f6f6;" type="button">
+    <i style="transform: rotate(-90deg);"
+      class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
+    </i>
+  </button>
+
+
+</div>
+
+
+
+
+
+<!-- Modal Content -->
 <ng-template #modalContent let-modal>
-  
-  <div class="modal-header" >
+
+  <div class="modal-header">
     <h5 class="modal-title">Confirmation</h5>
     <button type="button" class="btn-close" (click)="modal.close()"></button>
   </div>

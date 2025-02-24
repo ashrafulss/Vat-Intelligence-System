@@ -1,45 +1,45 @@
-
 <div class="row" style="margin-bottom: 0px;">
 
-    <div>
+  <div>
 
-      <div class=" px-4 d-flex justify-content-between align-items-center"
-        style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 6vh;border: 1px solid #0A3B4040;">
+    <div class=" px-4 d-flex justify-content-between align-items-center"
+      style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 6vh;border: 1px solid #0A3B4040;">
 
-        <h3 class="mb-0" style="font-size: 26px; font-weight: 600; color: #000000;">Add Circle</h3>
-
-
+      <h3 class="mb-0" style="font-size: 26px; font-weight: 600; color: #000000;">Add Circle</h3>
 
 
 
 
-
-      </div>
 
 
 
     </div>
 
+
+
   </div>
 
-
-  <div class="d-flex justify-content-evenly align-items-center px-4 gap-3 pb-5 pt-2"
-    style=" background-color: #ffffff; margin-top: -1px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; border: 1px solid #0A3B4040;">
+</div>
 
 
-
-    <div class="col ">
-      <div style="padding-bottom: 10px;"><span
-          style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Commissionerate Name</span></div>
-      <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-        
-        
+<div class="d-flex justify-content-evenly align-items-center px-4 gap-3 pb-5 pt-2"
+  style=" background-color: #ffffff; margin-top: -1px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; border: 1px solid #0A3B4040;">
 
 
-        <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
-        data-bs-toggle="dropdown" aria-expanded="false" [innerText]="selectedCommissionerateName || 'Select Commissionerate Name'"
+
+  <div class="col-5">
+    <div style="padding-bottom: 10px;"><span
+        style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Commissionerate Name</span></div>
+    <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
+
+
+
+
+      <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+        data-bs-toggle="dropdown" aria-expanded="false"
+        [innerText]="selectedCommissionerateName || 'Select Commissionerate Name'"
         style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
-        
+
       </button>
       <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
                 
@@ -47,7 +47,7 @@
 overflow-y: auto; 
 overflow-x: hidden; 
       ">
-        <li *ngFor="let payer of allData" >
+        <li *ngFor="let payer of allData">
           <a class="dropdown-item" (click)="onCommissionerateSelect(payer)">
             {{ payer.name }}
           </a>
@@ -55,24 +55,23 @@ overflow-x: hidden;
       </ul>
 
 
-        <i
-          class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
-
-      </div>
+      <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
 
     </div>
 
+  </div>
 
-    <div class="col ">
-      <div style="padding-bottom: 10px;"><span
-          style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Division Name</span></div>
 
-      <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
-        <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
+  <div class="col ">
+    <div style="padding-bottom: 10px;"><span style="font-weight: 500; font-size: 20px; padding-left: 10px; ">Division
+        Name</span></div>
+
+    <div class="custom-select-wrapper d-flex align-items-center m-0 p-0">
+      <button class="btn btn-secondary dropdown-toggle no-arrow" type="button" id="dropdownMenuButton"
         data-bs-toggle="dropdown" aria-expanded="false" [disabled]="!selectedCommissionerateId"
         [innerText]="selectedDivisionName || 'Select Division Name'"
         style="border-radius: 15px; background-color: #FFFFFF; color: #00000099; font-size: 20px; width: 100%; text-align: left; padding-right: 35px; height: 55px; border: 1px solid #00000033;">
-        
+
       </button>
       <ul class="dropdown-menu costom-li" aria-labelledby="dropdownMenuButton" style=" border: none; background-color: #0A3B40; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-size: 20px; font-weight: bold; width: 100%;
                 
@@ -80,151 +79,157 @@ overflow-x: hidden;
 overflow-y: auto; 
 overflow-x: hidden; 
       ">
-        <li *ngFor="let payer of divisionListByComID" >
-          <a class="dropdown-item"  (click)="onDivisionSelect(payer)" >
+        <li *ngFor="let payer of divisionListByComID">
+          <a class="dropdown-item" (click)="onDivisionSelect(payer)">
             {{ payer.name }}
           </a>
         </li>
       </ul>
 
 
-        <i
-          class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
+      <i class="bi bi-chevron-down dropdown-icon d-flex align-items-center justify-content-center custom-icon"></i>
 
-      </div>
-      
     </div>
-<input hidden [(ngModel)]="circleoid" type="text" name="" id="">
 
-      <div class="col">
-        <div style="padding-bottom: 10px;">
-          <span style="font-weight: 500; font-size: 20px; padding-left: 10px;">Circle Name</span>
-        </div>
-    
-       <div class="col d-flex align-items-center gap-3 ">
-        <input type="text" (keydown.enter)="addCircle()"  [(ngModel)]="circleName" placeholder="Enter Circle Name"
+  </div>
+  
+  <input hidden [(ngModel)]="circleoid" type="text" name="" id="">
+
+  <div class="col">
+    <div style="padding-bottom: 10px;">
+      <span style="font-weight: 500; font-size: 20px; padding-left: 10px;">Circle Name</span>
+    </div>
+
+    <div class="col d-flex align-items-center gap-3 ">
+      <input type="text" (keydown.enter)="addCircle()" [(ngModel)]="circleName" placeholder="Enter Circle Name"
         style="min-height: 55px; border-radius: 10px; width: 100%; border: 1px solid #00000033; outline: none; font-size: 20px; font-weight: 400; padding-left: 20px;">
-        <i role="button" *ngIf="isEditing" (click)="refresh()" class="bi bi-x-square-fill" style="font-size: 24px; color: #0A3B40;"></i>
-    
-       </div>
-     
-        </div>
-
-   
-
-    <div class="col-1 d-flex justify-content-end align-self-end" >
-      <button (click)="addCircle()" class="btn addbutton">
-        {{ isEditing ? 'Update' : 'Add' }}&nbsp;
-      </button>
-    </div>
-
-
-  </div>
-
-
-
-  <!-- table start here -->
-
-
-  <div class="row pt-3">
-
-    <div>
-
-      <div class=" px-4 d-flex justify-content-between align-items-center"
-        style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 8vh;border: 1px solid #0A3B4040;">
-
-        <h3 class="mb-0" style="font-weight: 600; font-size: 24px;">List of Circle</h3>
-
-
-
-
-
-
-
-
-
-
-        <div class=" d-flex justify-content-end" style=" width: 47%;">
-
-          <div class="search-container">
-            <input type="text" placeholder="Search . . ." [(ngModel)]="searchTerm">
-
-            <button><i class="bi bi-search"></i></button>
-          </div>
-
-
-
-
-
-
-        </div>
-      </div>
-
-
+      <i role="button" *ngIf="isEditing" (click)="refresh()" class="bi bi-x-square-fill"
+        style="font-size: 24px; color: #0A3B40;"></i>
 
     </div>
 
   </div>
 
+
+
+  <div class="col-1 d-flex justify-content-end align-self-end">
+    <button (click)="addCircle()" class="btn addbutton">
+      {{ isEditing ? 'Update' : 'Add' }}&nbsp;
+    </button>
+  </div>
+
+
+</div>
+
+
+
+<!-- table start here -->
+
+
+<div class="row pt-3">
 
   <div>
-    <table id="example" style="width: 99.9%;  margin-left: 1px; ">
-      <thead>
-        <tr style="font-weight: 500; font-size: 20px;">
-          <th class="px-5" style="font-weight: 500; font-size: 20px;">Code</th>
-          <th style="font-weight: 500; font-size: 20px;">Circle Name</th>
-          <th style="font-weight: 500; font-size: 20px;">Date Added</th>
-          <th class="d-flex gap-3 justify-content-end px-5">Actions</th>
-        </tr>
 
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of filteredCircles" style="font-size: 20px; font-weight: 400;">
-          <td style="padding-right: 100px;" id="slidCircle">{{item.code}}</td>
-          <td>{{item.name}}</td>
-          <td>{{item.createdOn | dateFormat}}</td>
-          <td class="d-flex gap-3 justify-content-end px-5">
-            <div (click)="editCircle(item)" role="button"> <img src="assets/images/editIcon.svg" alt="" class="img-fluid"></div>
-            <div (click)="onDeleteCircle(item.id)" role="button"> <img src="assets/images/deleteIcon.svg" alt="" class="img-fluid"></div>
-          </td>
-        </tr>
+    <div class=" px-4 d-flex justify-content-between align-items-center"
+      style="background-color:#ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px; height: 8vh;border: 1px solid #0A3B4040;">
 
-        <tr *ngIf="!circleListAll || circleListAll.length === 0">
-          <td colspan="4" class="text-center" style="font-size: 20px; font-weight: 400; padding: 10px; color: #000000B2;">
-            No Data Available
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    
-
-  </div>
-
-  <div class="pagination-controls">
-
-    <span style="font-size: 20px; font-weight: 400;">Page:</span><span
-      style="font-size: 20px; font-weight: 500;">{{currentPage}}/{{ totalPagesCircle() }}</span>
+      <h3 class="mb-0" style="font-weight: 600; font-size: 24px;">List of Circle</h3>
 
 
-    <!-- Previous Button -->
-    <button (click)="prevPageCircle()" [disabled]="currentPage === 1"
-      style="border: none; background-color:#f6f6f6;" type="button">
-      <i style="transform: rotate(90deg);"
-        class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
-      </i>
-    </button>
 
-    <!-- Next Button -->
-    <button (click)="nextPageCircle()" [disabled]="currentPage * pageSize >= circleAllData.length"
-      style="border: none; background-color:#f6f6f6;" type="button">
-      <i style="transform: rotate(-90deg);"
-        class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
-      </i>
-    </button>
+
+
+
+
+
+
+
+      <div class=" d-flex justify-content-end" style=" width: 47%;">
+
+        <div class="search-container">
+          <input type="text" placeholder="Search . . ." [(ngModel)]="searchTerm">
+
+          <button><i class="bi bi-search"></i></button>
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+
 
 
   </div>
+
+</div>
+
+
+<div>
+  <table id="example" style="width: 99.9%;  margin-left: 1px; ">
+    <thead>
+      <tr style="font-weight: 500; font-size: 20px;">
+        <th class="px-5" style="font-weight: 500; font-size: 20px;">Code</th>
+        <th style="font-weight: 500; font-size: 20px;">Circle Name</th>
+        <th style="font-weight: 500; font-size: 20px;">Date Added</th>
+        <th class="d-flex gap-3 justify-content-end px-5">Actions</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredCircles" style="font-size: 20px; font-weight: 400;">
+        <td style="padding-right: 100px;" id="slidCircle">{{item.code}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.createdOn | dateFormat}}</td>
+        <td class="d-flex gap-3 justify-content-end px-5">
+          <div (click)="editCircle(item)" role="button"> <img src="assets/images/editIcon.svg" alt="" class="img-fluid">
+          </div>
+          <div (click)="onDeleteCircle(item.id)" role="button"> <img src="assets/images/deleteIcon.svg" alt=""
+              class="img-fluid"></div>
+        </td>
+      </tr>
+
+      <tr *ngIf="!circleListAll || circleListAll.length === 0">
+        <td colspan="4" class="text-center" style="font-size: 20px; font-weight: 400; padding: 10px; color: #000000B2;">
+          No Data Available
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+
+
+<div class="pagination-controls">
+
+  <span style="font-size: 20px; font-weight: 400;">Page:</span><span
+    style="font-size: 20px; font-weight: 500;">{{currentPage}}/{{ totalPagesCircle() }}</span>
+
+
+  <!-- Previous Button -->
+  <button (click)="prevPageCircle()" [disabled]="currentPage === 1" style="border: none; background-color:#f6f6f6;"
+    type="button">
+    <i style="transform: rotate(90deg);"
+      class="bi bi-chevron-down dropdown-icon1 d-flex align-items-center justify-content-center">
+    </i>
+  </button>
+
+  <!-- Next Button -->
+  <button (click)="nextPageCircle()" [disabled]="currentPage * pageSize >= circleAllData.length"
+    style="border: none; background-color:#f6f6f6;" type="button">
+    <i style="transform: rotate(-90deg);"
+      class="bi bi-chevron-down dropdown-icon2 d-flex align-items-center justify-content-center">
+    </i>
+  </button>
+
+
+</div>
 
 
 
@@ -232,8 +237,8 @@ overflow-x: hidden;
 
 <!-- Modal Content -->
 <ng-template #modalContent let-modal>
-  
-  <div class="modal-header" >
+
+  <div class="modal-header">
     <h5 class="modal-title">Confirmation</h5>
     <button type="button" class="btn-close" (click)="modal.close()"></button>
   </div>

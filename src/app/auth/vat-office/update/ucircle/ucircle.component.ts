@@ -87,7 +87,7 @@ export class UcircleComponent implements OnInit {
      this.commissionerateService.getCommissionerates().subscribe(res => {
    
          if (res.status === 200) {
-             this.allData = res.body.reverse();
+             this.allData = res.body;
              this.loadPage(this.currentPage);
          }
      },
@@ -144,10 +144,10 @@ export class UcircleComponent implements OnInit {
 
 
 
-  public getCircleListAll(){
+  public getCircleListAll(divisionID: string, commisionarateID: string){
 
 
-    this.commissionerateService.getCirclesAll().subscribe(res => {
+    this.commissionerateService.getCircles(divisionID, commisionarateID, ).subscribe(res => {
   
         if (res.status === 200) {
           
@@ -186,7 +186,7 @@ export class UcircleComponent implements OnInit {
     this.updateBreadcrumb('Commissionerate')
     this.getCommissionerateList();
     this.getDivisionListAll();
-    this.getCircleListAll();
+    // this.getCircleListAll();
   
 
   }
@@ -410,6 +410,9 @@ export class UcircleComponent implements OnInit {
 onDivisionSelect(division: any) {
   this.selectedDivisionName = division.name;
   this.divisionoid = division.id;
+
+  this.getCircleListAll(this.divisionoid, division.commissionerateoid, );
+  // commissionerateoid: string, divisionoid:string,
 }
 
 
@@ -526,7 +529,7 @@ refresh(){
    this.circleName = '';
   this.isEditing = false;
   this.commissionerateNameInvalid = false;
- this.getCircleListAll();
+//  this.getCircleListAll();
 }
 
 

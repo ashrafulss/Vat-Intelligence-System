@@ -78,9 +78,23 @@ export class CommissionerateService {
   }
 
 
-  updateTAXpayer(id: string, commissionerateOid: string, divisionOid:string, circleOid:string, taxPayerName: string, binNo:string, etinNo:string, mobileNo:string): Observable<HttpResponse<any>> {
+  updateTAXpayer(id: string, 
+    
+    commissionerateOid: string, divisionOid:string, circleOid:string, taxPayerName: string, 
+    typeOfOwnership: string, normalCentralRegistration:string, registrationCategory:string, forcedRegistration: string, 
+    residencyStatus: string, oldBinNo:string, binNo:string, etinNo:string, 
+    
+    economicActivity: string, areasOfManufacturing:string, areasOfService:string, businessClassificationCode:string, 
+    address: string, registrationType:string, emailAddress:string, mobileNo:string
+  
+  ): Observable<HttpResponse<any>> {
 
-    const payload = { commissionerateOid: commissionerateOid, divisionOid: divisionOid, circleOid:circleOid, taxPayerName: taxPayerName, binNo:binNo, etinNo:etinNo, mobileNo:mobileNo  };
+    const payload = { commissionerateOid: commissionerateOid, divisionOid: divisionOid, circleOid:circleOid, taxPayerName: taxPayerName, 
+      typeOfOwnership: typeOfOwnership, normalCentralRegistration: normalCentralRegistration, registrationCategory:registrationCategory, forcedRegistration: forcedRegistration, 
+      residencyStatus: residencyStatus, oldBinNo: oldBinNo, binNo:binNo, etinNo:etinNo,
+  
+      economicActivity: economicActivity, areasOfManufacturing: areasOfManufacturing, areasOfService:areasOfService, businessClassificationCode:businessClassificationCode,
+      address: address, registrationType: registrationType, emailAddress:emailAddress, mobileNo:mobileNo   };
     
     return this.http.put<HttpResponse<any>>(`${this.apiTaxpayerUpdate}/${id}`, payload, {
       
@@ -169,8 +183,25 @@ saveCircle(commissionerateoid: string, divisionoid:string, name: string): Observ
 
 
 
-saveTaxpayer(commissionerateOid: string, divisionOid:string, circleOid:string, taxPayerName: string, binNo:string, etinNo:string, mobileNo:string): Observable<HttpResponse<any>> {
-  const payload = { commissionerateOid: commissionerateOid, divisionOid: divisionOid, circleOid:circleOid, taxPayerName: taxPayerName, binNo:binNo, etinNo:etinNo, mobileNo:mobileNo };
+saveTaxpayer(
+  commissionerateOid: string, divisionOid:string, circleOid:string, taxPayerName: string, 
+  typeOfOwnership: string, normalCentralRegistration:string, registrationCategory:string, forcedRegistration: string, 
+  residencyStatus: string, oldBinNo:string, binNo:string, etinNo:string, 
+  
+  economicActivity: string, areasOfManufacturing:string, areasOfService:string, businessClassificationCode:string, 
+  address: string, registrationType:string, emailAddress:string, mobileNo:string
+
+
+): Observable<HttpResponse<any>> {
+  const payload = { 
+    commissionerateOid: commissionerateOid, divisionOid: divisionOid, circleOid:circleOid, taxPayerName: taxPayerName, 
+    typeOfOwnership: typeOfOwnership, normalCentralRegistration: normalCentralRegistration, registrationCategory:registrationCategory, forcedRegistration: forcedRegistration, 
+    residencyStatus: residencyStatus, oldBinNo: oldBinNo, binNo:binNo, etinNo:etinNo,
+
+    economicActivity: economicActivity, areasOfManufacturing: areasOfManufacturing, areasOfService:areasOfService, businessClassificationCode:businessClassificationCode,
+    address: address, registrationType: registrationType, emailAddress:emailAddress, mobileNo:mobileNo 
+  
+  };
   console.log('Payload being sent:', payload);  // Log payload to check
   return this.http.post<HttpResponse<any>>(this.apiTaxpayerCreate, payload, {
       headers: getHttpHeaders(),
@@ -240,7 +271,7 @@ deleteCircle(id: string): Observable<HttpResponse<any>> {
 
 
 
-  getTaxPayers(circleOid: string, divisionOid: string, commissionerateOid: string): Observable<HttpResponse<any>> {
+  getTaxPayers(circleOid: string, commissionerateOid: string, divisionOid: string): Observable<HttpResponse<any>> {
     let url ="";
       url = `${resourceServerUrl}/v1/taxpayer/circle/${circleOid}`;
     return this.http.get(url, {

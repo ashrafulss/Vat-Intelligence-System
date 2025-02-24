@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommissionerateService } from '../../services/commissionerate.service';
 import { ReportService } from '../../../analysis/report.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SrvRecord } from 'node:dns';
 
 @Component({
   selector: 'app-utaxpayer',
@@ -22,6 +23,38 @@ export class UtaxpayerComponent implements OnInit {
   public divisionAllData: any = [];
   public circleAllData: any = [];
   public taxPayerAllData: any = [];
+  public ownershipList: any = [
+    "Proprietorship", 
+    "Private Limited",
+    "Private Limited, Others",
+    "Public Limited",
+    "Government"
+
+
+  ];
+
+  public forcedRegistrationList: any=[
+    "Yes", "No"
+  ]
+
+  public registrationList: any = [
+    "Normal Registration", 
+    "Central Registration",
+
+  ];
+
+  public registrationCategoryList: any = [
+    "New-Registration", 
+    "Re-Registration",
+
+
+
+  ];
+
+  public residencyList:any=[
+    "Resident",
+    "Non-Resident"
+  ]
 
   isCommissionerate: boolean = false;
   commissionerateNameInvalid: boolean = false;
@@ -45,6 +78,13 @@ export class UtaxpayerComponent implements OnInit {
   currentCommissionerateId: string = '';
   selectedCommissionerateId: any;
   selectedCommissionerateName: any;
+  selectedOwnership: any;
+
+  selectedNormalCentralRegistration:any;
+  selectedRegistrationCategory:any;
+  selectedForcedRegistration:any;
+  selectedResidency:any;
+
   divisionListByComID: any = [];
   selectedDivisionName!: string;
   divisionId: any;
@@ -85,7 +125,7 @@ export class UtaxpayerComponent implements OnInit {
     this.commissionerateService.getCommissionerates().subscribe(res => {
 
       if (res.status === 200) {
-        this.allData = res.body.reverse();
+        this.allData = res.body;
 
       }
     },
@@ -174,16 +214,17 @@ export class UtaxpayerComponent implements OnInit {
 
 
 
-  public getTaxPayerListAll() {
+  public getTaxPayerListAll(circleId:string, commisionarateID: string, divisionID:string ) {
 
 
-    this.reportService.getVatPayerList().subscribe(res => {
+    this.commissionerateService.getTaxPayers(circleId, commisionarateID, divisionID).subscribe(res => {
 
       if (res.status === 200) {
 
         // this.taxPayerAllData = res.body;
         this.taxPayerAllData = res.body.sort((a: { createdOn: string | number | Date; }, b: { createdOn: string | number | Date; }) => new Date(b.createdOn).getTime() - new Date(a.createdOn).getTime());
 
+        // console.log(this.taxPayerAllData.name)
         this.loadPageTaxPayer(this.currentPage);
       }
     },
@@ -213,7 +254,7 @@ export class UtaxpayerComponent implements OnInit {
     this.getCommissionerateList();
     this.getDivisionListAll();
     this.getCircleListAll();
-    this.getTaxPayerListAll();
+    // this.getTaxPayerListAll();
 
 
   }
@@ -363,13 +404,20 @@ export class UtaxpayerComponent implements OnInit {
   }
 
 
+  isDropdownOpen = false;
+  toggleDropdown() {
+    this.isDropdownOpen = true;
+  }
 
   onCommissionerateSelect(commissionerate: any) {
     this.selectedCommissionerateId = commissionerate.id;
     this.selectedCommissionerateName = commissionerate.name;
     this.selectedDivisionName = ''; // Reset division selection
+    this.selectedCircleName = '';
     this.divisionListByComID = []; // Clear existing divisions while loading
     this.commissionerateId = commissionerate.id;
+
+ 
 
     // Fetch divisions dynamically based on the selected Commissionerate ID
     this.getDivisionListByCommissionerateID(commissionerate.id);
@@ -392,9 +440,35 @@ onCircleSelect(circle :any){
   this.circleId = circle.id;
   this.selectedCircleId = circle.id;
   this.selectedCircleName = circle.name;
+
+  this.getTaxPayerListAll(this. circleId, this.commissionerateId, this.divisionId.id );
 }
 
 
+onOwnershipSelect(owenership: any) {
+
+  this.selectedOwnership = owenership;
+ 
+} 
+
+onNormalCentralRegistrationSelect(registration: any) {
+
+  this.selectedNormalCentralRegistration = registration;
+ 
+} 
+
+onRegistrationCategorySelect(category: any){
+  this.selectedRegistrationCategory = category
+}
+
+onForcedRegistration(forced:any){
+  this.selectedForcedRegistration = forced;
+}
+
+
+onResidency(residency:any){
+  this.selectedResidency = residency;
+}
 
 public getCircleListByDivisionID(divisionID:string, commisionarateID: string){
   
@@ -434,19 +508,45 @@ public getCircleListByDivisionID(divisionID:string, commisionarateID: string){
 
 circleId:string = '';
 taxPayerName: string = '';
+
+
+oldBinNo:string ='';
+
 binNo:string ='';
+
 etinNo:string = '';
+
+economicActivity: string ='';
+areaOfManufacture: string ='';
+areaOfService: string ='';
+businessClassificationCode:string ='';
+
+address:string='';
+registrationType: string='';
+email:string ='';
 mobileNo:string ='';
+TAXpayerid:string ='';
 
 
 addTaxPayer(){
 
 
+   
+  // this.commissionerateService.saveTaxpayer(
+  //   this.commissionerateId, this.divisionId, this.circleId, this.taxPayerName, 
+
+  //   this.selectedOwnership, this.selectedNormalCentralRegistration, this.selectedRegistrationCategory, this.selectedForcedRegistration,
+
+  //   this.selectedResidency, this.oldBinNo, this.binNo, this.etinNo, 
+    
+  //   this.economicActivity, this.areaOfManufacture, this.areaOfService, this.businessClassificationCode,
+  //   this.address, this.registrationType, this.email, this.mobileNo
   
-  // this.commissionerateService.saveTaxpayer(this.commissionerateId, this.divisionId, this.circleId, this.taxPayerName, this.binNo, this.etinNo, this.mobileNo).subscribe(
+  
+  // ).subscribe(
   //   (response) => {
-  //     console.log('Taxpayer ceated successfully:', response);
-  //     this.modalMessage = 'Taxpayer created successfully!';
+  //     console.log('Taxpayer add successfully:', response);
+  //     this.modalMessage = 'Taxpayer add successfully!';
   //     this.modalService.open(this.modalContent, { centered: true });  // Open the modal on success
   //     this.refresh();  // Refresh the form or list
   //   },
@@ -470,7 +570,18 @@ addTaxPayer(){
    
 
     // Update existing commissionerate
-    this.commissionerateService.updateTAXpayer(TAXpayerid, this.commissionerateId, this.divisionId, this.circleId, this.taxPayerName, this.binNo, this.etinNo, this.mobileNo).subscribe(
+    this.commissionerateService.updateTAXpayer(TAXpayerid, 
+      
+      this.commissionerateId, this.divisionId, this.circleId, this.taxPayerName, 
+
+      this.selectedOwnership, this.selectedNormalCentralRegistration, this.selectedRegistrationCategory, this.selectedForcedRegistration,
+    
+      this.selectedResidency, this.oldBinNo, this.binNo, this.etinNo, 
+      
+      this.economicActivity, this.areaOfManufacture, this.areaOfService, this.businessClassificationCode,
+      this.address, this.registrationType, this.email, this.mobileNo
+    
+    ).subscribe(
       (response) => {
         console.log('taxpayer updated successfully:', response);
         this.modalMessage = 'taxpayer updated successfully!';
@@ -485,7 +596,18 @@ addTaxPayer(){
     );
   } else {
     
-    this.commissionerateService.saveTaxpayer(this.commissionerateId, this.divisionId, this.circleId, this.taxPayerName, this.binNo, this.etinNo, this.mobileNo).subscribe(
+    this.commissionerateService.saveTaxpayer(
+  
+  this.commissionerateId, this.divisionId, this.circleId, this.taxPayerName, 
+
+  this.selectedOwnership, this.selectedNormalCentralRegistration, this.selectedRegistrationCategory, this.selectedForcedRegistration,
+
+  this.selectedResidency, this.oldBinNo, this.binNo, this.etinNo, 
+  
+  this.economicActivity, this.areaOfManufacture, this.areaOfService, this.businessClassificationCode,
+  this.address, this.registrationType, this.email, this.mobileNo
+  
+  ).subscribe(
       (response) => {
         console.log('taxpayer added successfully:', response);
         this.modalMessage = 'taxpayer added successfully!';
@@ -514,55 +636,90 @@ refresh() {
   this.selectedDivisionName = '';
   this.selectedCircleName = '';
   this.taxPayerName ='';
+
+  this.selectedOwnership = '';
+  this.selectedNormalCentralRegistration = '';
+  this.selectedRegistrationCategory = '';
+  this.selectedForcedRegistration = '';
+
+  this.selectedResidency = '';
+  this.oldBinNo ='';
   this.binNo ='';
   this.etinNo = '';
+
+  this.economicActivity ='';
+  this.areaOfManufacture ='';
+  this.areaOfService ='';
+  this.businessClassificationCode='';
+
+  this.address ='';
+  this.registrationType ='';
+  this.email ='';
   this.mobileNo = '';
+
+
   this.TAXpayerid = '';
-
-
   this.isEditing = false;
 
-  this.getTaxPayerListAll();
+  this.getTaxPayerListAll(this.circleId, this.commissionerateId, this.divisionId);
 
 }
  
 
 editTaxpayer(taxpayer:any){
+  this.isDropdownOpen = false;
 
-   // Find and set the Commissionerate name
+  this.TAXpayerid = taxpayer.id;
+
+
    const selectedCommissionerate = this.allData.find(
     (comm: { id: any; }) => comm.id === taxpayer.commissionerateOid
   );
   this.selectedCommissionerateName = selectedCommissionerate ? selectedCommissionerate.name : null;
 
-  // Find and set the Division name
   const selectedDivision = this.divisionAllData.find(
     (div: { id: any; }) => div.id === taxpayer.divisionOid
   );
   this.selectedDivisionName = selectedDivision ? selectedDivision.name : null;
 
-  // Find and set the Circle name
   const selectedCircle = this.circleAllData.find(
     (circle: { id: any; }) => circle.id === taxpayer.circleOid
   );
   this.selectedCircleName = selectedCircle ? selectedCircle.name : null;
 
-  // Assign taxpayer details
+
   this.taxPayerName = taxpayer.taxPayerName;
+
+
+  this.selectedOwnership = taxpayer.typeOfOwnership;
+  this.selectedNormalCentralRegistration = taxpayer.normalCentralRegistration;
+  this.selectedRegistrationCategory = taxpayer.registrationCategory;
+  this.selectedForcedRegistration = taxpayer.forcedRegistration;
+
+  this.selectedResidency = taxpayer.residencyStatus;
+  this.oldBinNo = taxpayer.oldBinNo;
   this.binNo = taxpayer.binNo;
   this.etinNo = taxpayer.etinNo;
+
+
+  this.economicActivity = taxpayer.economicActivity;
+  this.areaOfManufacture= taxpayer.areasOfManufacturing;
+  this.areaOfService = taxpayer.areasOfService;
+  this.businessClassificationCode = taxpayer.businessClassificationCode;
+
+  this.address = taxpayer.address;
+  this.registrationType = taxpayer.registrationType;
+  this.email = taxpayer.emailAddress;
   this.mobileNo = taxpayer.mobileNo;
-  this.TAXpayerid = taxpayer.id;
 
   this.isEditing = true;
-
   this.selectedCommissionerateId = taxpayer.commissionerateOid;
   this.selectedDivisionId = taxpayer.divisionOid;
 }
 
 
 
-TAXpayerid:string ='';
+
 
   
   onDeleteTAXpayer(commId: string) {

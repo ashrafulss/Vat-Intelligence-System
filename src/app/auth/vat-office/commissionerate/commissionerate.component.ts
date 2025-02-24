@@ -423,8 +423,8 @@ updateBreadcrumb(level: string, names: string | string[]): void {
 
 
 // this one is for get all circleList
-  public getCircleList( divisionOid: string, commissionerateOid: string){
-    this.commissionerateService.getCircles(divisionOid,commissionerateOid).subscribe(res => {
+  public getCircleList(divisionOid: string, commissionerateOid: string){
+    this.commissionerateService.getCircles(divisionOid, commissionerateOid).subscribe(res => {
       if (res.status === 200) {
         this.circleList = res.body;
         
@@ -454,8 +454,8 @@ updateBreadcrumb(level: string, names: string | string[]): void {
 
 
 // this one is for get all taxpayerList
-  public getTaxPayerList(circleOid:string, divisionOid:string, commissionerateOid:string){
-    this.commissionerateService.getTaxPayers(circleOid, divisionOid, commissionerateOid).subscribe(res => {
+  public getTaxPayerList(commissionerateOid:string, divisionOid:string, circleOid:string){
+    this.commissionerateService.getTaxPayers(commissionerateOid, divisionOid, circleOid).subscribe(res => {
        
       if (res.status === 200) {
       

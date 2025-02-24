@@ -330,6 +330,7 @@
   
   .costom-li li a{
     color: white;
+    font-weight: 17px;
   }
   
   .costom-li li a:hover{
@@ -337,6 +338,20 @@
   }
   
     
+
+  .scrollable-container {
+    background-color: #ffffff; 
+    margin-top: -1px; 
+    border-bottom-right-radius: 15px; 
+    border-bottom-left-radius: 15px; 
+    border: 1px solid #0A3B4040;
+    
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  
   
   
    

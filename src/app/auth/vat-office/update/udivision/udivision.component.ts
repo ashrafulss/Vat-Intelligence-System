@@ -81,7 +81,7 @@ export class UdivisionComponent implements OnInit {
     this.commissionerateService.getCommissionerates().subscribe(res => {
 
       if (res.status === 200) {
-        this.commissionerateAllData = res.body.reverse();
+        this.commissionerateAllData = res.body
 
       }
     },
